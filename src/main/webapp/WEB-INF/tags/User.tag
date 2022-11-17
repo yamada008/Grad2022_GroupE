@@ -11,12 +11,12 @@
 	<div class="container px-4 px-lg-5 my-div-style">
     <div class="row gx-4 gx-lg-5 justify-content-center">
        
-           
+           <h1 class="mb-3" style="text-align: center">ログイン画面</h1>
 		<form method="post" action="./user">
 		<c:choose>
 		<c:when test="${ user.isAuth() }">
 			<p>ようこそ!、${ user.getUserId() }さん</p>
-			<a class="btn btn-default" href="/Grad2022_GroupE/">トップへ</a>
+			<a class="btn btn-default" href="/SotsukenE/">トップへ</a>
 			<%--<input type="submit" class="btn btn-default" name="logout" value="ログアウト" /> --%>
 		</c:when>
 		<c:otherwise>

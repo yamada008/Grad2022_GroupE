@@ -2,6 +2,7 @@ package user;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dao.SimpleDAO;
@@ -38,36 +39,36 @@ public class UserDAO extends SimpleDAO {
 		return result;
 	}
 
-	public String find(String id, String pass) {
-		return "ほげ";
+//	public String find(String id, String pass) {
+//		return "ほげ";
+//	}
+
+
+	public String find(String userId, String pass) {
+		Connection db = this.createConnection();
+		PreparedStatement ps = null;
+		String result = null;
+		try {
+			ps = db.prepareStatement("SELECT * FROM usertbl WHERE userID=? AND passwd=?");
+			ps.setString(1, userId);
+			ps.setString(2, pass);
+			ResultSet rst = ps.executeQuery();
+			if (rst.next()) {
+				result = rst.getString("realName");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+			}
+			this.closeConnection(db);
+		}
+
+		return result;
 	}
 
-
-//	public String find(String userId, String pass) {
-//		Connection db = this.createConnection();
-//		PreparedStatement ps = null;
-//		String result = null;
-//		try {
-//			ps = db.prepareStatement("SELECT * FROM usertbl WHERE userID=? AND passwd=?");
-//			ps.setString(1, userId);
-//			ps.setString(2, pass);
-//			ResultSet rst = ps.executeQuery();
-//			if (rst.next()) {
-//				result = rst.getString("realName");
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (ps != null) {
-//					ps.close();
-//				}
-//			} catch (SQLException e) {
-//			}
-//			this.closeConnection(db);
-//		}
-//
-//		return result;
-//	}
-//
 }

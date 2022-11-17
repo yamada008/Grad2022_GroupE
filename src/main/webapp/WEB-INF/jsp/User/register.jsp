@@ -11,13 +11,13 @@
 	<link href="css/styles.css" rel="stylesheet" />
 </head>
 <body>
-<div class="container px-4 px-lg-5 my-div-style">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
+<div class="mx-auto" style="width: 300px;">
+		<h1 class="mb-3" style="text-align: center">新規登録</h1>
 <form method="post" action="./user">
 		<c:choose>
 		<c:when test="${ user.isAuth() }">
 			<p>ようこそ!、${ user.getUserId() }さん</p>
-			<a class="btn btn-default" href="/Agriculture/">トップへ</a>
+			<a class="btn btn-default" href="/SotsukenE/">トップへ</a>
 			<%--<input type="submit" class="btn btn-default" name="logout" value="ログアウト" /> --%>
 		</c:when>
 		<c:otherwise>
@@ -30,7 +30,7 @@
 			<dd><input type="text" class="form-control input-sm" name="userName" value="" placeholder="本名を入力" /></dd>
 		</dl>
 				<input type="submit" name="register" value="新規登録" class="btn btn-success" />
-		<a class="btn btn-danger"  href="/Agriculture/">キャンセル</a>
+		<a class="btn btn-danger"  href="/SotsukenE/">キャンセル</a>
 
 		</c:otherwise>
 		</c:choose>
