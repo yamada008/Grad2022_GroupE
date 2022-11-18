@@ -21,8 +21,8 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/Grad2022_GroupE/">一から始める農業</a>
-                <a class="nav-link" href="/Grad2022_GroupE/user?logout=true">Log Out</a>
+                <a class="navbar-brand" href="/SotsukenE/">一から始める農業</a>
+                <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
             </div>
         </nav>
         <!-- Masthead-->
@@ -41,14 +41,6 @@
                             <!-- To make this form functional, sign up at-->
                             <!-- https://startbootstrap.com/solution/contact-forms-->
                             <!-- to get an API token!-->
-                                <div class="row">
-                                <div class=col>
-                                    <div class="col-auto">
-                                    <a class="btn btn-primary" href="/Grad2022_GroupE/land_search">農地を探す</a>
-                                    <a class="btn btn-primary" href="#!">農業を終わる</a>
-                                    </div>
-                                </div>
-                                </div>
                                 <!-- Submit success message-->
                                 <!---->
                                 <!-- This is what your users will see when the form-->
@@ -74,27 +66,16 @@
         <section class="features-icons bg-light text-center">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
-                            <h3>Fully Responsive</h3>
-                            <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
-                            <h3>Bootstrap 5 Ready</h3>
-                            <p class="lead mb-0">Featuring the latest build of the new Bootstrap 5 framework!</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
-                            <h3>Easy to Use</h3>
-                            <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
-                        </div>
-                    </div>
+                                <div class=col>
+                                    <div class="col-auto">
+                                    <a class="btn btn-primary" href="/SotsukenE/land_search">農地を探す</a>
+                                    <a class="btn btn-primary" href="#!">作業終了</a>
+                                    </div><br>
+                                    <div class="col-auto">
+                                    <a class="btn btn-primary" href="/SotsukenE/produce_search">補助を受ける</a>
+                                    <a class="btn btn-primary" href="/SotsukenE/borrow">受けない</a>
+                                    </div>
+                                </div>
                 </div>
             </div>
         </section>

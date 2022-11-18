@@ -21,8 +21,8 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/Grad2022_GroupE/">一から始める農業</a>
-                <a class="nav-link" href="/Grad2022_GroupE/user?logout=true">Log Out</a>
+                <a class="navbar-brand" href="/SotsukenE/">一から始める農業</a>
+                <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
             </div>
         </nav>
         <!-- Masthead-->
@@ -46,8 +46,8 @@
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <a class="btn btn-primary" href="/Grad2022_GroupE/user?login=true">借り手</a>
-                                    <a class="btn btn-primary" href="/Grad2022_GroupE/user?login=true">地主</a>
+                                    <a class="btn btn-primary" href="/SotsukenE/user?login=true">借り手</a>
+                                    <a class="btn btn-primary" href="/SotsukenE/user?login=true">地主</a>
                                     </div>
                                 </div>
                                 </div>

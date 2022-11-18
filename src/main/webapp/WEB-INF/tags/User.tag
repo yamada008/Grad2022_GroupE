@@ -16,7 +16,7 @@
 		<c:choose>
 		<c:when test="${ user.isAuth() }">
 			<p>ようこそ!、${ user.getUserId() }さん</p>
-			<a class="btn btn-default" href="/Grad2022_GroupE/">トップへ</a>
+			<a class="btn btn-default" href="/SotsukenE/">トップへ</a>
 			<%--<input type="submit" class="btn btn-default" name="logout" value="ログアウト" /> --%>
 		</c:when>
 		<c:otherwise>

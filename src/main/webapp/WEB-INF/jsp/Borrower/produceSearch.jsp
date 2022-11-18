@@ -21,8 +21,8 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/Grad2022_GroupE/">一から始める農業</a>
-                <a class="nav-link" href="/Grad2022_GroupE/user?logout=true">Log Out</a>
+                <a class="navbar-brand" href="/SotsukenE/">一から始める農業</a>
+                <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
             </div>
         </nav>
         <!-- Masthead-->
@@ -49,13 +49,21 @@
         </header>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
-        <form action="/Grad2022_GroupE/produce_search" method="get" class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                <!-- Email address input-->
+        <form action="#!" method="get" class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <input type="radio" name="radiobutton" value="get">サポートを受ける
-                                    <input type="radio" name="radiobutton" value="no">サポートを受けない<br>
+                                    開始日<br><input type="date" name="start_date">
+                                    <p>水やりの頻度</p>
+                                    <SELECT name="frequency">
+                                    <OPTION value="every_day" selected>毎日</OPTION>
+                                    <OPTION value="six">週に６回</OPTION>
+                                    <OPTION value="five">週に５回</OPTION>
+                                    <OPTION value="four">週に４回</OPTION>
+                                    <OPTION value="three">週に３回</OPTION>
+                                    <OPTION value="two">週に２回</OPTION>
+                                    <OPTION value="one">週に１回</OPTION>
+                                    </SELECT><br>
                                     <input type="submit" value="選択">
                                     </div>
                                 </div>

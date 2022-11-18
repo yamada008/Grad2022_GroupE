@@ -31,7 +31,6 @@ public class ProduceSearchServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 		
-		String support = req.getParameter("radiobutton");
 		req.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(req, resp);
 	}
 
