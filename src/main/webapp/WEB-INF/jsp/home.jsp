@@ -22,7 +22,7 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="/SotsukenE/">一から始める農業</a>
-                <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
+                <!--<a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>-->
             </div>
         </nav>
         <!-- Masthead-->
@@ -32,7 +32,7 @@
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Generate more leads with a professional landing page!</h1>
+                            <h1 class="mb-5">一から始める農業</h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
