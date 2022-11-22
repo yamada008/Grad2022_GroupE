@@ -6,7 +6,9 @@ public class UserBean implements Serializable {
 	private String userId = null;
 	private String realName = null;
 	private String pass = null;
+	private boolean isOwner = false;
 	private boolean isAuth = false;
+	
 	
 	public UserBean() {}
 	public UserBean(String name, String id, String pass) {
@@ -21,6 +23,7 @@ public class UserBean implements Serializable {
 	public String getRealName() { return this.realName; }
 	public void setPass(String pass) { this.pass = pass; }
 	public String getPass() { return this.pass; }
+	//public boolean isOwner() {return this.isOwner; }
 	public boolean isAuth() { return this.isAuth; }
 	
 	public boolean login(String id, String pass) {
@@ -30,12 +33,15 @@ public class UserBean implements Serializable {
 			this.setRealName(realName);
 			this.setUserId(id);
 			this.setPass(pass);
+			this.isOwner =dao.getOwner(id);
 			this.isAuth = true;
 		}
+		//return this.isOwner();
 		return this.isAuth();
 	}
 	
 	public void logout() {
+		//this.isOwner = false;
 		this.isAuth = false;
 		this.userId = null;
 		this.pass = null;

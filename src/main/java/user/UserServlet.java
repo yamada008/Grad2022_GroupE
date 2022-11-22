@@ -49,6 +49,7 @@ public class UserServlet extends HttpServlet {
 			if (!user.isAuth()) { // !!重要
 				String id = req.getParameter("userId").toString();
 				String pass = req.getParameter("userPass").toString();
+				
 				if (user.login(id, pass)) { // ログインに成功した場合
 					session.setAttribute("user", user);
 				}

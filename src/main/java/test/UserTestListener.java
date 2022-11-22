@@ -35,8 +35,8 @@ public class UserTestListener implements ServletContextListener {
 	 */
 	public void contextInitialized(ServletContextEvent arg0) {
 		if (System.getenv("DATABASE_URL") != null) {
-			dao.execSQL("CREATE TABLE IF NOT EXISTS usertbl"
-					+ " (id SERIAL, realName VARCHAR(64), userID VARCHAR(64), passwd VARCHAR(64), PRIMARY KEY (id))");
+			dao.execSQL("CREATE TABLE IF NOT EXISTS sample"
+					+ " (id IDENTITY, realName VARCHAR(64), userID VARCHAR(64), passwd VARCHAR(64), isOwner boolean)");
 		} else {
 			if (dao.execSQL("CREATE TABLE IF NOT EXISTS usertbl"
 					+ " (id IDENTITY, realName VARCHAR(64), userID VARCHAR(64), passwd VARCHAR(64))")) {
@@ -45,7 +45,7 @@ public class UserTestListener implements ServletContextListener {
 				System.out.println("TestUserDB is NOT READY.");
 			}
 		}
-		dao.create(new UserBean("管理者", "admin", "adminpass"));
+		dao.create(new UserBean("o-hara", "admin", "adminpass"));
 		dao.create(new UserBean("hogehoge", "hoge", "hogepass"));
 		dao.create(new UserBean("piyopiyo", "piyo", "piyopass"));
 

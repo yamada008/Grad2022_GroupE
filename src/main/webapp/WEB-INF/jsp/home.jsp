@@ -46,8 +46,8 @@
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <a class="btn btn-primary" href="/SotsukenE/user?login=true">借り手</a>
-                                    <a class="btn btn-primary" href="/SotsukenE/user?login=true">地主</a>
+                                    <a class="btn btn-primary" href="/SotsukenE/user?login=true">ログイン</a>
+                                    <!--  <a class="btn btn-primary" href="/SotsukenE/user?login=true">地主</a>-->
                                     </div>
                                 </div>
                                 </div>
