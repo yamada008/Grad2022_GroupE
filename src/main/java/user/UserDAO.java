@@ -75,9 +75,9 @@ public class UserDAO extends SimpleDAO {
 	}
 	
 	public boolean getOwner(String id) {
-		//return false;
+	
 		SELECT isOwner FROM SAMPLE userid = id;
-		
+		return false;
 	}
 
 }
