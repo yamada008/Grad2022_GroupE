@@ -36,7 +36,7 @@
 		</c:choose>
 		</form>
 		</div>
-	</div>
 			<jsp:include page="/WEB-INF/jsp/index.jsp"/>
 	</body>
 </html>
+<!-- && user.isOwner() -->

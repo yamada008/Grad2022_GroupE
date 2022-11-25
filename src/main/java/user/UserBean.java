@@ -25,7 +25,7 @@ public class UserBean implements Serializable {
 	public String getPass() { return this.pass; }
 	//public boolean isOwner() {return this.isOwner; }
 	public boolean isAuth() { return this.isAuth; }
-	
+	public boolean isOwner() { return this.isOwner; }
 	public boolean login(String id, String pass) {
 		UserDAO dao = UserDAO.getInstance();
 		String realName = null;

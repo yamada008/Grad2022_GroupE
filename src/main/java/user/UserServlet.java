@@ -30,7 +30,7 @@ public class UserServlet extends HttpServlet {
 		} else if (req.getParameter("logout") != null) {
 			user.logout();
 			session.removeAttribute("user");
-			//req.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(req, resp);
+			// req.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(req, resp);
 			resp.sendRedirect(req.getHeader("Referer"));
 		} else {
 			req.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(req, resp);
@@ -49,9 +49,16 @@ public class UserServlet extends HttpServlet {
 			if (!user.isAuth()) { // !!重要
 				String id = req.getParameter("userId").toString();
 				String pass = req.getParameter("userPass").toString();
-				
+
 				if (user.login(id, pass)) { // ログインに成功した場合
 					session.setAttribute("user", user);
+
+					if (user.isOwner()) {
+						req.getRequestDispatcher("WEB-INF/jsp/Agrarian/agrarian.jsp").forward(req, resp);
+
+					} else {
+						req.getRequestDispatcher("WEB-INF/jsp/Borrower/borrow.jsp").forward(req, resp);
+					}
 				}
 			}
 			// req.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(req, resp);

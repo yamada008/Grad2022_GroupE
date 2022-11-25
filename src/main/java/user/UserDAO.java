@@ -24,13 +24,13 @@ public class UserDAO extends SimpleDAO {
 		Connection db = this.createConnection();
 		//PreparedStatement ps = null;
 		boolean result = false;
-		try (PreparedStatement ps = db.prepareStatement("INSERT INTO sample(realName, userID, passwd, isAuth) VALUES(?, ?, ?, ?)")) {
+		try (PreparedStatement ps = db.prepareStatement("INSERT INTO sample(realName, userID, passwd, isOwner) VALUES(?, ?, ?, ?)")) {
 			//(PreparedStatement ps = db.prepareStatement("INSERT INTO sample(realName, userID, passwd, isAuth, isOwner) VALUES(?, ?, ?, ?)")) {
 			//ps = db.prepareStatement("INSERT INTO user(realName, userID, passwd) VALUES(?, ?, ?)");
 			ps.setString(1, user.getRealName());
 			ps.setString(2, user.getUserId());
 			ps.setString(3, user.getPass());
-			ps.setBoolean(4, user.isAuth());
+			ps.setBoolean(4, user.isOwner());
 			//ps.setBoolean(5, user.isOwner());
 			ps.executeUpdate();
 			result = true;
@@ -75,9 +75,24 @@ public class UserDAO extends SimpleDAO {
 	}
 	
 	public boolean getOwner(String id) {
-	
-		SELECT isOwner FROM SAMPLE userid = id;
-		return false;
+		Connection db = this.createConnection();
+		//PreparedStatement ps = null;
+		boolean result = false;
+		try (PreparedStatement ps = db.prepareStatement("SELECT isOwner FROM sample WHERE userId =?")) {
+			//(PreparedStatement ps = db.prepareStatement("INSERT INTO sample(realName, userID, passwd, isAuth, isOwner) VALUES(?, ?, ?, ?)")) {
+			//ps = db.prepareStatement("INSERT INTO user(realName, userID, passwd) VALUES(?, ?, ?)");
+			ps.setString(1, id);
+			//ps.executeUpdate();
+			ResultSet rst = ps.executeQuery();
+			if (rst.next()) {
+				result = rst.getBoolean("isOwner");
+			}//result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.closeConnection(db);
+		}
+		return result;
 	}
 
 }
