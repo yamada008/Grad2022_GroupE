@@ -1,5 +1,8 @@
+<%@page import="borrower.Produce"%>
+<%@page import="borrower.ProduceDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -49,22 +52,18 @@
         </header>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
-        <form action="/SotsukenE/produce" method="get" class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
+        <form action="#!" method="get">
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    開始日<br><input type="date" name="start_date">
-                                    <p>水やりの頻度</p>
-                                    <SELECT name="frequency">
-                                    <OPTION value="every_day" selected>毎日</OPTION>
-                                    <OPTION value="six">週に６回</OPTION>
-                                    <OPTION value="five">週に５回</OPTION>
-                                    <OPTION value="four">週に４回</OPTION>
-                                    <OPTION value="three">週に３回</OPTION>
-                                    <OPTION value="two">週に２回</OPTION>
-                                    <OPTION value="one">週に１回</OPTION>
-                                    </SELECT><br>
-                                    <input type="submit" value="選択">
+                                    <c:forEach var="produce" items="${produceList }">
+                                    <c:if test="${produce.id <= 3}">
+                                    <input type="radio" name="advise" >
+                                    <c:out value="${produce.id}"></c:out>:
+                                    <c:out value="${produce.name}"></c:out>
+                                    </c:if>
+                                    </c:forEach>
+                                    <p><input type="submit" value="選択"></p>
                                     </div>
                                 </div>
                                 </div>
@@ -84,9 +83,11 @@
                                 <!-- This is what your users will see when there is-->
                                 <!-- an error submitting the form-->
                                 <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                            </form>
+                                </form>
         </section>
-        <!-- Footer-->
+        <!-- Call to Action-->
+     
+      <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">
                 <div class="row">
