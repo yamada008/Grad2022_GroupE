@@ -1,7 +1,6 @@
 package borrower;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +13,12 @@ public class ProduceDAO extends SimpleDAO {
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/test";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
+	
+	private static ProduceDAO dao = new ProduceDAO();
+	
+	public static ProduceDAO getInstance() {
+		return dao;
+	}
 	
 	public List<Produce> findAll() {
 		List<Produce> produceList = new ArrayList<>();
@@ -44,7 +49,7 @@ public class ProduceDAO extends SimpleDAO {
 	} 
 	
 	public boolean create(Produce produce) {
-		try(Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)){
+		try(Connection conn = this.createConnection()){ //DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)){
 
 			//	Statement stmt = conn.createStatement();
 			String sql = "INSERT INTO PRODUCE( PRODUCE_ID, PRODUCE_NAME, SOW_START, SOW_END, "

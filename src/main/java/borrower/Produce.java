@@ -13,9 +13,14 @@ public class Produce implements Serializable {
 	private String harvestEnd = null;
 	
 	public Produce() {}
-	public Produce(int id, String name) {
+	public Produce(int id, String name, String sowStart, String sowEnd, 
+			String plantingStart, String plantingEnd) {
 		this.id = id;
 		this.name = name;
+		this.sowStart = sowStart;
+		this.sowEnd = sowEnd;
+		this.plantingStart = plantingStart;
+		this.plantingEnd = plantingEnd;
 	}
 	public Produce(int id, String name, String sowStart, String sowEnd, 
 			String plantingStart, String plantingEnd, String harvestStart, String harvestEnd) {

@@ -49,22 +49,23 @@
         </header>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
-        <form action="/SotsukenE/produce" method="get" class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
+        <form action="/SotsukenE/advise" method="post" class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    開始日<br><input type="date" name="start_date">
+                                    開始日<br><input type="date" name="start_date"
+                                    min="2023-01-01" max="2023-12-31">
                                     <p>水やりの頻度</p>
-                                    <SELECT name="frequency">
-                                    <OPTION value="every_day" selected>毎日</OPTION>
-                                    <OPTION value="six">週に６回</OPTION>
-                                    <OPTION value="five">週に５回</OPTION>
-                                    <OPTION value="four">週に４回</OPTION>
-                                    <OPTION value="three">週に３回</OPTION>
-                                    <OPTION value="two">週に２回</OPTION>
-                                    <OPTION value="one">週に１回</OPTION>
-                                    </SELECT><br>
-                                    <input type="submit" value="選択">
+                                    <select name="frequency">
+                                    <option value="every_day">毎日</option>
+                                    <option value="six">週に６回</option>
+                                    <option value="five">週に５回</option>
+                                    <option value="four">週に４回</option>
+                                    <option value="three">週に３回</option>
+                                    <option value="two">週に２回</option>
+                                    <option value="one">週に１回</option>
+                                    </select><br>
+                                    <button type="submit">選択</button>
                                     </div>
                                 </div>
                                 </div>

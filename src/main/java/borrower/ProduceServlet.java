@@ -50,7 +50,7 @@ public class ProduceServlet extends HttpServlet {
          String harvestStart = request.getParameter("harvestStart");
          String harvestEnd = request.getParameter("harvestEnd");
 
-         Produce produce = new Produce(id, name);
+         Produce produce = new Produce(id, name, sowStart, sowEnd, plantingStart, plantingEnd);
          PostProduceLogic postProduceLogic = new PostProduceLogic();
          postProduceLogic.execute(produce);
 
