@@ -4,15 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dao.SimpleDAO;
 
 public class AdviseDAO extends SimpleDAO {
-	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/test";
-	private final String DB_USER = "sa";
-	private final String DB_PASS = "";
+//	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/test";
+//	private final String DB_USER = "sa";
+//	private final String DB_PASS = "";
 	
 	private static AdviseDAO dao = new AdviseDAO();
 	
@@ -24,7 +27,7 @@ public class AdviseDAO extends SimpleDAO {
 		List<Advise> adviseList = new ArrayList<>();
 		
 		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM RECOMMENDED_CROPS ORDER BY ID ASC";
+			String sql = "SELECT * FROM RECOMMENDED_CROPS";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			
@@ -51,7 +54,7 @@ public class AdviseDAO extends SimpleDAO {
 				return null;
 			}
 		return adviseList;
-	} 
+	}
 	
 	public boolean create(Advise advise) {
 		try(Connection conn = this.createConnection()){ //DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)){
@@ -85,6 +88,52 @@ public class AdviseDAO extends SimpleDAO {
 			return false;
 		}
 		return true;
+	}
+
+	public boolean Comparison(String strDate, String SowStart, String SowEnd, 
+			String PlantingStart, String PlantingEnd) {
+		try {
+ 			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
+ 			Date start_date = sdFormat.parse(strDate);
+ 			Date sowStart = sdFormat.parse(SowStart);
+ 			Date sowEnd = sdFormat.parse(SowEnd);
+ 			Date plantingStart = sdFormat.parse(PlantingStart);
+ 			Date plantingEnd = sdFormat.parse(PlantingEnd);
+ 			
+ 			if(sowStart != null) {
+ 				if(start_date.after(sowStart) == true) {
+ 					if(start_date.before(sowEnd) == true) {
+ 						return true;
+ 					} else {
+ 						return false;
+ 					}
+ 				} else {
+ 					if(start_date.equals(sowStart) == true) {
+ 						return true;
+ 					} else {
+ 						return false;
+ 					}
+ 				}
+ 			} else {
+ 				if(start_date.after(plantingStart) == true) {
+ 					if(start_date.before(plantingEnd) == true) {
+ 						return true;
+ 					} else {
+ 						return false;
+ 					}
+ 				} else {
+ 					if(start_date.equals(plantingStart) == true) {
+ 						return true;
+ 					} else {
+ 						return false;
+ 					}
+ 				}
+ 			}
+ 			
+ 		} catch (ParseException e) {
+ 			e.printStackTrace();
+ 			return false;
+ 		}
 	}
 }
 

@@ -1,6 +1,7 @@
 package borrower;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -41,30 +42,38 @@ public class AdviseServlet extends HttpServlet {
 		 
 		 HttpSession session = request.getSession();
 		 Advise advise = (Advise) session.getAttribute("advise");
+		 AdviseDAO dao = AdviseDAO.getInstance();
          
          PostAdviseLogic postAdviseLogic = new PostAdviseLogic();
          postAdviseLogic.execute(advise);
-
- 		GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
-		List<Advise> adviseList = getAdviseListLogic.execute();
-		request.setAttribute("adviseList", adviseList);
-		
-		String sowStart = advise.getSowStart();
-		String sowEnd = advise.getSowEnd();
-		String plantingStart = advise.getPlantingStart();
-		String plantingEnd = advise.getPlantingStart();
-		
-		String strDate = request.getParameter("start_date");
-    	 
-        boolean date = advise.Comparison(strDate, sowStart, sowEnd, plantingStart, plantingEnd);
-		
-		if(date == true) {
-			request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
-		} else if(date == false) {
-			request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
-		}
-		
-		
+         
+         GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
+         List<Advise> adviseList = getAdviseListLogic.execute();
+         request.setAttribute("adviseList", adviseList);
+         
+         String strDate = request.getParameter("start_date");
+         String sowStart = advise.getSowStart();
+         String sowEnd = advise.getSowEnd();
+         String plantingStart = advise.getPlantingStart();
+         String plantingEnd = advise.getPlantingStart();
+         
+         List<Advise> List = new ArrayList<Advise>();
+         
+         boolean date = dao.Comparison(strDate, sowStart, sowEnd, plantingStart, plantingEnd);
+    	 if(date == true) {
+    		 List.add(advise);
+    	 }
+         
+         
+         request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+         
+//         if(date == true) {
+//        	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+//         } else if(date == false) {
+//        	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
+//         }
+         
+         
 		
 //		 String forward = "/SotsukenE/advise";
 //		 response.sendRedirect(forward);

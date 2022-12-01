@@ -49,7 +49,7 @@
         </header>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
-        <form action="/SotsukenE/advise" method="post" class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
+        <form action="/SotsukenE/advise" method="get" class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
