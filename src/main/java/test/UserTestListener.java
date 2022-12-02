@@ -1,3 +1,4 @@
+
 package test;
 
 import javax.servlet.ServletContextEvent;
@@ -45,9 +46,9 @@ public class UserTestListener implements ServletContextListener {
 				System.out.println("TestUserDB is NOT READY.");
 			}
 		}
-		dao.create(new UserBean("o-hara", "admin", "adminpass"));
-		dao.create(new UserBean("hogehoge", "hoge", "hogepass"));
-		dao.create(new UserBean("piyopiyo", "piyo", "piyopass"));
+		dao.create(new UserBean("地主", "agrarian", "adminpass"));
+		dao.create(new UserBean("借り手", "borrower", "adminpass"));
+		//dao.create(new UserBean("piyopiyo", "piyo", "piyopass"));
 
 		System.out.println("SystemStart..");
 	}

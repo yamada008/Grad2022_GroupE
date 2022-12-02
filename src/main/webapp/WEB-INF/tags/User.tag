@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="user" class="user.UserBean" scope="session" />
 <link href="css/styles.css" rel="stylesheet" />
-
+<title>login</title>
 <div class="panel panel-info">
 	<div class="panel-heading">
 		<h3 class="panel-title">
@@ -31,7 +31,6 @@
 		</c:otherwise>
 		</c:choose>
 		</form>
-		<jsp:include page="/WEB-INF/jsp/index.jsp"/>
 		</div>
 	</div>
 </div>

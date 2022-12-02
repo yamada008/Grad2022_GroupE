@@ -45,7 +45,7 @@ public class UserDAO extends SimpleDAO {
 //	public String find(String id, String pass) {
 //		return "ほげ";
 //	}
-
+	
 
 	public String find(String userId, String pass) {
 		Connection db = this.createConnection();
@@ -94,5 +94,7 @@ public class UserDAO extends SimpleDAO {
 		}
 		return result;
 	}
+	
+
 
 }
