@@ -39,8 +39,8 @@ public class UserTestListener implements ServletContextListener {
 			dao.execSQL("CREATE TABLE IF NOT EXISTS sample"
 					+ " (id IDENTITY, realName VARCHAR(64), userID VARCHAR(64), passwd VARCHAR(64), isOwner boolean)");
 		} else {
-			if (dao.execSQL("CREATE TABLE IF NOT EXISTS usertbl"
-					+ " (id IDENTITY, realName VARCHAR(64), userID VARCHAR(64), passwd VARCHAR(64))")) {
+			if (dao.execSQL("CREATE TABLE IF NOT EXISTS sample"
+					+ " (id IDENTITY, realName VARCHAR(64), userID VARCHAR(64), passwd VARCHAR(64), isOwner boolean)")) {
 				System.out.println("TestUserDB is READY.");
 			} else {
 				System.out.println("TestUserDB is NOT READY.");
