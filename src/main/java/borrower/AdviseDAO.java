@@ -88,36 +88,30 @@ public class AdviseDAO extends SimpleDAO {
 		 			if(SowStart != null) {
 		 				if(start_date.after(SowStart) == true) {
 		 					if(start_date.before(SowEnd) == true) {
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
+		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3);
 		 						cropsList.add(advise);
 		 					}
 		 				} else {
 		 					if(start_date.equals(SowStart) == true) {
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
+		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3);
 		 						cropsList.add(advise);
 		 					} else if(start_date.equals(SowEnd) == true){
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
+		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3);
 		 						cropsList.add(advise);
 		 					}
 		 				}
 		 			} else if(SowStart == null && PlantingStart != null) {
 		 				if(start_date.after(PlantingStart) == true) {
 		 					if(start_date.before(PlantingEnd) == true) {
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
+		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3);
 		 						cropsList.add(advise);
 		 					}
 		 				} else {
 		 					if(start_date.equals(PlantingStart) == true) {
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
+		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3);
 		 						cropsList.add(advise);
 		 					} else if(start_date.equals(PlantingEnd) == true){
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
+		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3);
 		 						cropsList.add(advise);
 		 					}
 		 				}
@@ -167,9 +161,31 @@ public class AdviseDAO extends SimpleDAO {
 		return true;
 	}
 
-//	public boolean Comparison(String strDate, String SowStart, String SowEnd, 
-//			String PlantingStart, String PlantingEnd) {
-//		
-//	}
+	public boolean Comparison(Advise advise) {
+		try(Connection conn = this.createConnection()){ //DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)){
+
+			//	Statement stmt = conn.createStatement();
+			String sql = "INSERT INTO RECOMMENDED_CROPS(PRODUCE_ID1, PRODUCE_NAME1, PRODUCE_ID2, "
+					+ "PRODUCE_NAME2, PRODUCE_ID3) VALUES(?, ?, ?, ?, ?, ?) ";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			//pStmt.setInt(1, advise.getId());
+			pStmt.setInt(1, advise.getId1());
+			pStmt.setString(2, advise.getName1());
+			pStmt.setInt(3, advise.getId2());
+			pStmt.setString(4, advise.getName2());
+			pStmt.setInt(5, advise.getId3());
+			pStmt.setString(6, advise.getName3());
+
+	        
+	        int result = pStmt.executeUpdate();
+	        if (result != 1) {
+	        	return false;
+	        }
+		}catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 }
 
