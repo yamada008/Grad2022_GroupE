@@ -41,7 +41,7 @@ public class UserBean implements Serializable {
 	}
 	
 	public void logout() {
-		//this.isOwner = false;
+		this.isOwner = true;
 		this.isAuth = false;
 		this.userId = null;
 		this.pass = null;
