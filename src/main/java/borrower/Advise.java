@@ -16,11 +16,10 @@ public class Advise implements Serializable {
 	private String plantingEnd = null;
 	private String harvestStart = null;
 	private String harvestEnd = null;
-	private boolean date = false;
 	
 	public Advise() {}
 	public Advise(int id, int id1, String name1, int id2, String name2, int id3, String name3, 
-			String sowStart, String sowEnd, String plantingStart, String plantingEnd, boolean date) {
+			String sowStart, String sowEnd, String plantingStart, String plantingEnd) {
 		this.id = id;
 		this.id1 = id1;
 		this.name1 = name1;
@@ -32,7 +31,6 @@ public class Advise implements Serializable {
 		this.sowEnd = sowEnd;
 		this.plantingStart = plantingStart;
 		this.plantingEnd = plantingEnd;
-		this.date = date;
 	}
 	public Advise(int id, int id1, String name1, int id2, String name2, int id3, String name3, 
 			String sowStart, String sowEnd, String plantingStart, String plantingEnd, 
@@ -65,5 +63,4 @@ public class Advise implements Serializable {
 	public String getPlantingEnd() { return this.plantingEnd; }
 	public String getHarvestStart() { return this.harvestStart; }
 	public String getHarvestEnd() { return this.harvestEnd; }
-	public boolean getDate() { return this.date; }
 }

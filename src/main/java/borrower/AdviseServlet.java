@@ -1,7 +1,6 @@
 package borrower;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -28,9 +27,21 @@ public class AdviseServlet extends HttpServlet {
     	GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
 		List<Advise> adviseList = getAdviseListLogic.execute();
 		request.setAttribute("adviseList", adviseList);
+		
+//		AdviseDAO dao = AdviseDAO.getInstance();
+//		String strDate = request.getParameter("start_date");
+//        
+//        List<Advise> cropsList = dao.search(strDate);
+//        request.setAttribute("cropsList", cropsList);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Borrower/advise.jsp");
 		dispatcher.forward(request, response);
+        
+//        if(cropsList != null) {
+//       	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+//        } else {
+//       	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
+//        }
 
 	}
 
@@ -52,26 +63,18 @@ public class AdviseServlet extends HttpServlet {
          request.setAttribute("adviseList", adviseList);
          
          String strDate = request.getParameter("start_date");
-         String sowStart = advise.getSowStart();
-         String sowEnd = advise.getSowEnd();
-         String plantingStart = advise.getPlantingStart();
-         String plantingEnd = advise.getPlantingStart();
          
-         List<Advise> List = new ArrayList<Advise>();
-         
-         boolean date = dao.Comparison(strDate, sowStart, sowEnd, plantingStart, plantingEnd);
-    	 if(date == true) {
-    		 List.add(advise);
-    	 }
+         List<Advise> cropsList = dao.search(strDate);
+         request.setAttribute("cropsList", cropsList);
          
          
-         request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+//         request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
          
-//         if(date == true) {
-//        	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
-//         } else if(date == false) {
-//        	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
-//         }
+         if(cropsList != null) {
+        	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+         } else {
+        	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
+         }
          
          
 		

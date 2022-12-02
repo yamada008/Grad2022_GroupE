@@ -56,7 +56,7 @@
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <c:forEach var="advise" items="${ adviseList }">
+                                    <c:forEach var="advise" items="${ cropsList }">
                                     <c:if test="${advise.sowStart == \"2023-03-21\" || advise.sowStart == \"2023-04-21\" }">
                                     <input type="radio" name="advise" >
                                     <c:out value="${advise.name1}"></c:out><br>
