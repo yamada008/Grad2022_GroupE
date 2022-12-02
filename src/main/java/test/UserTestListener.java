@@ -46,7 +46,9 @@ public class UserTestListener implements ServletContextListener {
 				System.out.println("TestUserDB is NOT READY.");
 			}
 		}
-		dao.create(new UserBean("地主", "agrarian", "adminpass"));
+		UserBean bean = new UserBean("地主", "agrarian", "adminpass");
+		bean.setOwner(true);
+		dao.create(bean);
 		dao.create(new UserBean("借り手", "borrower", "adminpass"));
 		//dao.create(new UserBean("piyopiyo", "piyo", "piyopass"));
 
