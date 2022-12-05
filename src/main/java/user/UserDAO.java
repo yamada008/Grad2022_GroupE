@@ -2,6 +2,7 @@ package user;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dao.SimpleDAO;
@@ -23,11 +24,12 @@ public class UserDAO extends SimpleDAO {
 		Connection db = this.createConnection();
 		//PreparedStatement ps = null;
 		boolean result = false;
-		try (PreparedStatement ps = db.prepareStatement("INSERT INTO usertbl(realName, userID, passwd) VALUES(?, ?, ?)")) {
+		try (PreparedStatement ps = db.prepareStatement("INSERT INTO usertbl(realName, userID, passwd, isOwner) VALUES(?, ?, ?, ?)")) {
 			//ps = db.prepareStatement("INSERT INTO user(realName, userID, passwd) VALUES(?, ?, ?)");
 			ps.setString(1, user.getRealName());
 			ps.setString(2, user.getUserId());
 			ps.setString(3, user.getPass());
+			ps.setBoolean(4, user.isOwner());
 			ps.executeUpdate();
 			result = true;
 		} catch (SQLException e) {
@@ -38,36 +40,57 @@ public class UserDAO extends SimpleDAO {
 		return result;
 	}
 
-	public String find(String id, String pass) {
-		return "ほげ";
+//	public String find(String id, String pass) {
+//		return "ほげ";
+//	}
+
+
+	public String find(String userId, String pass) {
+		Connection db = this.createConnection();
+		PreparedStatement ps = null;
+		String result = null;
+		try {
+			ps = db.prepareStatement("SELECT * FROM usertbl WHERE userID=? AND passwd=?");
+			ps.setString(1, userId);
+			ps.setString(2, pass);
+			ResultSet rst = ps.executeQuery();
+			if (rst.next()) {
+				result = rst.getString("realName");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} catch (SQLException e) {
+			}
+			this.closeConnection(db);
+		}
+
+		return result;
+	}
+	
+	public boolean getOwner(String id) {
+		Connection db = this.createConnection();
+		//PreparedStatement ps = null;
+		boolean result = false;
+		try (PreparedStatement ps = db.prepareStatement("SELECT isOwner FROM usertbl WHERE userId =?")) {
+			//(PreparedStatement ps = db.prepareStatement("INSERT INTO sample(realName, userID, passwd, isAuth, isOwner) VALUES(?, ?, ?, ?)")) {
+			//ps = db.prepareStatement("INSERT INTO user(realName, userID, passwd) VALUES(?, ?, ?)");
+			ps.setString(1, id);
+			//ps.executeUpdate();
+			ResultSet rst = ps.executeQuery();
+			if (rst.next()) {
+				result = rst.getBoolean("isOwner");
+			}//result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.closeConnection(db);
+		}
+		return result;
 	}
 
-
-//	public String find(String userId, String pass) {
-//		Connection db = this.createConnection();
-//		PreparedStatement ps = null;
-//		String result = null;
-//		try {
-//			ps = db.prepareStatement("SELECT * FROM usertbl WHERE userID=? AND passwd=?");
-//			ps.setString(1, userId);
-//			ps.setString(2, pass);
-//			ResultSet rst = ps.executeQuery();
-//			if (rst.next()) {
-//				result = rst.getString("realName");
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (ps != null) {
-//					ps.close();
-//				}
-//			} catch (SQLException e) {
-//			}
-//			this.closeConnection(db);
-//		}
-//
-//		return result;
-//	}
-//
 }

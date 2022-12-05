@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>一から始める農業</title>
+        <title>1から始める農業</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -24,8 +24,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/">一から始める農業</a>
-                <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
+                <a class="navbar-brand" href="/SotsukenE/">1から始める農業</a>
             </div>
         </nav>
         <!-- Masthead-->
@@ -35,7 +34,7 @@
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Generate more leads with a professional landing page!</h1>
+                            <h1 class="mb-5">1から始める農業</h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
@@ -56,7 +55,7 @@
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <c:forEach var="advise" items="${ cropsList }">
+                                    <c:forEach var="advise" items="${ adviseList }">
                                     <c:if test="${advise.sowStart == \"2023-03-21\" || advise.sowStart == \"2023-04-21\" }">
                                     <input type="radio" name="advise" >
                                     <c:out value="${advise.name1}"></c:out><br>
@@ -68,6 +67,7 @@
                                     </div>
                                 </div>
                                 </div>
+                                <a class="nav-link" href="/SotsukenE/produce_search">戻る</a>
                                 <!-- Submit success message-->
                                 <!---->
                                 <!-- This is what your users will see when the form-->
@@ -93,15 +93,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contact</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
-                        </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2022. All Rights Reserved.</p>
                     </div>
                 </div>

@@ -11,7 +11,7 @@
 	<div class="container px-4 px-lg-5 my-div-style">
     <div class="row gx-4 gx-lg-5 justify-content-center">
        
-           
+        <h1 class="mb-3" style="text-align: center">ログイン画面</h1>
 		<form method="post" action="./user">
 		<c:choose>
 		<c:when test="${ user.isAuth() }">
@@ -31,7 +31,6 @@
 		</c:otherwise>
 		</c:choose>
 		</form>
-		<jsp:include page="/WEB-INF/jsp/index.jsp"/>
 		</div>
 	</div>
 </div>

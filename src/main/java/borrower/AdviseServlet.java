@@ -28,11 +28,11 @@ public class AdviseServlet extends HttpServlet {
 		List<Advise> adviseList = getAdviseListLogic.execute();
 		request.setAttribute("adviseList", adviseList);
 		
-		String strDate = request.getParameter("start_date");
-		
-		GetCropsListLogic getCropsListLogic = new GetCropsListLogic();
-        List<Advise> cropsList = getCropsListLogic.execute(strDate);
-        request.setAttribute("cropsList", cropsList);
+//		String strDate = request.getParameter("start_date");
+//		
+//		GetCropsListLogic getCropsListLogic = new GetCropsListLogic();
+//        List<Advise> cropsList = getCropsListLogic.execute(strDate);
+//        request.setAttribute("cropsList", cropsList);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Borrower/advise.jsp");
 		dispatcher.forward(request, response);

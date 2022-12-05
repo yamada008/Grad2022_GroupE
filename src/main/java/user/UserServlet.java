@@ -51,6 +51,13 @@ public class UserServlet extends HttpServlet {
 				String pass = req.getParameter("userPass").toString();
 				if (user.login(id, pass)) { // ログインに成功した場合
 					session.setAttribute("user", user);
+					
+					if (user.isOwner()) {
+						req.getRequestDispatcher("WEB-INF/jsp/Agrarian/agrarian.jsp").forward(req, resp);
+
+					} else {
+						req.getRequestDispatcher("WEB-INF/jsp/Borrower/borrow.jsp").forward(req, resp);
+					}
 				}
 			}
 			// req.getRequestDispatcher("WEB-INF/jsp/index.jsp").forward(req, resp);

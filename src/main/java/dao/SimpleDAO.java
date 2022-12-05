@@ -45,6 +45,7 @@ public class SimpleDAO {
 			db.close();
 		} catch (SQLException e) {
 			db = null;
+			System.out.println("ここ");
 			e.printStackTrace();
 		}
 	}
