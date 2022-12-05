@@ -10,9 +10,9 @@ import java.util.List;
 import dao.SimpleDAO;
 
 public class ProduceDAO extends SimpleDAO {
-	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/test";
-	private final String DB_USER = "sa";
-	private final String DB_PASS = "";
+//	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/test";
+//	private final String DB_USER = "sa";
+//	private final String DB_PASS = "";
 	
 	private static ProduceDAO dao = new ProduceDAO();
 	
@@ -20,11 +20,12 @@ public class ProduceDAO extends SimpleDAO {
 		return dao;
 	}
 	
-	public List<Produce> findAll() {
+	public List<Produce> findAll(String strDate) {
 		List<Produce> produceList = new ArrayList<>();
 		
 		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM PRODUCE ORDER BY PRODUCE_ID ASC";
+			String sql = "SELECT * FROM PRODUCE WHERE (SOW_START <= '" + strDate + "' "
+					+ "AND SOW_END >= '" + strDate + "')";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			

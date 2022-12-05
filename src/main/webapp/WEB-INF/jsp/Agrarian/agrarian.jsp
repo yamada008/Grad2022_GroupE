@@ -21,7 +21,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/">1から始める農業</a>
+                <a class="navbar-brand" href="/SotsukenE/agrarian">1から始める農業</a>
                 <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
             </div>
         </nav>
@@ -44,8 +44,7 @@
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <a class="btn btn-primary" href="#!">農地を掲載</a>
-                                    <a class="btn btn-primary" href="#!">受信BOX</a>
+                                    
                                     </div>
                                 </div>
                                 </div>
@@ -70,6 +69,19 @@
                 </div>
             </div>
         </header>
+        <!-- Icons Grid-->
+        <section class="features-icons bg-light text-center">
+            <div class="container">
+                <div class="row">
+                                <div class=col>
+                                    <div class="col-auto">
+                                    <a class="btn btn-primary" href="#!">農地を掲載</a>
+                                    <a class="btn btn-primary" href="#!">受信BOX</a>
+                                    </div>
+                                </div>
+                </div>
+            </div>
+        </section>
         <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">

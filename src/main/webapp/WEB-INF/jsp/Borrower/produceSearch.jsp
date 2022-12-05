@@ -21,7 +21,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/">1から始める農業</a>
+                <a class="navbar-brand" href="/SotsukenE/borrow">1から始める農業</a>
             </div>
         </nav>
         <!-- Masthead-->
@@ -48,13 +48,13 @@
         </header>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
-        <form action="/SotsukenE/advise" method="get" class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
+        <form action="/SotsukenE/produce" method="get" class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
                                     開始日<br><input type="date" name="start_date"
                                     min="2023-01-01" max="2023-12-31">
-                                    <p>水やりの頻度</p>
+                                    <!-- <p>水やりの頻度</p>
                                     <select name="frequency">
                                     <option value="every_day">毎日</option>
                                     <option value="six">週に６回</option>
@@ -63,12 +63,12 @@
                                     <option value="three">週に３回</option>
                                     <option value="two">週に２回</option>
                                     <option value="one">週に１回</option>
-                                    </select><br>
+                                    </select><br>-->
                                     <button type="submit">選択</button>
                                     </div>
                                 </div>
                                 </div>
-                                <a class="nav-link" href="/SotsukenE/borrow">戻る</a>
+                                <br><a class="nav-link" href="/SotsukenE/borrow">戻る</a>
                                 <!-- Submit success message-->
                                 <!---->
                                 <!-- This is what your users will see when the form-->

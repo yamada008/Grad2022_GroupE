@@ -23,25 +23,22 @@ public class AdviseServlet extends HttpServlet {
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+    	
+    	String strDate = request.getParameter("start_date");
 
     	GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
-		List<Advise> adviseList = getAdviseListLogic.execute();
+		List<Advise> adviseList = getAdviseListLogic.execute(strDate);
 		request.setAttribute("adviseList", adviseList);
 		
-//		String strDate = request.getParameter("start_date");
-//		
-//		GetCropsListLogic getCropsListLogic = new GetCropsListLogic();
-//        List<Advise> cropsList = getCropsListLogic.execute(strDate);
-//        request.setAttribute("cropsList", cropsList);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Borrower/advise.jsp");
 		dispatcher.forward(request, response);
         
-//        if(cropsList != null) {
-//       	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
-//        } else {
-//       	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
-//        }
+        if(adviseList != null) {
+       	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+        } else {
+       	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
+        }
 
 	}
 
@@ -53,28 +50,19 @@ public class AdviseServlet extends HttpServlet {
 		 
 		 HttpSession session = request.getSession();
 		 Advise advise = (Advise) session.getAttribute("advise");
-		 AdviseDAO dao = AdviseDAO.getInstance();
          
          PostAdviseLogic postAdviseLogic = new PostAdviseLogic();
          postAdviseLogic.execute(advise);
          
-         GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
-         List<Advise> adviseList = getAdviseListLogic.execute();
-         request.setAttribute("adviseList", adviseList);
-         
          String strDate = request.getParameter("start_date");
          
-         PostCropsLogic postCropsLogic = new PostCropsLogic();
-         postCropsLogic.execute(advise);
-         
-         GetCropsListLogic getCropsListLogic = new GetCropsListLogic();
-         List<Advise> cropsList = getCropsListLogic.execute(strDate);
-         request.setAttribute("cropsList", cropsList);
-         
+         GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
+         List<Advise> adviseList = getAdviseListLogic.execute(strDate);
+         request.setAttribute("adviseList", adviseList);
          
 //         request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
          
-         if(cropsList != null) {
+         if(adviseList != null) {
         	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
          } else {
         	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);

@@ -18,15 +18,6 @@ public class Advise implements Serializable {
 	private String harvestEnd = null;
 	
 	public Advise() {}
-	public Advise(int id, int id1, String name1, int id2, String name2, int id3, String name3) {
-		this.id = id;
-		this.id1 = id1;
-		this.name1 = name1;
-		this.id2 = id2;
-		this.name2 = name2;
-		this.id3 = id3;
-		this.name3 = name3;
-	}
 	public Advise(int id, int id1, String name1, int id2, String name2, int id3, String name3, 
 			String sowStart, String sowEnd, String plantingStart, String plantingEnd, 
 			String harvestStart, String harvestEnd) {

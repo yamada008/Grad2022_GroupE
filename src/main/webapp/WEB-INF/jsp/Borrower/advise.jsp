@@ -24,7 +24,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/">1から始める農業</a>
+                <a class="navbar-brand" href="/SotsukenE/borrow">1から始める農業</a>
             </div>
         </nav>
         <!-- Masthead-->
@@ -56,8 +56,8 @@
                                 <div class=col>
                                     <div class="col-auto">
                                     <c:forEach var="advise" items="${ adviseList }">
-                                    <c:if test="${advise.sowStart == \"2023-03-21\" || advise.sowStart == \"2023-04-21\" }">
-                                    <input type="radio" name="advise" >
+                                    <c:if test="${advise.id != null }">
+                                    <input type="radio" name="${advise.id}" >
                                     <c:out value="${advise.name1}"></c:out><br>
                                     <c:out value="${advise.name2}"></c:out><br>
                                     <c:out value="${advise.name3}"></c:out><br><br>
@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                                 </div>
-                                <a class="nav-link" href="/SotsukenE/produce_search">戻る</a>
+                                <br><a class="nav-link" href="/SotsukenE/produce_search">戻る</a>
                                 <!-- Submit success message-->
                                 <!---->
                                 <!-- This is what your users will see when the form-->
