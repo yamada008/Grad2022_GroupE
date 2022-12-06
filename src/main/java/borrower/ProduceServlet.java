@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/produce")
 public class ProduceServlet extends HttpServlet {
@@ -22,13 +23,11 @@ public class ProduceServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-
+    	String strDate = request.getParameter("start_date");
 
     	GetProduceListLogic getProduceListLogic = new GetProduceListLogic();
-		List<Produce> produceList = getProduceListLogic.execute();
+		List<Produce> produceList = getProduceListLogic.execute(strDate);
 		request.setAttribute("produceList", produceList);
-
-
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Borrower/produce.jsp");
 		dispatcher.forward(request, response);
@@ -41,21 +40,16 @@ public class ProduceServlet extends HttpServlet {
 		 request.setCharacterEncoding("UTF-8");
 		 response.setContentType("text/html;charset=UTF-8");
 
-		 int id = Integer.parseInt(request.getParameter("id"));
-         String name = request.getParameter("name");
-         String sowStart = request.getParameter("sowStart");
-         String sowEnd = request.getParameter("sowEnd");
-         String plantingStart = request.getParameter("plantingStart");
-         String plantingEnd = request.getParameter("plantingEnd");
-         String harvestStart = request.getParameter("harvestStart");
-         String harvestEnd = request.getParameter("harvestEnd");
+		 HttpSession session = request.getSession();
+		 Produce produce = (Produce) session.getAttribute("produce");
 
-         Produce produce = new Produce(id, name, sowStart, sowEnd, plantingStart, plantingEnd);
          PostProduceLogic postProduceLogic = new PostProduceLogic();
          postProduceLogic.execute(produce);
+         
+         String strDate = request.getParameter("start_date");
 
  		GetProduceListLogic getProduceListLogic = new GetProduceListLogic();
-		List<Produce> produceList = getProduceListLogic.execute();
+		List<Produce> produceList = getProduceListLogic.execute(strDate);
 		request.setAttribute("produceList", produceList);
 
  		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Borrower/produce.jsp");

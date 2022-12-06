@@ -1,14 +1,12 @@
 package borrower;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ProduceSearchServlet
@@ -33,9 +31,9 @@ public class ProduceSearchServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 		
-		GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
-		List<Advise> adviseList = getAdviseListLogic.execute();
-		req.setAttribute("adviseList", adviseList);
+//		GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
+//		List<Advise> adviseList = getAdviseListLogic.execute();
+//		req.setAttribute("adviseList", adviseList);
 		
 		req.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(req, resp);
 	}
@@ -48,15 +46,15 @@ public class ProduceSearchServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 		
-		HttpSession session = req.getSession();
-		 Advise advise = (Advise) session.getAttribute("advise");
-        
-        PostAdviseLogic postAdviseLogic = new PostAdviseLogic();
-        postAdviseLogic.execute(advise);
-
-		GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
-		List<Advise> adviseList = getAdviseListLogic.execute();
-		req.setAttribute("adviseList", adviseList);
+//		HttpSession session = req.getSession();
+//		 Advise advise = (Advise) session.getAttribute("advise");
+//        
+//        PostAdviseLogic postAdviseLogic = new PostAdviseLogic();
+//        postAdviseLogic.execute(advise);
+//
+//		GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
+//		List<Advise> adviseList = getAdviseListLogic.execute();
+//		req.setAttribute("adviseList", adviseList);
         
         req.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(req, resp);
 		

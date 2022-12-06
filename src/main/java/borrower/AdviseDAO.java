@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import dao.SimpleDAO;
@@ -23,11 +20,12 @@ public class AdviseDAO extends SimpleDAO {
 		return dao;
 	}
 	
-	public List<Advise> findAll() {
+	public List<Advise> findAll(String strDate) {
 		List<Advise> adviseList = new ArrayList<>();
 		
 		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM RECOMMENDED_CROPS";
+			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE SOW_START <= '" + strDate + "' "
+					+ "AND SOW_END >= '" + strDate + "'";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			
@@ -54,83 +52,6 @@ public class AdviseDAO extends SimpleDAO {
 				return null;
 			}
 		return adviseList;
-	}
-	
-	public List<Advise> search(String strDate) {
-		List<Advise> cropsList = new ArrayList<>();
-		
-		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM RECOMMENDED_CROPS";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-			ResultSet rs = pStmt.executeQuery();
-			
-			while (rs.next()) {
-				int id = rs.getInt("ID");
-				int id1 = rs.getInt("PRODUCE_ID1");
-				String name1 = rs.getString("PRODUCE_NAME1");
-				int id2 = rs.getInt("PRODUCE_ID2");
-				String name2 = rs.getString("PRODUCE_NAME2");
-				int id3 = rs.getInt("PRODUCE_ID3");
-				String name3 = rs.getString("PRODUCE_NAME3");
-				String sowStart = rs.getString("SOW_START");
-				String sowEnd = rs.getString("SOW_END");
-				String plantingStart = rs.getString("PLANTING_START");
-				String plantingEnd = rs.getString("PLANTING_END");
-				
-				try {
-		 			SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
-		 			Date start_date = sdFormat.parse(strDate);
-		 			Date SowStart = sdFormat.parse(sowStart);
-		 			Date SowEnd = sdFormat.parse(sowEnd);
-		 			Date PlantingStart = sdFormat.parse(plantingStart);
-		 			Date PlantingEnd = sdFormat.parse(plantingEnd);
-		 			
-		 			if(SowStart != null) {
-		 				if(start_date.after(SowStart) == true) {
-		 					if(start_date.before(SowEnd) == true) {
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
-		 						cropsList.add(advise);
-		 					}
-		 				} else {
-		 					if(start_date.equals(SowStart) == true) {
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
-		 						cropsList.add(advise);
-		 					} else if(start_date.equals(SowEnd) == true){
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
-		 						cropsList.add(advise);
-		 					}
-		 				}
-		 			} else if(SowStart == null && PlantingStart != null) {
-		 				if(start_date.after(PlantingStart) == true) {
-		 					if(start_date.before(PlantingEnd) == true) {
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
-		 						cropsList.add(advise);
-		 					}
-		 				} else {
-		 					if(start_date.equals(PlantingStart) == true) {
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
-		 						cropsList.add(advise);
-		 					} else if(start_date.equals(PlantingEnd) == true){
-		 						Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-		 								plantingStart, plantingEnd);
-		 						cropsList.add(advise);
-		 					}
-		 				}
-		 			}
-		 		} catch (ParseException e) {
-		 			e.printStackTrace();
-		 		}
-			}
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
-			}
-		return cropsList;
 	}
 	
 	public boolean create(Advise advise) {
@@ -166,10 +87,5 @@ public class AdviseDAO extends SimpleDAO {
 		}
 		return true;
 	}
-
-//	public boolean Comparison(String strDate, String SowStart, String SowEnd, 
-//			String PlantingStart, String PlantingEnd) {
-//		
-//	}
 }
 

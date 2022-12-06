@@ -11,15 +11,15 @@
 	<div class="container px-4 px-lg-5 my-div-style">
     <div class="row gx-4 gx-lg-5 justify-content-center">
        
-           
+        <h1 class="mb-3" style="text-align: center">ログイン画面</h1>
 		<form method="post" action="./user">
-		<c:choose>
+		<!--<c:choose>
 		<c:when test="${ user.isAuth() }">
 			<p>ようこそ!、${ user.getUserId() }さん</p>
 			<a class="btn btn-default" href="/SotsukenE/">トップへ</a>
 			<%--<input type="submit" class="btn btn-default" name="logout" value="ログアウト" /> --%>
 		</c:when>
-		<c:otherwise>
+		<c:otherwise>-->
 			<dl>
 				<dt><label for="userId" class="control-label">ユーザーID：</label></dt>
 				<dd><input type="text" class="form-control input-sm" name="userId" value="" /></dd>
@@ -28,10 +28,9 @@
 			</dl>
 			<input type="submit" class="btn btn-success" name="login" value="ログイン" />
 			<a class="btn btn-primary float-right" href="./user?register=true">新規登録</a>
-		</c:otherwise>
-		</c:choose>
+		<!--</c:otherwise>
+		</c:choose>-->
 		</form>
-		<jsp:include page="/WEB-INF/jsp/index.jsp"/>
 		</div>
 	</div>
 </div>
