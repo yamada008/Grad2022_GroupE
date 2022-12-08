@@ -20,31 +20,48 @@ public class AdviseDAO extends SimpleDAO {
 		return dao;
 	}
 	
-	public List<Advise> findAll(String strDate) {
+	public List<Advise> findAll(String Date, String Type) {
 		List<Advise> adviseList = new ArrayList<>();
 		
 		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE SOW_START <= '" + strDate + "' "
-					+ "AND SOW_END >= '" + strDate + "'";
+			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE ((SOW_START1 <= '" + Date + "' "
+					+ "AND SOW_END1 >= '" + Date + "') OR (SOW_START2 <= '" + Date + "' AND "
+					+ "SOW_END2 >= '" + Date + "') OR (SOW_START3 <= '" + Date + "' "
+					+ "AND SOW_END3 >= '" + Date + "')) AND TYPE = '" + Type + "'";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			
 			while (rs.next()) {
 				int id = rs.getInt("ID");
+				String type = rs.getString("TYPE");
 				int id1 = rs.getInt("PRODUCE_ID1");
 				String name1 = rs.getString("PRODUCE_NAME1");
 				int id2 = rs.getInt("PRODUCE_ID2");
 				String name2 = rs.getString("PRODUCE_NAME2");
 				int id3 = rs.getInt("PRODUCE_ID3");
 				String name3 = rs.getString("PRODUCE_NAME3");
-				String sowStart = rs.getString("SOW_START");
-				String sowEnd = rs.getString("SOW_END");
-				String plantingStart = rs.getString("PLANTING_START");
-				String plantingEnd = rs.getString("PLANTING_END");
-				String harvestStart = rs.getString("HARVEST_START");
-				String harvestEnd = rs.getString("HARVEST_END");
-				Advise advise = new Advise(id, id1, name1, id2, name2, id3, name3, sowStart, sowEnd, 
-						plantingStart, plantingEnd, harvestStart, harvestEnd);
+				String sowStart1 = rs.getString("SOW_START1");
+				String sowEnd1 = rs.getString("SOW_END1");
+				String sowStart2 = rs.getString("SOW_START2");
+				String sowEnd2 = rs.getString("SOW_END2");
+				String sowStart3 = rs.getString("SOW_START3");
+				String sowEnd3 = rs.getString("SOW_END3");
+				String plantingStart1 = rs.getString("PLANTING_START1");
+				String plantingEnd1 = rs.getString("PLANTING_END1");
+				String plantingStart2 = rs.getString("PLANTING_START2");
+				String plantingEnd2 = rs.getString("PLANTING_END2");
+				String plantingStart3 = rs.getString("PLANTING_START3");
+				String plantingEnd3 = rs.getString("PLANTING_END3");
+				String harvestStart1 = rs.getString("HARVEST_START1");
+				String harvestEnd1 = rs.getString("HARVEST_END1");
+				String harvestStart2 = rs.getString("HARVEST_START2");
+				String harvestEnd2 = rs.getString("HARVEST_END2");
+				String harvestStart3 = rs.getString("HARVEST_START3");
+				String harvestEnd3 = rs.getString("HARVEST_END3");
+				Advise advise = new Advise(id, type, id1, name1, id2, name2, id3, name3, sowStart1, 
+						sowEnd1, sowStart2, sowEnd2, sowStart3, sowEnd3, plantingStart1, plantingEnd1, 
+						plantingStart2, plantingEnd2, plantingStart3, plantingEnd3, harvestStart1, 
+						harvestEnd1, harvestStart2, harvestEnd2, harvestStart3, harvestEnd3);
 				adviseList.add(advise);
 			}
 			} catch (SQLException e) {
@@ -58,24 +75,39 @@ public class AdviseDAO extends SimpleDAO {
 		try(Connection conn = this.createConnection()){ //DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)){
 
 			//	Statement stmt = conn.createStatement();
-			String sql = "INSERT INTO RECOMMENDED_CROPS(PRODUCE_ID1, PRODUCE_NAME1, PRODUCE_ID2, "
-					+ "PRODUCE_NAME2, PRODUCE_ID3, PRODUCE_NAME3, SOW_START, SOW_END, "
-					+ "PLANTING_START, PLANTING_END, HARVEST_START, HARVEST_END) "
-					+ "VALUES(?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			String sql = "INSERT INTO RECOMMENDED_CROPS(TYPE, PRODUCE_ID1, PRODUCE_NAME1, PRODUCE_ID2, "
+					+ "PRODUCE_NAME2, PRODUCE_ID3, PRODUCE_NAME3, SOW_START1, SOW_END1, SOW_START2, "
+					+ "SOW_END2, SOW_START3, SOW_END3, PLANTING_START1, PLANTING_END1, PLANTING_START2, "
+					+ "PLANTING_END2, PLANTING_START3, PLANTING_END3, HARVEST_START1, HARVEST_END1, "
+					+ "HARVEST_START2, HARVEST_END2, HARVEST_START3, HARVEST_END3) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			//pStmt.setInt(1, advise.getId());
-			pStmt.setInt(1, advise.getId1());
-			pStmt.setString(2, advise.getName1());
-			pStmt.setInt(3, advise.getId2());
-			pStmt.setString(4, advise.getName2());
-			pStmt.setInt(5, advise.getId3());
-			pStmt.setString(6, advise.getName3());
-	        pStmt.setString(7, advise.getSowStart());
-	        pStmt.setString(8, advise.getSowEnd());
-	        pStmt.setString(9, advise.getPlantingStart());
-	        pStmt.setString(10, advise.getPlantingEnd());
-	        pStmt.setString(11, advise.getHarvestStart());
-	        pStmt.setString(12, advise.getHarvestEnd());
+			pStmt.setString(1, advise.getType());
+			pStmt.setInt(2, advise.getId1());
+			pStmt.setString(3, advise.getName1());
+			pStmt.setInt(4, advise.getId2());
+			pStmt.setString(5, advise.getName2());
+			pStmt.setInt(6, advise.getId3());
+			pStmt.setString(7, advise.getName3());
+	        pStmt.setString(8, advise.getSowStart1());
+	        pStmt.setString(9, advise.getSowEnd1());
+	        pStmt.setString(10, advise.getSowStart2());
+	        pStmt.setString(11, advise.getSowEnd2());
+	        pStmt.setString(12, advise.getSowStart3());
+	        pStmt.setString(13, advise.getSowEnd3());
+	        pStmt.setString(14, advise.getPlantingStart1());
+	        pStmt.setString(15, advise.getPlantingEnd1());
+	        pStmt.setString(16, advise.getPlantingStart2());
+	        pStmt.setString(17, advise.getPlantingEnd2());
+	        pStmt.setString(18, advise.getPlantingStart3());
+	        pStmt.setString(19, advise.getPlantingEnd3());
+	        pStmt.setString(20, advise.getHarvestStart1());
+	        pStmt.setString(21, advise.getHarvestEnd1());
+	        pStmt.setString(22, advise.getHarvestStart2());
+	        pStmt.setString(23, advise.getHarvestEnd2());
+	        pStmt.setString(24, advise.getHarvestStart3());
+	        pStmt.setString(25, advise.getHarvestEnd3());
 	        
 	        int result = pStmt.executeUpdate();
 	        if (result != 1) {

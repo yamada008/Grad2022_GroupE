@@ -24,21 +24,22 @@ public class AdviseServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
     	
-    	String strDate = request.getParameter("start_date");
+    	String Date = request.getParameter("start_date");
+    	String Type = request.getParameter("type");
 
     	GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
-		List<Advise> adviseList = getAdviseListLogic.execute(strDate);
+		List<Advise> adviseList = getAdviseListLogic.execute(Date, Type);
 		request.setAttribute("adviseList", adviseList);
 		
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Borrower/advise.jsp");
 		dispatcher.forward(request, response);
         
-        if(adviseList != null) {
-       	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
-        } else {
-       	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
-        }
+//        if(adviseList != null) {
+//       	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+//        } else {
+//       	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
+//        }
 
 	}
 
@@ -54,10 +55,11 @@ public class AdviseServlet extends HttpServlet {
          PostAdviseLogic postAdviseLogic = new PostAdviseLogic();
          postAdviseLogic.execute(advise);
          
-         String strDate = request.getParameter("start_date");
+         String Date = request.getParameter("start_date");
+         String Type = request.getParameter("type");
          
          GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
-         List<Advise> adviseList = getAdviseListLogic.execute(strDate);
+         List<Advise> adviseList = getAdviseListLogic.execute(Date, Type);
          request.setAttribute("adviseList", adviseList);
          
 //         request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);

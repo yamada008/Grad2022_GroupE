@@ -53,11 +53,12 @@ public class CalendarServlet extends HttpServlet {
          PostAdviseLogic postAdviseLogic = new PostAdviseLogic();
          postAdviseLogic.execute(advise);
          
-         String strDate = request.getParameter("start_date");
+         String Date = request.getParameter("start_date");
+         String Type = request.getParameter("type");
          int id = Integer.parseInt(request.getParameter("${advise.id}"));
          
          GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
-         List<Advise> adviseList = getAdviseListLogic.execute(strDate);
+         List<Advise> adviseList = getAdviseListLogic.execute(Date, Type);
          request.setAttribute("adviseList", adviseList);
          
 //         request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
