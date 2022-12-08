@@ -1,4 +1,4 @@
-package borrower;
+package Calendar;
 
 import java.io.IOException;
 
@@ -36,7 +36,7 @@ public class CalendarServlet extends HttpServlet {
 		//リクエストスコープに格納
 		request.setAttribute("mc", mc);
 		//viewにフォワード
-		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");
+		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/calendar/calendar.jsp");
 		rd.forward(request, response);
 	}
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="borrower.MyCalendar"%>
+    pageEncoding="UTF-8" import="Calendar.MyCalendar"%>
 <%
 	MyCalendar mc=(MyCalendar)request.getAttribute("mc");
 %>
@@ -33,9 +33,9 @@
       <tr>
       	<%for(String col:row) {%>
       		<%if (col.startsWith("*")){ %>
-      			<td class="today"><%=col.substring(1)%></td>
+      			<td class="today"><p><%=col.substring(1)%></p><a href="#!"><button>種まき</button></a></td>
       		<%}else{ %>
-      			<td><%=col %></td>
+      			<td><p><%=col %></p><a href="#!"><button></button></a></td>
       		<%} %>
       	<%} %>
       </tr>
@@ -43,4 +43,3 @@
     </table>
   </div><!-- end container-->
 </body>
-</html>
