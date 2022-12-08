@@ -10,7 +10,7 @@
   <title><%=mc.getGengou() %>年<%=mc.getMonth() %>月カレンダー</title>
   <link rel="stylesheet"  href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
   <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
-  <link rel="stylesheet"  href="css/calendar.css">
+  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/calendar.css"/>
 </head>
 <body>
   <div id="container">

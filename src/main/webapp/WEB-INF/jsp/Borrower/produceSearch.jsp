@@ -24,28 +24,6 @@
                 <a class="navbar-brand" href="/SotsukenE/borrow">1から始める農業</a>
             </div>
         </nav>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container position-relative">
-                <div class="row justify-content-center">
-                    <div class="col-xl-6">
-                        <div class="text-center text-white">
-                            <!-- Page heading-->
-                            <h1 class="mb-5">1から始める農業</h1>
-                            <!-- Signup form-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- * * SB Forms Contact Form * *-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- This form is pre-integrated with SB Forms.-->
-                            <!-- To make this form functional, sign up at-->
-                            <!-- https://startbootstrap.com/solution/contact-forms-->
-                            <!-- to get an API token!-->
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
         <form action="/SotsukenE/produce" method="get" class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
