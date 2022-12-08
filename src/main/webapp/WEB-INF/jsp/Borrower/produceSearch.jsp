@@ -52,7 +52,7 @@
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    開始日<br><input type="date" name="start_date"
+                                    開始日<br><input type="date" name="start_date" 
                                     min="2023-01-01" max="2023-12-31">
                                     <!-- <p>水やりの頻度</p>
                                     <select name="frequency">
