@@ -1,6 +1,7 @@
 package borrower;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/calendar")
 public class CalendarServlet extends HttpServlet {
@@ -38,5 +40,38 @@ public class CalendarServlet extends HttpServlet {
 		//viewにフォワード
 		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");
 		rd.forward(request, response);
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		 request.setCharacterEncoding("UTF-8");
+		 response.setContentType("text/html;charset=UTF-8");
+		 
+		 HttpSession session = request.getSession();
+		 Advise advise = (Advise) session.getAttribute("advise");
+         
+         PostAdviseLogic postAdviseLogic = new PostAdviseLogic();
+         postAdviseLogic.execute(advise);
+         
+         String strDate = request.getParameter("start_date");
+         int id = Integer.parseInt(request.getParameter("${advise.id}"));
+         
+         GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
+         List<Advise> adviseList = getAdviseListLogic.execute(strDate);
+         request.setAttribute("adviseList", adviseList);
+         
+//         request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+         
+         if(adviseList != null) {
+        	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+         } else {
+        	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
+         }
+         
+         
+		
+//		 String forward = "/SotsukenE/advise";
+//		 response.sendRedirect(forward);
+		 
 	}
 }
