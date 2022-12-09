@@ -1,5 +1,5 @@
-<%@page import="borrower.Produce"%>
-<%@page import="borrower.ProduceDAO" %>
+<%@page import="borrower.produce.Produce"%>
+<%@page import="borrower.produce.ProduceDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

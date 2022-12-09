@@ -1,4 +1,4 @@
-package borrower;
+package borrower.calendar;
 
 import java.util.Calendar;
 

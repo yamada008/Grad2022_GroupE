@@ -1,4 +1,4 @@
-package borrower;
+package borrower.advise;
 
 import java.io.Serializable;
 

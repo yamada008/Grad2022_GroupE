@@ -1,4 +1,4 @@
-package borrower;
+package borrower.advise;
 
 public class PostAdviseLogic {
 	public void execute(Advise advise) {

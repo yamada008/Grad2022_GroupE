@@ -1,4 +1,4 @@
-package borrower;
+package borrower.produce;
 
 import java.io.Serializable;
 

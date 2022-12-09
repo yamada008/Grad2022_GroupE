@@ -1,4 +1,4 @@
-package borrower;
+package borrower.advise;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,14 +20,14 @@ public class AdviseDAO extends SimpleDAO {
 		return dao;
 	}
 	
-	public List<Advise> findAll(String Date, String Type) {
+	public List<Advise> findAll(String strDate, String Type) {
 		List<Advise> adviseList = new ArrayList<>();
 		
 		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE ((SOW_START1 <= '" + Date + "' "
-					+ "AND SOW_END1 >= '" + Date + "') OR (SOW_START2 <= '" + Date + "' AND "
-					+ "SOW_END2 >= '" + Date + "') OR (SOW_START3 <= '" + Date + "' "
-					+ "AND SOW_END3 >= '" + Date + "')) AND TYPE = '" + Type + "'";
+			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE ((SOW_START1 <= '" + strDate + "' "
+					+ "AND SOW_END1 >= '" + strDate + "') OR (SOW_START2 <= '" + strDate + "' AND "
+					+ "SOW_END2 >= '" + strDate + "') OR (SOW_START3 <= '" + strDate + "' "
+					+ "AND SOW_END3 >= '" + strDate + "')) AND TYPE = '" + Type + "'";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			

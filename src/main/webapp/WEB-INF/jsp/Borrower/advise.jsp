@@ -1,5 +1,5 @@
-<%@page import="borrower.Advise"%>
-<%@page import="borrower.AdviseDAO" %>
+<%@page import="borrower.advise.Advise"%>
+<%@page import="borrower.advise.AdviseDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -29,13 +29,13 @@
         </nav>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
-        <form action="#!" method="get">
+        <form action="/SotsukenE/calendar" method="get">
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
                                     <c:forEach var="advise" items="${ adviseList }">
                                     <c:if test="${advise.id != null }">
-                                    <input type="radio" name="${advise.id}" >
+                                    <input type="radio" name="select" value="${advise.id}" >
                                     <c:out value="${advise.name1}"></c:out><br>
                                     <c:out value="${advise.name2}"></c:out><br>
                                     <c:out value="${advise.name3}"></c:out><br><br>

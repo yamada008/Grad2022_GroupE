@@ -46,7 +46,7 @@
                                     <option value="two">週に２回</option>
                                     <option value="one">週に１回</option>
                                     </select><br>-->
-                                    <button type="submit">選択</button>
+                                    <p><input type="submit" value="選択"></p>
                                     </div>
                                 </div>
                                 </div>
