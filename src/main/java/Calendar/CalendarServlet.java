@@ -8,12 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/calendar")
 public class CalendarServlet extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String s_year=request.getParameter("year");
-		String s_month=request.getParameter("month");
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html;charset=UTF-8");
+		HttpSession session = req.getSession();
+		CalendarBean calendar = (CalendarBean) session.getAttribute("user");
+		
+		
+		
+		String s_year=req.getParameter("year");
+		String s_month=req.getParameter("month");
 		CalendarLogic logic=new CalendarLogic();
 		MyCalendar mc=null;
 		if(s_year != null && s_month != null) {
@@ -34,9 +42,23 @@ public class CalendarServlet extends HttpServlet {
 			mc=logic.createMyCalendar();
 		}
 		//リクエストスコープに格納
-		request.setAttribute("mc", mc);
+		req.setAttribute("mc", mc);
 		//viewにフォワード
-		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/calendar/calendar.jsp");
-		rd.forward(request, response);
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/calendar/calendar.jsp");
+		rd.forward(req, resp);
 	}
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html;charset=UTF-8");
+		
+		HttpSession session = req.getSession();
+		CalendarBean calendar = (CalendarBean) session.getAttribute("user");
+	
+	
+	
+	
+	}
+		
+		
+		
 }
