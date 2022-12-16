@@ -18,11 +18,11 @@ public class SearchDAO extends SimpleDAO {
 		return dao;
 	}
 	
-	public List<Advise> search(String strId) {
+	public List<Advise> search(int strId) {
 		List<Advise> searchList = new ArrayList<>();
 		
 		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE ID = '" + strId + "'";
+			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE ID = " + strId;
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			

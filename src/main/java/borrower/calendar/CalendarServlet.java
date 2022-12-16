@@ -1,7 +1,6 @@
 package borrower.calendar;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -41,12 +40,19 @@ public class CalendarServlet extends HttpServlet {
 		//リクエストスコープに格納
 		request.setAttribute("mc", mc);
 		
-		String strId = request.getParameter("select");
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
+		int strId = Integer.parseInt(request.getParameter("select"));
 //		String strDate = request.getParameter("start_date");
 		
 		GetSearchListLogic getSearchListLogic = new GetSearchListLogic();
 		List<Advise> searchList = getSearchListLogic.execute(strId);
 		request.setAttribute("searchList", searchList);
+		
+		GetCalcListLogic getCalcListLogic = new GetCalcListLogic();
+		List<Search> extractList = getCalcListLogic.execute();
+		request.setAttribute("extractList", extractList);
 		
 		//viewにフォワード
 		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");
@@ -64,20 +70,30 @@ public class CalendarServlet extends HttpServlet {
          PostSearchLogic postSearchLogic = new PostSearchLogic();
          postSearchLogic.execute(advise);
          
-         String strId = request.getParameter("select");
-         String strDate = request.getParameter("start_date");
+         int strId = Integer.parseInt(request.getParameter("select"));
+//        String strDate = request.getParameter("start_date");
          
          GetSearchListLogic getSearchListLogic = new GetSearchListLogic();
          List<Advise> searchList = getSearchListLogic.execute(strId);
          request.setAttribute("searchList", searchList);
          
+         Search search = (Search) session.getAttribute("search");
+// 		 CalcDAO dao = new CalcDAO();
          
-         try {
-			List<Search> SearchList = CalendarCalc.date(strDate, (Advise) searchList);
-			request.setAttribute("SearchList", SearchList);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+//         try {
+//        	 CalendarCalc.date(strDate, (Advise) searchList);
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+         
+ 		 PostCalcLogic postCalcLogic = new PostCalcLogic();
+ 		 postCalcLogic.execute(search);
+ 		 
+ 		 GetCalcListLogic getCalcListLogic = new GetCalcListLogic();
+		 List<Search> extractList = getCalcListLogic.execute();
+		 System.out.println(extractList);
+		 request.setAttribute("extractList", extractList);
+ 		
          
          request.getRequestDispatcher("WEB-INF/jsp/Borrwer/calendar.jsp").forward(request, response);
 		 
