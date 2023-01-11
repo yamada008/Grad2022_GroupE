@@ -28,4 +28,10 @@ public class CalendarBean implements Serializable {
 	public String gettext() {return this.text;}
 	
 	
+	public boolean createEntry() {
+		CalendarDAO dao = new CalendarDAO();
+		return dao.create(this);
+	}
+	
+	
 }

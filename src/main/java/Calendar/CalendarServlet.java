@@ -8,18 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @WebServlet("/calendar")
 public class CalendarServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	
+	public CalendarServlet() {
+        super();
+    }
+	
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
-		HttpSession session = req.getSession();
-		CalendarBean calendar = (CalendarBean) session.getAttribute("user");
-		
-		
-		
+	
+			
 		String s_year=req.getParameter("year");
 		String s_month=req.getParameter("month");
 		CalendarLogic logic=new CalendarLogic();
@@ -47,18 +51,6 @@ public class CalendarServlet extends HttpServlet {
 		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/calendar/calendar.jsp");
 		rd.forward(req, resp);
 	}
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/html;charset=UTF-8");
-		
-		HttpSession session = req.getSession();
-		CalendarBean calendar = (CalendarBean) session.getAttribute("user");
-	
-	
-	
-	
-	}
-		
 		
 		
 }
