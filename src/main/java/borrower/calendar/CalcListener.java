@@ -38,7 +38,7 @@ public class CalcListener implements ServletContextListener {
 		} else {
 			if (dao.execSQL("CREATE TABLE IF NOT EXISTS EXTRACT"
 					+ " (ID IDENTITY, PRODUCE_ID INT, PRODUCE_NAME VARCHAR(64), "
-					+ "SOW_START VARCHAR(64), PLANTING_START VARCHAR(64), HARVEST_START1 VARCHAR(64))"))
+					+ "SOW_START VARCHAR(64), PLANTING_START VARCHAR(64), HARVEST_START VARCHAR(64))"))
 			{
 				System.out.println("TestUserDB is READY.");
 			} else {

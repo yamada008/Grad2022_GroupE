@@ -15,9 +15,16 @@ import borrower.advise.Advise;
 
 @WebServlet("/calendar")
 public class CalendarServlet extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String s_year=request.getParameter("year");
-		String s_month=request.getParameter("month");
+private static final long serialVersionUID = 1L;
+	public CalendarServlet() {
+        super();
+    }
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html;charset=UTF-8");
+	
+		String s_year=req.getParameter("year");
+		String s_month=req.getParameter("month");
 		CalendarLogic logic=new CalendarLogic();
 		MyCalendar mc=null;
 		if(s_year != null && s_month != null) {
@@ -38,25 +45,25 @@ public class CalendarServlet extends HttpServlet {
 			mc=logic.createMyCalendar();
 		}
 		//リクエストスコープに格納
-		request.setAttribute("mc", mc);
+		req.setAttribute("mc", mc);
 		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html;charset=UTF-8");
 		
-		int strId = Integer.parseInt(request.getParameter("select"));
+		int strId = Integer.parseInt(req.getParameter("select"));
 //		String strDate = request.getParameter("start_date");
 		
 		GetSearchListLogic getSearchListLogic = new GetSearchListLogic();
 		List<Advise> searchList = getSearchListLogic.execute(strId);
-		request.setAttribute("searchList", searchList);
+		req.setAttribute("searchList", searchList);
 		
 		GetCalcListLogic getCalcListLogic = new GetCalcListLogic();
 		List<Search> extractList = getCalcListLogic.execute();
-		request.setAttribute("extractList", extractList);
+		req.setAttribute("extractList", extractList);
 		
 		//viewにフォワード
-		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");
-		rd.forward(request, response);
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");
+		rd.forward(req, resp);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
