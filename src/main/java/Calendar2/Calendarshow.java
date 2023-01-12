@@ -1,4 +1,4 @@
-package Calendar;
+package Calendar2;
 
 
 import java.io.IOException;
@@ -33,3 +33,6 @@ public class Calendarshow extends HttpServlet {
 	}
 }
 
+///showCal?year=2001&month=10
+//データが入っていないので入れる
+//年 月 日　始めた月　終わりの月　始める日　終わりの日　作物ID　userID　種まき　概要

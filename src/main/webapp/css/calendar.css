@@ -18,7 +18,7 @@ body{
 }
 #container > p > a{
 	display:block;
-	width:70px;
+	width:1000px;
 	height:70px;
 	text-align:center;
 	line-height:70px;
@@ -59,7 +59,7 @@ th{
   text-shadow: 1px 1px 0 #333;
 }
 tr *:first-child{
-  color:#000000;
+  color:#FF69B4;
 }
 tr *:last-child{
   color:#0ba9ea;
