@@ -33,9 +33,9 @@
                                     開始日<br><input type="date" name="start_date"
                                     min="2023-01-01" max="2023-12-31"><br>
                                     <p>おすすめテンプレート</p>
-                                    <input type="radio" name="type" value="ぐーたら" >同時に同じ作業を行う<br>
-                                    <input type="radio" name="type" value="よくばり" >同時に違う作業を行う<br>
-                                    <input type="radio" name="type" value="せっかち" >1年の間に複数の作物を同じ畑で育てる<br>
+                                    <label><input type="radio" name="type" value="ぐーたら" >同時に同じ作業を行う</label><br>
+                                    <label><input type="radio" name="type" value="よくばり" >同時に違う作業を行う</label><br>
+                                    <label><input type="radio" name="type" value="せっかち" >1年の間に複数の作物を同じ畑で育てる</label><br>
                                     <!-- <p>水やりの頻度</p>
                                     <select name="frequency">
                                     <option value="every_day">毎日</option>

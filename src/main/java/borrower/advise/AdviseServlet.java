@@ -21,59 +21,61 @@ public class AdviseServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
     	
-    	String strDate = request.getParameter("start_date");
-    	String Type = request.getParameter("type");
+    	String strDate = req.getParameter("start_date");
+    	String Type = req.getParameter("type");
 
     	GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
 		List<Advise> adviseList = getAdviseListLogic.execute(strDate, Type);
-		request.setAttribute("adviseList", adviseList);
+		req.setAttribute("adviseList", adviseList);
+		req.setAttribute("startDate", strDate);
 		
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Borrower/advise.jsp");
-		dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/Borrower/advise.jsp");
+		dispatcher.forward(req, resp);
         
 //        if(adviseList != null) {
-//       	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+//       	 req.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(req, resp);
 //        } else {
-//       	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
+//       	 req.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(req, resp);
 //        }
 
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		 request.setCharacterEncoding("UTF-8");
-		 response.setContentType("text/html;charset=UTF-8");
+		 req.setCharacterEncoding("UTF-8");
+		 resp.setContentType("text/html;charset=UTF-8");
 		 
-		 HttpSession session = request.getSession();
+		 HttpSession session = req.getSession();
 		 Advise advise = (Advise) session.getAttribute("advise");
          
          PostAdviseLogic postAdviseLogic = new PostAdviseLogic();
          postAdviseLogic.execute(advise);
          
-         String strDate = request.getParameter("start_date");
-         String Type = request.getParameter("type");
+         String strDate = req.getParameter("start_date");
+         String Type = req.getParameter("type");
          
          GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
          List<Advise> adviseList = getAdviseListLogic.execute(strDate, Type);
-         request.setAttribute("adviseList", adviseList);
+         req.setAttribute("startDate", strDate);
+         req.setAttribute("adviseList", adviseList);
          
-//         request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+//         req.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(req, resp);
          
          if(adviseList != null) {
-        	 request.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(request, response);
+        	 req.getRequestDispatcher("WEB-INF/jsp/Borrwer/advise.jsp").forward(req, resp);
          } else {
-        	 request.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(request, response);
+        	 req.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(req, resp);
          }
          
          
 		
 //		 String forward = "/SotsukenE/advise";
-//		 response.sendRedirect(forward);
+//		 resp.sendRedirect(forward);
 		 
 	}
 }

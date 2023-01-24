@@ -2,7 +2,10 @@ package borrower.calendar;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dao.SimpleDAO;
 
@@ -17,23 +20,63 @@ public class CalendarDAO extends SimpleDAO {
 		return dao;
 	}
 	
-	public boolean create(CalendarBean Calendar) {
-		Connection db = this.createConnection();
+	public List<CalendarBean> findAll() {
+		List<CalendarBean> calendarList = new ArrayList<>();
+		
+		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "SELECT * FROM CALENDARTBL";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			ResultSet rs = pStmt.executeQuery();
+			
+			while (rs.next()) {
+				int id = rs.getInt("ID");
+				int startYear = rs.getInt("STARTYEAR");
+				int startMonth = rs.getInt("STARTMONTH");
+				int startD = rs.getInt("STARTD");
+				int endYear = rs.getInt("ENDYEAR");
+				int endMonth = rs.getInt("ENDMONTH");
+				int endD = rs.getInt("ENDD");
+				String userID = rs.getString("USERID");
+				String name = rs.getString("NAME");
+				String title = rs.getString("TITLE");
+				String text = rs.getString("TEXT");
+				CalendarBean calendarBean = new CalendarBean(id, startYear, startMonth, startD, endYear, 
+						endMonth, endD, userID, name, title, text);
+				calendarList.add(calendarBean);
+			}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+		return calendarList;
+	}
+	
+	public boolean create(CalendarBean calendar) {
+		try(Connection conn = this.createConnection()){
 		//PreparedStatement ps = null;
-		boolean result = false; 
-		try (PreparedStatement ps = db.prepareStatement("INSERT INTO Calendar(d, userID, title, text) VALUES(?, ?, ?, ?)")) {
+		String sql ="INSERT INTO CALENDARTBL(STARTYEAR, STARTMONTH, STARTD, ENDYEAR, ENDMONTH, ENDD, USERID, "
+				+ "NAME, TITLE, TEXT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			//ps = db.prepareStatement("INSERT INTO user(realName, userID, passwd) VALUES(?, ?, ?)");
-			ps.setString(1, Calendar.getd());
-			ps.setString(2, Calendar.getuserID());
-			ps.setString(3, Calendar.gettitle());
-			ps.setString(4, Calendar.gettext());
-			ps.executeUpdate();
-			result = true;
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, calendar.getStartYear());
+			pStmt.setInt(2, calendar.getStartMonth());
+			pStmt.setInt(3, calendar.getStartD());
+			pStmt.setInt(4, calendar.getEndYear());
+			pStmt.setInt(5, calendar.getEndMonth());
+			pStmt.setInt(6, calendar.getEndD());
+			pStmt.setString(7, calendar.getUserID());
+			pStmt.setString(8, calendar.getName());
+			pStmt.setString(9, calendar.getTitle());
+			pStmt.setString(10, calendar.getText());
+			
+			int result = pStmt.executeUpdate();
+			if(result != 1) {
+				return false;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			this.closeConnection(db);
+			return false;
 		}
-		return result;
+		return true;
 	}
 }

@@ -42,9 +42,9 @@ public class ProduceListener implements ServletContextListener {
 					+ " (PRODUCE_ID INT, PRODUCE_NAME VARCHAR(64), SOW_START VARCHAR(64), "
 					+ "SOW_END VARCHAR(64), PLANTING_START VARCHAR(64), PLANTING_END VARCHAR(64), "
 					+ "HARVEST_START VARCHAR(64), HARVEST_END VARCHAR(64))")) {
-				System.out.println("TestUserDB is READY.");
+				System.out.println("ProduceDB is READY.");
 			} else {
-				System.out.println("TestUserDB is NOT READY.");
+				System.out.println("ProduceDB is NOT READY.");
 			}
 		}
 		dao.create(new Produce(1, "アシタバ", "2023-11-01", "2023-12-20", "2024-04-01", "2024-06-20", "2024-06-21", "2024-10-31"));

@@ -1,6 +1,7 @@
 package borrower.calendar;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -19,7 +20,8 @@ private static final long serialVersionUID = 1L;
 	public CalendarServlet() {
         super();
     }
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+			throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 	
@@ -47,62 +49,68 @@ private static final long serialVersionUID = 1L;
 		//リクエストスコープに格納
 		req.setAttribute("mc", mc);
 		
-		req.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/html;charset=UTF-8");
+//		HttpSession session = req.getSession();
+//		Advise advise = (Advise) session.getAttribute("advise");
 		
 		int strId = Integer.parseInt(req.getParameter("select"));
-//		String strDate = request.getParameter("start_date");
+        String strDate = req.getParameter("startDate");
+        
+        GetSelectListLogic getSelectListLogic = new GetSelectListLogic();
+		Advise select = getSelectListLogic.execute(strId, strDate);
+		req.setAttribute("select", select);
 		
-		GetSearchListLogic getSearchListLogic = new GetSearchListLogic();
-		List<Advise> searchList = getSearchListLogic.execute(strId);
-		req.setAttribute("searchList", searchList);
+		try {
+			CalendarCalc.date(strDate, select);
+		} catch (ParseException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 		
-		GetCalcListLogic getCalcListLogic = new GetCalcListLogic();
-		List<Search> extractList = getCalcListLogic.execute();
-		req.setAttribute("extractList", extractList);
+        GetCalendarListLogic getCalendarListLogic = new GetCalendarListLogic();
+        List<CalendarBean> calendarList = getCalendarListLogic.execute();
+        req.setAttribute("calendarList", calendarList);
 		
 		//viewにフォワード
 		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");
 		rd.forward(req, resp);
 	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		 request.setCharacterEncoding("UTF-8");
-		 response.setContentType("text/html;charset=UTF-8");
+		 req.setCharacterEncoding("UTF-8");
+		 resp.setContentType("text/html;charset=UTF-8");
 		 
-		 HttpSession session = request.getSession();
-		 Advise advise = (Advise) session.getAttribute("advise");
+		 HttpSession session = req.getSession();
+		 CalendarBean calendar = (CalendarBean) session.getAttribute("calendarBean");
          
-         PostSearchLogic postSearchLogic = new PostSearchLogic();
-         postSearchLogic.execute(advise);
+         PostCalendarLogic postCalendarLogic = new PostCalendarLogic();
+         postCalendarLogic.execute(calendar);
          
-         int strId = Integer.parseInt(request.getParameter("select"));
-//        String strDate = request.getParameter("start_date");
+         int strId = Integer.parseInt(req.getParameter("select"));
+         String strDate = req.getParameter("startDate");
          
-         GetSearchListLogic getSearchListLogic = new GetSearchListLogic();
-         List<Advise> searchList = getSearchListLogic.execute(strId);
-         request.setAttribute("searchList", searchList);
+//		 Advise advise = (Advise) session.getAttribute("advise");
          
-         Search search = (Search) session.getAttribute("search");
-// 		 CalcDAO dao = new CalcDAO();
+         PostSelectLogic postSelectLogic = new PostSelectLogic();
+         postSelectLogic.execute(calendar);
          
-//         try {
-//        	 CalendarCalc.date(strDate, (Advise) searchList);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
+         GetSelectListLogic getSelectListLogic = new GetSelectListLogic();
+         Advise select = getSelectListLogic.execute(strId, strDate);
+         req.setAttribute("select", select);
          
- 		 PostCalcLogic postCalcLogic = new PostCalcLogic();
- 		 postCalcLogic.execute(search);
- 		 
- 		 GetCalcListLogic getCalcListLogic = new GetCalcListLogic();
-		 List<Search> extractList = getCalcListLogic.execute();
-		 System.out.println(extractList);
-		 request.setAttribute("extractList", extractList);
- 		
+         try {
+			CalendarCalc.date(strDate, select);
+		} catch (ParseException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
          
-         request.getRequestDispatcher("WEB-INF/jsp/Borrwer/calendar.jsp").forward(request, response);
+         GetCalendarListLogic getCalendarListLogic = new GetCalendarListLogic();
+         List<CalendarBean> calendarList = getCalendarListLogic.execute();
+         req.setAttribute("calendarList", calendarList);
+         
+         RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");
+         rd.forward(req, resp);
 		 
 	}
 }

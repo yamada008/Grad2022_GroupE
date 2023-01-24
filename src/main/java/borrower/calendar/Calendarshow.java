@@ -27,6 +27,9 @@ public class Calendarshow extends HttpServlet {
 		c.set(year, month-1, 1);
 		
 		req.setAttribute("cdate", c);
+		
+		int strId = Integer.parseInt(req.getParameter("select"));
+		String strDate = req.getParameter("startDate");
 
 		req.getRequestDispatcher("WEB-INF/jsp/Borrower/showCal.jsp").forward(req, resp);
 	}

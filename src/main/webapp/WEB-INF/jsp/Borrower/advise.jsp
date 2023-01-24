@@ -30,15 +30,16 @@
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
         <form action="/SotsukenE/calendar" method="get">
+        	<input type="hidden" name="startDate" value="${startDate }">
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
                                     <c:forEach var="advise" items="${ adviseList }">
                                     <c:if test="${advise.id != null }">
-                                    <input type="radio" name="select" value="${advise.id}" >
+                                    <label><input type="radio" name="select" value="${advise.id}" >
                                     <c:out value="${advise.name1}"></c:out><br>
                                     <c:out value="${advise.name2}"></c:out><br>
-                                    <c:out value="${advise.name3}"></c:out><br><br>
+                                    <c:out value="${advise.name3}"></c:out></label><br><br>
                                     </c:if>
                                     </c:forEach>
                                     <p><input type="submit" value="選択"></p>

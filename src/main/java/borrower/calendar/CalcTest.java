@@ -7,29 +7,39 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import borrower.advise.Advise;
-
-public class CalendarCalc {
-	/**
-	 * 2つの日付の差を求めます。
-	 * 日付文字列 strDate1 – strDate2 が何日かを返します。
-	 * 
-	 * @param strDate1    日付文字列 yyyy-MM-dd
-	 * @param strDate2    日付文字列 yyyy-MM-dd
-	 * @return    2つの日付の差
-	 * @throws ParseException 日付フォーマットが不正な場合
-	 */
-	public static void date(String strDate, Advise advise) 
-	    throws ParseException {
-		 PostSelectLogic postSelectLogic = new PostSelectLogic();
+public class CalcTest {
+	public static void main(String[] args) throws ParseException {
+//		CalendarDAO dao = new CalendarDAO();
 		
-		// String型をDate型に変換する
+		String name1 = "トウモロコシ";
+		String name2 = "ハクサイ";
+		String name3 = "null";
+		String strDate = "2023-09-10";
+		String SowStart1 = "2023-03-21";
+		String SowEnd1 = "2023-04-20";
+		String SowStart2 = "2023-08-11";
+		String SowEnd2 = "2023-09-10";
+		String SowStart3 = "null";
+		String SowEnd3 = "null";
+		String PlantingStart1 = "2023-04-21";
+		String PlantingEnd1 = "2023-05-10";
+		String PlantingStart2 = "2023-09-11";
+		String PlantingEnd2 = "2023-10-10";
+		String PlantingStart3 = "null";
+		String PlantingEnd3 = "null";
+		String HarvestStart1 = "2023-06-21";
+		String HarvestEnd1 = "2023-07-31";
+		String HarvestStart2 = "2023-11-01";
+		String HarvestEnd2 = "2024-01-20";
+		String HarvestStart3 = "null";
+		String HarvestEnd3 = "null";
+		
+//		int ret = CalendarCalc.date(strDate, SowStart1, SowEnd1, SowStart2, SowEnd2, SowStart3, SowEnd3);
+//		System.out.println(ret);
+		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-	    Date date = format.parse(strDate);
-	    String name1 = advise.getName1();
-	    String name2 = advise.getName2();
-	    String name3 = advise.getName3();
-	    Date sowStart1 = null;
+		Date date = format.parse(strDate);
+		Date sowStart1 = null;
 		Date sowEnd1 = null;
 		Date sowStart2 = null;
 		Date sowEnd2 = null;
@@ -62,18 +72,12 @@ public class CalendarCalc {
 	    long sow1 = -1;
     	long sow2 = -1;
     	long sow3 = -1; 
-    	long planting1 = -1;
-    	long planting2 = -1;
-    	long planting3 = -1;
-    	long harvest1 = -1;
-    	long harvest2 = -1;
-    	long harvest3 = -1;
 	    long one_date_time = 1000 * 60 * 60 * 24;
 	    long max = Long.MIN_VALUE;
 	    
-		if(advise.getSowStart1() != null) {
-			sowStart1 = format.parse(advise.getSowStart1());
-			sowEnd1 = format.parse(advise.getSowEnd1());
+		if(SowStart1 != "null") {
+			sowStart1 = format.parse(SowStart1);
+			sowEnd1 = format.parse(SowEnd1);
 			
 			long StartTime = sowStart1.getTime();
 		    long EndTime = sowEnd1.getTime();
@@ -85,9 +89,9 @@ public class CalendarCalc {
 		    	sow1 = -1;
 		    }
 		}
-		if(advise.getSowStart2() != null) {
-			sowStart2 = format.parse(advise.getSowStart2());
-		    sowEnd2 = format.parse(advise.getSowEnd2());
+		if(SowStart2 != "null") {
+			sowStart2 = format.parse(SowStart2);
+		    sowEnd2 = format.parse(SowEnd2);
 		    
 		    long StartTime = sowStart2.getTime();
 		    long EndTime = sowEnd2.getTime();
@@ -99,9 +103,9 @@ public class CalendarCalc {
 		    	sow2 = -1;
 		    }
 		}
-		if(advise.getSowStart3() != null) {
-			sowStart3 = format.parse(advise.getSowStart3());
-		    sowEnd3 = format.parse(advise.getSowEnd3());
+		if(SowStart3 != "null") {
+			sowStart3 = format.parse(SowStart3);
+		    sowEnd3 = format.parse(SowEnd3);
 		    
 		    long StartTime = sowStart3.getTime();
 		    long EndTime = sowEnd3.getTime();
@@ -113,77 +117,53 @@ public class CalendarCalc {
 		    	sow3 = -1;
 		    }
 		}
-		if(advise.getPlantingStart1() != null) {
-			plantingStart1 = format.parse(advise.getPlantingStart1());
-		    plantingEnd1 = format.parse(advise.getPlantingEnd1());
+		if(PlantingStart1 != "null") {
+			plantingStart1 = format.parse(PlantingStart1);
+		    plantingEnd1 = format.parse(PlantingEnd1);
 		    
 		    long StartTime = plantingStart1.getTime();
 		    long EndTime = plantingEnd1.getTime();
 		    plantingDif1 = (EndTime - StartTime) / one_date_time;
-		    planting1 = (datetime - StartTime) / one_date_time;
-		    if(planting1 <= 0 || planting1 >= sow1 || planting1 >= plantingDif1) {
-		    	planting1 = -1;
-		    }
 		}
-	    if(advise.getPlantingStart2() != null) {
-	    	plantingStart2 = format.parse(advise.getPlantingStart2());
-		    plantingEnd2 = format.parse(advise.getPlantingEnd2());
+	    if(PlantingStart2 != "null") {
+	    	plantingStart2 = format.parse(PlantingStart2);
+		    plantingEnd2 = format.parse(PlantingEnd2);
 		    
 		    long StartTime = plantingStart2.getTime();
 		    long EndTime = plantingEnd2.getTime();
 		    plantingDif2 = (EndTime - StartTime) / one_date_time;
-		    planting2 = (datetime - StartTime) / one_date_time;
-		    if(planting2 <= 0 || planting2 >= sow2 || planting2 >= plantingDif2) {
-		    	planting2 = -1;
-		    }
 	    }
-	    if(advise.getPlantingStart3() != null) {
-	    	plantingStart3 = format.parse(advise.getPlantingStart3());
-		    plantingEnd3 = format.parse(advise.getPlantingEnd3());
+	    if(PlantingStart3 != "null") {
+	    	plantingStart3 = format.parse(PlantingStart3);
+		    plantingEnd3 = format.parse(PlantingEnd3);
 		    
 		    long StartTime = plantingStart3.getTime();
 		    long EndTime = plantingEnd3.getTime();
 		    plantingDif3 = (EndTime - StartTime) / one_date_time;
-		    planting3 = (datetime - StartTime) / one_date_time;
-		    if(planting3 <= 0 || planting3 >= sow3 || planting3 >= plantingDif3) {
-		    	planting3 = -1;
-		    }
 	    }
-	    if(advise.getHarvestStart1() != null) {
-	    	harvestStart1 = format.parse(advise.getHarvestStart1());
-		    harvestEnd1 = format.parse(advise.getHarvestEnd1());
+	    if(HarvestStart1 != "null") {
+	    	harvestStart1 = format.parse(HarvestStart1);
+		    harvestEnd1 = format.parse(HarvestEnd1);
 		    
 		    long StartTime = harvestStart1.getTime();
 		    long EndTime = harvestEnd1.getTime();
 		    harvestDif1 = (EndTime - StartTime) / one_date_time;
-		    harvest1 = (datetime - StartTime) / one_date_time;
-		    if(harvest1 <= 0 || harvest1 >= sow1 || harvest1 >= harvestDif1) {
-		    	harvest1 = -1;
-		    }
 	    }
-	    if(advise.getHarvestStart2() != null) {
-	    	harvestStart2 = format.parse(advise.getHarvestStart2());
-		    harvestEnd2 = format.parse(advise.getHarvestEnd2());
+	    if(HarvestStart2 != "null") {
+	    	harvestStart2 = format.parse(HarvestStart2);
+		    harvestEnd2 = format.parse(HarvestEnd2);
 		    
 		    long StartTime = harvestStart2.getTime();
 		    long EndTime = harvestEnd2.getTime();
 		    harvestDif2 = (EndTime - StartTime) / one_date_time;
-		    harvest2 = (datetime - StartTime) / one_date_time;
-		    if(harvest2 <= 0 || harvest2 >= sow2 || harvest2 >= harvestDif2) {
-		    	harvest2 = -1;
-		    }
 	    }
-	    if(advise.getHarvestStart3() != null) {
-	    	harvestStart3 = format.parse(advise.getHarvestStart3());
-		    harvestEnd3 = format.parse(advise.getHarvestEnd3());
+	    if(HarvestStart3 != "null") {
+	    	harvestStart3 = format.parse(HarvestStart3);
+		    harvestEnd3 = format.parse(HarvestEnd3);
 		    
 		    long StartTime = harvestStart3.getTime();
 		    long EndTime = harvestEnd3.getTime();
 		    harvestDif3 = (EndTime - StartTime) / one_date_time;
-		    harvest3 = (datetime - StartTime) / one_date_time;
-		    if(harvest3 <= 0 || harvest3 >= sow3 || harvest3 >= harvestDif3) {
-		    	harvest3 = -1;
-		    }
 	    }
 	    
 	    for(long i : list) {
@@ -208,13 +188,13 @@ public class CalendarCalc {
 		    int EndYear = cal.get(Calendar.YEAR);
 		    int EndMonth = cal.get(Calendar.MONTH) + 1;
 		    int EndDay = cal.get(Calendar.DATE);
-		    CalendarBean calendar = new CalendarBean(1, StartYear, StartMonth, StartDay, EndYear, 
-		    		EndMonth, EndDay, "borrower", name1, "種まき","本文");
-		    postSelectLogic.execute(calendar);
+		    System.out.println(name1 + ", " + StartYear + ", " + StartMonth + ", " + StartDay + ", " + 
+		    		EndYear + ", " + EndMonth + ", " + EndDay);
+//		    dao.create(new CalendarBean(1, StartYear, StartMonth, StartDay, EndYear, EndMonth, EndDay, 
+//		    		"borrower", name1, "種まき","本文"));
 		} else {
-			CalendarBean calendar = new CalendarBean(1, 0, 0, 0, 0, 0, 0, "borrower", name1, "種まき", 
-					"本文");
-			postSelectLogic.execute(calendar);
+			System.out.println(name1 + ", " + SowStart1 + ", " + SowEnd1);
+//			dao.create(new CalendarBean(1, 0, 0, 0, 0, 0, 0, "borrower", name1, "種まき","本文"));
 		}
 		if(plantingStart1 != null) {
 			cal.setTime(plantingStart1);
@@ -222,8 +202,6 @@ public class CalendarCalc {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) sow1);
 		    } else if(plantingDif1 >= max) {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) max);
-		    } else if(planting1 != -1) {
-		    	cal.add(Calendar.DAY_OF_MONTH, (int) planting1);
 		    }
 		    int StartYear = cal.get(Calendar.YEAR);
 		    int StartMonth = cal.get(Calendar.MONTH) + 1;
@@ -232,13 +210,13 @@ public class CalendarCalc {
 		    int EndYear = cal.get(Calendar.YEAR);
 		    int EndMonth = cal.get(Calendar.MONTH) + 1;
 		    int EndDay = cal.get(Calendar.DATE);
-		    CalendarBean calendar = new CalendarBean(2, StartYear, StartMonth, StartDay, EndYear, 
-		    		EndMonth, EndDay, "borrower", name1, "植付","本文");
-		    postSelectLogic.execute(calendar);
+		    System.out.println(name1 + ", " + StartYear + ", " + StartMonth + ", " + StartDay + ", " + 
+		    		EndYear + ", " + EndMonth + ", " + EndDay);
+//		    dao.create(new CalendarBean(2, StartYear, StartMonth, StartDay, EndYear, EndMonth, EndDay, 
+//		    		"borrower", name1, "植付","本文"));
 		} else {
-			CalendarBean calendar = new CalendarBean(2, 0, 0, 0, 0, 0, 0, "borrower", name1, "植付", 
-					"本文");
-			postSelectLogic.execute(calendar);
+			System.out.println(name1 + ", " + PlantingStart1 + ", " + PlantingEnd1);
+//			dao.create(new CalendarBean(2, 0, 0, 0, 0, 0, 0, "borrower", name1, "植付","本文"));
 		}
 		if(harvestStart1 != null) {
 			cal.setTime(harvestStart1);
@@ -246,8 +224,6 @@ public class CalendarCalc {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) sow1);
 		    } else if(harvestDif1 >= max) {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) max);
-		    } else if(harvest1 != -1) {
-		    	cal.add(Calendar.DAY_OF_MONTH, (int) harvest1);
 		    }
 		    int StartYear = cal.get(Calendar.YEAR);
 		    int StartMonth = cal.get(Calendar.MONTH) + 1;
@@ -256,13 +232,13 @@ public class CalendarCalc {
 		    int EndYear = cal.get(Calendar.YEAR);
 		    int EndMonth = cal.get(Calendar.MONTH) + 1;
 		    int EndDay = cal.get(Calendar.DATE);
-		    CalendarBean calendar = new CalendarBean(3, StartYear, StartMonth, StartDay, EndYear, 
-		    		EndMonth, EndDay, "borrower", name1, "収穫","本文");
-		    postSelectLogic.execute(calendar);
+		    System.out.println(name1 + ", " + StartYear + ", " + StartMonth + ", " + StartDay + ", " + 
+		    		EndYear + ", " + EndMonth + ", " + EndDay);
+//		    dao.create(new CalendarBean(3, StartYear, StartMonth, StartDay, EndYear, EndMonth, EndDay, 
+//		    		"borrower", name1, "収穫","本文"));
 		} else {
-			CalendarBean calendar = new CalendarBean(3, 0, 0, 0, 0, 0, 0, "borrower", name1, "収穫", 
-					"本文");
-			postSelectLogic.execute(calendar);
+			System.out.println(name1 + ", " + HarvestStart1 + ", " + HarvestEnd1);
+//			dao.create(new CalendarBean(3, 0, 0, 0, 0, 0, 0, "borrower", name1, "収穫","本文"));
 		}
 	    
 		if(sowStart2 != null) {
@@ -279,13 +255,13 @@ public class CalendarCalc {
 		    int EndYear = cal.get(Calendar.YEAR);
 		    int EndMonth = cal.get(Calendar.MONTH) + 1;
 		    int EndDay = cal.get(Calendar.DATE);
-		    CalendarBean calendar = new CalendarBean(4, StartYear, StartMonth, StartDay, EndYear, 
-		    		EndMonth, EndDay, "borrower", name2, "種まき","本文");
-		    postSelectLogic.execute(calendar);
+		    System.out.println(name2 + ", " + StartYear + ", " + StartMonth + ", " + StartDay + ", " + 
+		    		EndYear + ", " + EndMonth + ", " + EndDay);
+//		    dao.create(new CalendarBean(4, StartYear, StartMonth, StartDay, EndYear, EndMonth, EndDay, 
+//		    		"borrower", name2, "種まき","本文"));
 		} else {
-			CalendarBean calendar = new CalendarBean(4, 0, 0, 0, 0, 0, 0, "borrower", name2, "種まき", 
-					"本文");
-			postSelectLogic.execute(calendar);
+			System.out.println(name2 + ", " + SowStart2 + ", " + SowEnd2);
+//			dao.create(new CalendarBean(4, 0, 0, 0, 0, 0, 0, "borrower", name2, "種まき","本文"));
 		}
 		if(plantingStart2 != null) {
 			cal.setTime(plantingStart2);
@@ -293,8 +269,6 @@ public class CalendarCalc {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) sow2);
 		    } else if(plantingDif2 >= max) {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) max);
-		    } else if(planting2 != -1) {
-		    	cal.add(Calendar.DAY_OF_MONTH, (int) planting2);
 		    }
 		    int StartYear = cal.get(Calendar.YEAR);
 		    int StartMonth = cal.get(Calendar.MONTH) + 1;
@@ -303,13 +277,13 @@ public class CalendarCalc {
 		    int EndYear = cal.get(Calendar.YEAR);
 		    int EndMonth = cal.get(Calendar.MONTH) + 1;
 		    int EndDay = cal.get(Calendar.DATE);
-		    CalendarBean calendar = new CalendarBean(5, StartYear, StartMonth, StartDay, EndYear, 
-		    		EndMonth, EndDay, "borrower", name2, "植付","本文");
-		    postSelectLogic.execute(calendar);
+		    System.out.println(name2 + ", " + StartYear + ", " + StartMonth + ", " + StartDay + ", " + 
+		    		EndYear + ", " + EndMonth + ", " + EndDay);
+//		    dao.create(new CalendarBean(5, StartYear, StartMonth, StartDay, EndYear, EndMonth, EndDay, 
+//		    		"borrower", name2, "植付","本文"));
 		} else {
-			CalendarBean calendar = new CalendarBean(5, 0, 0, 0, 0, 0, 0, "borrower", name2, "植付", 
-					"本文");
-			postSelectLogic.execute(calendar);
+			System.out.println(name2 + ", " + PlantingStart2 + ", " + PlantingEnd2);
+//			dao.create(new CalendarBean(5, 0, 0, 0, 0, 0, 0, "borrower", name2, "植付","本文"));
 		}
 		if(harvestStart2 != null) {
 			cal.setTime(harvestStart2);
@@ -317,8 +291,6 @@ public class CalendarCalc {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) sow2);
 		    } else if(harvestDif2 >= max) {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) max);
-		    } else if(harvest2 != -1) {
-		    	cal.add(Calendar.DAY_OF_MONTH, (int) harvest2);
 		    }
 		    int StartYear = cal.get(Calendar.YEAR);
 		    int StartMonth = cal.get(Calendar.MONTH) + 1;
@@ -327,13 +299,13 @@ public class CalendarCalc {
 		    int EndYear = cal.get(Calendar.YEAR);
 		    int EndMonth = cal.get(Calendar.MONTH) + 1;
 		    int EndDay = cal.get(Calendar.DATE);
-		    CalendarBean calendar = new CalendarBean(6, StartYear, StartMonth, StartDay, EndYear, 
-		    		EndMonth, EndDay, "borrower", name2, "収穫","本文");
-		    postSelectLogic.execute(calendar);
+		    System.out.println(name2 + ", " + StartYear + ", " + StartMonth + ", " + StartDay + ", " + 
+		    		EndYear + ", " + EndMonth + ", " + EndDay);
+//		    dao.create(new CalendarBean(6, StartYear, StartMonth, StartDay, EndYear, EndMonth, EndDay, 
+//		    		"borrower", name2, "収穫","本文"));
 		} else {
-			CalendarBean calendar = new CalendarBean(6, 0, 0, 0, 0, 0, 0, "borrower", name2, "収穫", 
-					"本文");
-			postSelectLogic.execute(calendar);
+			System.out.println(name2 + ", " + HarvestStart2 + ", " + HarvestEnd2);
+//			dao.create(new CalendarBean(6, 0, 0, 0, 0, 0, 0, "borrower", name2, "収穫","本文"));
 		}
 		
 		if(sowStart3 != null) {
@@ -350,13 +322,13 @@ public class CalendarCalc {
 		    int EndYear = cal.get(Calendar.YEAR);
 		    int EndMonth = cal.get(Calendar.MONTH) + 1;
 		    int EndDay = cal.get(Calendar.DATE);
-		    CalendarBean calendar = new CalendarBean(7, StartYear, StartMonth, StartDay, EndYear, 
-		    		EndMonth, EndDay, "borrower", name3, "種まき","本文");
-		    postSelectLogic.execute(calendar);
+		    System.out.println(name3 + ", " + StartYear + ", " + StartMonth + ", " + StartDay + ", " + 
+		    		EndYear + ", " + EndMonth + ", " + EndDay);
+//		    dao.create(new CalendarBean(7, StartYear, StartMonth, StartDay, EndYear, EndMonth, EndDay, 
+//		    		"borrower", name3, "種まき","本文"));
 		} else {
-			CalendarBean calendar = new CalendarBean(7, 0, 0, 0, 0, 0, 0, "borrower", name3, "種まき", 
-					"本文");
-			postSelectLogic.execute(calendar);
+			System.out.println(name3 + ", " + SowStart3 + ", " + SowEnd3);
+//			dao.create(new CalendarBean(7, 0, 0, 0, 0, 0, 0, "borrower", name3, "種まき","本文"));
 		}
 		if(plantingStart3 != null) {
 			cal.setTime(plantingStart3);
@@ -364,8 +336,6 @@ public class CalendarCalc {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) sow3);
 		    } else if(plantingDif3 >= max) {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) max);
-		    } else if(planting3 != -1) {
-		    	cal.add(Calendar.DAY_OF_MONTH, (int) planting3);
 		    }
 		    int StartYear = cal.get(Calendar.YEAR);
 		    int StartMonth = cal.get(Calendar.MONTH) + 1;
@@ -374,13 +344,13 @@ public class CalendarCalc {
 		    int EndYear = cal.get(Calendar.YEAR);
 		    int EndMonth = cal.get(Calendar.MONTH) + 1;
 		    int EndDay = cal.get(Calendar.DATE);
-		    CalendarBean calendar = new CalendarBean(8, StartYear, StartMonth, StartDay, EndYear, 
-		    		EndMonth, EndDay, "borrower", name3, "植付","本文");
-		    postSelectLogic.execute(calendar);
+		    System.out.println(name3 + ", " + StartYear + ", " + StartMonth + ", " + StartDay + ", " + 
+		    		EndYear + ", " + EndMonth + ", " + EndDay);
+//		    dao.create(new CalendarBean(8, StartYear, StartMonth, StartDay, EndYear, EndMonth, EndDay, 
+//		    		"borrower", name3, "植付","本文"));
 		} else {
-			CalendarBean calendar = new CalendarBean(8, 0, 0, 0, 0, 0, 0, "borrower", name3, "植付", 
-					"本文");
-			postSelectLogic.execute(calendar);
+			System.out.println(name3 + ", " + PlantingStart3 + ", " + PlantingEnd3);
+//			dao.create(new CalendarBean(8, 0, 0, 0, 0, 0, 0, "borrower", name3, "植付","本文"));
 		}
 		if(harvestStart3 != null) {
 			cal.setTime(harvestStart3);
@@ -388,8 +358,6 @@ public class CalendarCalc {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) sow3);
 		    } else if(harvestDif3 >= max) {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) max);
-		    } else if(harvest3 != -1) {
-		    	cal.add(Calendar.DAY_OF_MONTH, (int) harvest3);
 		    }
 		    int StartYear = cal.get(Calendar.YEAR);
 		    int StartMonth = cal.get(Calendar.MONTH) + 1;
@@ -398,30 +366,15 @@ public class CalendarCalc {
 		    int EndYear = cal.get(Calendar.YEAR);
 		    int EndMonth = cal.get(Calendar.MONTH) + 1;
 		    int EndDay = cal.get(Calendar.DATE);
-		    CalendarBean calendar = new CalendarBean(9, StartYear, StartMonth, StartDay, EndYear, 
-		    		EndMonth, EndDay, "borrower", name3, "収穫","本文");
-		    postSelectLogic.execute(calendar);
+		    System.out.println(name3 + ", " + StartYear + ", " + StartMonth + ", " + StartDay + ", " + 
+		    		EndYear + ", " + EndMonth + ", " + EndDay);
+//		    dao.create(new CalendarBean(9, StartYear, StartMonth, StartDay, EndYear, EndMonth, EndDay, 
+//		    		"borrower", name3, "収穫","本文"));
 		} else {
-			CalendarBean calendar = new CalendarBean(9, 0, 0, 0, 0, 0, 0, "borrower", name3, "収穫", 
-					"本文");
-			postSelectLogic.execute(calendar);
+			System.out.println(name3 + ", " + HarvestStart3 + ", " + HarvestEnd3);
+//			dao.create(new CalendarBean(9, 0, 0, 0, 0, 0, 0, "borrower", name3, "収穫","本文"));
 		}
+		
 	}
-	/**
-	 * 2つの日付の差を求めます。
-	 * java.util.Date 型の日付 date1 – date2 が何日かを返します。
-	 * 
-	 * 計算方法は以下となります。
-	 * 1.最初に2つの日付を long 値に変換します。
-	 * 　※この long 値は 1970 年 1 月 1 日 00:00:00 GMT からの
-	 * 　経過ミリ秒数となります。
-	 * 2.次にその差を求めます。
-	 * 3.上記の計算で出た数量を 1 日の時間で割ることで
-	 * 　日付の差を求めることができます。
-	 * 　※1 日 ( 24 時間) は、86,400,000 ミリ秒です。
-	 * 
-	 * @param date1    日付 java.util.Date
-	 * @param date2    日付 java.util.Date
-	 * @return    2つの日付の差
-	 */
+
 }

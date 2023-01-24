@@ -48,25 +48,35 @@
         <th>金</th>
         <th>土</th>
       </tr>
+      <%int i = 0; %>
       <%for(String[] row: mc.getData()){ %>
       <tr>
       	<%for(String col:row) {%>
       		<%if (col.startsWith("*")){ %>
-      			<td class="today"><p><%=col.substring(1)%></p><a href="#!"><button>種まき</button></a></td>
+      			<td class="today"><p><%=col.substring(1)%></p>
+      			<c:forEach var="calendar" items="${ calendarList }">
+      			<c:if test="${calendar.startYear == mc.getYear() && calendar.startMonth == mc.getMonth() }">
+      			<c:if test="${calender.startD <= i && calemdar.endD >= i }">
+      			<a href="#!"><button><c:out value="${calendar.title}"></c:out></button></a>
+      			</c:if></c:if></c:forEach></td>
       		<%}else{ %>
-      			<td><p><%=col %></p><a href="#!"><button></button></a></td>
+      			<td><p><%=col %></p>
+      			<c:forEach var="calendar" items="${ calendarList }">
+      			<c:if test="${calendar.startYear == mc.getYear() && calendar.startMonth == mc.getMonth() }">
+      			<c:if test="${calender.startD <= i && calemdar.endD >= i }">
+      			<a href="#!"><button><c:out value="${calendar.title}"></c:out></button></a>
+      			</c:if></c:if></c:forEach></td>
       		<%} %>
+      		<%i++; %>
       	<%} %>
       </tr>
       <%} %>
     </table>
     <br><a class="nav-link" href="/SotsukenE/produce_search">戻る</a>
   </div><!-- end container-->
-  <c:forEach var="search" items="${ searchList }">
-  <c:if test="${ search.id != null }">
-  <c:out value="${search.name1}"></c:out><br>
-  <c:out value="${search.name2}"></c:out><br>
-  <c:out value="${search.name3}"></c:out><br>
+  <c:forEach var="calendar" items="${ calendarList }">
+  <c:if test="${ calendar.id != null }">
+  <c:out value="${calendar.name}"></c:out><br>
   </c:if>
   </c:forEach>
         </section>
