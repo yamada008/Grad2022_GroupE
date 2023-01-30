@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class CalenderDispServlet
  */
@@ -20,28 +21,27 @@ public class CalenderDispServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=UTF-8");
 //		Calendar cal=Calendar.getInstance();
 		
-//		HttpSession session = req.getSession();
-//		CalendarBean calendar2 = (CalendarBean) session.getAttribute("calendar2");
+		HttpSession session = req.getSession();
+		CalendarBean calendar2 = (CalendarBean) session.getAttribute("calendar2");
+		req.setAttribute("calendar2",calendar2 );
 //		CalendarBean d_year = (CalendarBean) session.getAttribute("d_year");
 //		CalendarBean d_month = (CalendarBean) session.getAttribute("d_month");
-		CalendarBean bean = new CalendarBean();
 		
-		int d_year = bean.getd_year();
-		int d_month = bean.getd_month();
-		int d_dat = bean.getd_dat();
 		
-		List<CalendarBean> ToDayList = new ArrayList<CalendarBean>();
-		CalendarBean calendar = new CalendarBean(d_year, d_month, d_dat);
-		ToDayList.add(calendar);
-		req.setAttribute("ToDayList", ToDayList);
+		
 //		int d_year = (int)req.getSession().getAttribute("d_year");
 //		int d_month = (int)req.getSession().getAttribute("d_month");
 //		int month = d_month - 1;
 //		int year = d_year;
-		List<CalendarBean> CalendarList = new ArrayList<CalendarBean>();
+		
 		CalendarLogic logic = new CalendarLogic();
-		CalendarList = logic.createMyCalendar();
-		req.setAttribute("CalendarList", CalendarList);
+		 logic.createMyCalendar();
+		
+		
+		
+		GetCalendar2ListLogic getCalendar2ListLogic = new GetCalendar2ListLogic();
+		List<CalendarBean> CalendarList = getCalendar2ListLogic.execute();
+		req.setAttribute("CalendarList",CalendarList);
 		
 		
 		List<Integer> IdList = new ArrayList<Integer>();
@@ -49,6 +49,10 @@ public class CalenderDispServlet extends HttpServlet {
 			IdList.add(i);
 		}
 		req.setAttribute("IdList", IdList);
+		
+		GetToDayListLogic getToDayListLogic = new GetToDayListLogic();
+		List<CalendarBean> ToDayList = getToDayListLogic.execute();
+		req.setAttribute("ToDayList",ToDayList);
 //			Calendar c = Calendar.getInstance();
 //			c.set(year,month, 1);
 //			req.setAttribute("cdate", c);

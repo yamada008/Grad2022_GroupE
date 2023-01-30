@@ -7,13 +7,21 @@
 <!-- <jsp:useBean id="user" scope="session"
 	class="user.UserBean" />-->
 <%
-CalendarBean calendar2 = (CalendarBean) request.getAttribute("CalendarBean");
+CalendarBean calendar2 = (CalendarBean) request.getAttribute("calendar2");
 %>
 <table>
 <caption>
-	<a href="?year=<%= calendar2.getd_year() %>&month=<%= calendar2.getd_month() -1 %>)">前月</a>
-	<%=calendar2.getd_year()%>年<%=calendar2.getd_month() %>月
-	<a href="year=<%= calendar2.getd_year() %>&month=<%= calendar2.getd_month()+1 %>)">翌月</a>
+<c:forEach var="ToDay" items= "${ToDayList}">
+	<c:if test="${ToDay.toyear != null }">
+	<a href="/SotsukenE/showCal/">
+	<input type="hidden" name="toyear" value="${ToDay.toyear }">
+	<input type="hidden" name="tomonth" value="${ToDay.tomonth -1}">前月</a>
+	<c:out value="${ToDay.toyear }"></c:out>年<c:out value="${ToDay.tomonth }"></c:out>月
+	<a href="/SotsukenE/showCal/">
+	<input type="hidden" name="toyear" value="${ToDay.toyear }">
+	<input type="hidden" name="tomonth" value="${ToDay.tomonth +1}">翌月</a>
+	</c:if>
+	</c:forEach>
 </caption>
 
 <tr>
@@ -25,24 +33,23 @@ CalendarBean calendar2 = (CalendarBean) request.getAttribute("CalendarBean");
 	<th>金</th>
 	<th>土</th>
 </tr>
-<%
-	int nStartDay = c.get(Calendar.DAY_OF_WEEK), nEndDate = c
-			.getActualMaximum(Calendar.DATE);
-%>
+
 		<c:forEach var="ToDay" items= "${ToDayList}">
 		<c:forEach var="Calendar" items="${CalendarList}">
-		<c:if test="${ToDay.d_month == Calendar.d_month }">
+		<c:if test="${ToDay.tomonth == Calendar.d_month }">
+		
 <tr>
 	<c:forEach var="Id" items="${IdList}">
 	
-		<c:if test="${Id != null }">
+		
 		<c:choose>
-		<c:when test="${ToDay.d_dat == Calendar.d_day }">
+		<c:when test="${ToDay.today == Calendar.d_day }">
 		<td class="today"><c:out value="${Calendar.d_day}"></c:out></td>
 		</c:when>
 		<c:otherwise><td><c:out value="${Calendar.d_day }"></c:out></td></c:otherwise>
 		</c:choose>
-	</c:if>
+		
+	
 	</c:forEach>
 	
 </tr>

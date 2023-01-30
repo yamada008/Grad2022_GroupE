@@ -1,16 +1,17 @@
 package Calendar2;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class CalendarLogic {
 	//カレンダーインスタンスを生成するメソッド(int...は可変長引数)
-	public List<CalendarBean> createMyCalendar() {
+	public void createMyCalendar() {
 		//マイカレンダーインスタンス生成
-		CalendarBean mc=new CalendarBean();
+		CalendarBean mc= new CalendarBean();
 		//現在日時でカレンダーインスタンス生成
 		Calendar cal=Calendar.getInstance();
+		
+		ToDayDAO ToDD = new ToDayDAO();
+		CalendarDAO caldd = new CalendarDAO();
 		//2つの引数が来ていたら
 //		if(args.length==2) {
 //			//最初の引数で年を設定
@@ -19,10 +20,11 @@ public class CalendarLogic {
 //			cal.set(Calendar.MONTH, args[1]-1);
 //		}
 		
-		List<CalendarBean> CalendarList = new ArrayList<CalendarBean>();
 		
 //		マイカレンダーに年を設定
 		mc.setd_year(cal.get(Calendar.YEAR));
+		int year = mc.getd_year();
+		mc.settoyear(cal.get(Calendar.YEAR));
 		//マイカレンダーの元号の設定
 //		if(mc.getd_year() > 2018) {
 //			mc.setGengou("令和"+(mc.getd_year()-2018));
@@ -36,9 +38,15 @@ public class CalendarLogic {
 //			mc.setGengou(""+mc.getd_year());
 //		}
 		//マイカレンダーに月の設定
-		mc.setd_month(cal.get(Calendar.MONTH)+1);
-		mc.setd_dat(cal.get(Calendar.DATE));
+		mc.settomonth(cal.get(Calendar.MONTH)+1);
+		mc.settoday(cal.get(Calendar.DATE));
+		int toyear = mc.gettoyear();
+		int tomonth = mc.gettomonth();
+		int today = mc.gettoday();
+		CalendarBean ToDay = new CalendarBean(toyear,tomonth, today);
+		ToDD.create(ToDay);
 		for(int i = 1;i <= 12;i++) {
+			cal.set(Calendar.MONTH,i -1);
 			//その月の1日が何曜日かを調べる為に日付を1日にする
 			cal.set(Calendar.DATE, 1);
 			//カレンダーの最初の空白の数
@@ -50,25 +58,26 @@ public class CalendarLogic {
 			//最後の日後の空白の数
 			int after=7-cal.get(Calendar.DAY_OF_WEEK);
 			//すべての要素数
-			int total=before+daysCount+after;
-			for(int d = 1;d <= total;d++) {
+//			int total=before+daysCount+after;
+//			for(int d = 1;d <= total;d++) {
 				
 					for(int bef = 1; bef <= before;bef++) {
 						String str = "";
-						CalendarBean calendar = new CalendarBean(i, str);
-						CalendarList.add(calendar);
+						CalendarBean calendar = new CalendarBean(year,i, str);
+						caldd.create(calendar);
 					}
 					for(int count = 1;count <= daysCount;count++) {
 						String str = String.valueOf(count);
-						CalendarBean calendar = new CalendarBean(i, str);
-						CalendarList.add(calendar);
+						CalendarBean calendar = new CalendarBean(year,i, str);
+						caldd.create(calendar);
 					}
 					for(int af = 1;af <= after;af++) {
 						String str = "";
-						CalendarBean calendar = new CalendarBean(i, str);
-						CalendarList.add(calendar);
+						CalendarBean calendar = new CalendarBean(year,i, str);
+						caldd.create(calendar);
+						
 				}
-			}
+//			}
 		}
 			
 
@@ -98,6 +107,6 @@ public class CalendarLogic {
 //		}
 		//作成した2次元配列をマイカレンダーにセットする。
 //		mc.setData(data);
-		return CalendarList;
+		
 	}
 }
