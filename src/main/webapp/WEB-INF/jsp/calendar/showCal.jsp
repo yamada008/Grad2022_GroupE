@@ -33,28 +33,166 @@ CalendarBean calendar2 = (CalendarBean) request.getAttribute("calendar2");
 	<th>金</th>
 	<th>土</th>
 </tr>
-
-		<c:forEach var="ToDay" items= "${ToDayList}">
-		<c:forEach var="Calendar" items="${CalendarList}">
-		<c:if test="${ToDay.tomonth == Calendar.d_month }">
+		
+		
 		
 <tr>
-	<c:forEach var="Id" items="${IdList}">
-	
 		
+		
+		
+	<c:forEach var="ToDay" items= "${ToDayList}">
+		<c:forEach var="Calendar" items="${CalendarList}">
+		<c:if test="${ToDay.tomonth == Calendar.d_month }">
+		<c:forEach begin="1" end="7" step="1" var="i">
+		
+		<c:if test="${Calendar.num == i }">
 		<c:choose>
 		<c:when test="${ToDay.today == Calendar.d_day }">
 		<td class="today"><c:out value="${Calendar.d_day}"></c:out></td>
 		</c:when>
 		<c:otherwise><td><c:out value="${Calendar.d_day }"></c:out></td></c:otherwise>
 		</c:choose>
+		</c:if>
 		
-	
+		</c:forEach>
+	</c:if>
 	</c:forEach>
+</c:forEach>
 	
 </tr>
 
-</c:if>
+<tr>
+		
+		
+		
+	
+		<c:forEach var="ToDay" items= "${ToDayList}">
+		<c:forEach var="Calendar" items="${CalendarList}">
+		<c:if test="${ToDay.tomonth == Calendar.d_month }">
+		<c:forEach begin="8" end="14" step="1" var="i">
+		
+		<c:if test="${Calendar.num == i }">
+		<c:choose>
+		<c:when test="${ToDay.today == Calendar.d_day }">
+		<td class="today"><c:out value="${Calendar.d_day}"></c:out></td>
+		</c:when>
+		<c:otherwise><td><c:out value="${Calendar.d_day }"></c:out></td></c:otherwise>
+		</c:choose>
+		</c:if>
+		
+		</c:forEach>
+	</c:if>
+	</c:forEach>
 </c:forEach>
+		
+	
+</tr>
+
+<tr>
+		
+		
+		
+	
+		<c:forEach var="ToDay" items= "${ToDayList}">
+		<c:forEach var="Calendar" items="${CalendarList}">
+		<c:if test="${ToDay.tomonth == Calendar.d_month }">
+		<c:forEach begin="15" end="21" step="1" var="i">
+		
+		<c:if test="${Calendar.num == i }">
+		<c:choose>
+		<c:when test="${ToDay.today == Calendar.d_day }">
+		<td class="today"><c:out value="${Calendar.d_day}"></c:out></td>
+		</c:when>
+		<c:otherwise><td><c:out value="${Calendar.d_day }"></c:out></td></c:otherwise>
+		</c:choose>
+		</c:if>
+		
+		</c:forEach>
+	</c:if>
+	</c:forEach>
 </c:forEach>
+		
+	
+</tr>
+
+<tr>
+		
+		
+		
+	
+		<c:forEach var="ToDay" items= "${ToDayList}">
+		<c:forEach var="Calendar" items="${CalendarList}">
+		<c:if test="${ToDay.tomonth == Calendar.d_month }">
+		<c:forEach begin="22" end="28" step="1" var="i">
+		
+		<c:if test="${Calendar.num == i }">
+		<c:choose>
+		<c:when test="${ToDay.today == Calendar.d_day }">
+		<td class="today"><c:out value="${Calendar.d_day}"></c:out></td>
+		</c:when>
+		<c:otherwise><td><c:out value="${Calendar.d_day }"></c:out></td></c:otherwise>
+		</c:choose>
+		</c:if>
+		
+		</c:forEach>
+	</c:if>
+	</c:forEach>
+</c:forEach>
+	
+</tr>
+	
+	
+	<tr>
+		
+		
+		
+	
+		<c:forEach var="ToDay" items= "${ToDayList}">
+		<c:forEach var="Calendar" items="${CalendarList}">
+		<c:if test="${ToDay.tomonth == Calendar.d_month }">
+		<c:forEach begin="29" end="35" step="1" var="i">
+		
+		<c:if test="${Calendar.num == i }">
+		<c:choose>
+		<c:when test="${ToDay.today == Calendar.d_day }">
+		<td class="today"><c:out value="${Calendar.d_day}"></c:out></td>
+		</c:when>
+		<c:otherwise><td><c:out value="${Calendar.d_day }"></c:out></td></c:otherwise>
+		</c:choose>
+		</c:if>
+		
+		</c:forEach>
+	</c:if>
+	</c:forEach>
+</c:forEach>
+	
+</tr>
+	
+	
+	<tr>
+		
+		
+		
+	
+		<c:forEach var="ToDay" items= "${ToDayList}">
+		<c:forEach var="Calendar" items="${CalendarList}">
+		<c:if test="${ToDay.tomonth == Calendar.d_month }">
+		<c:forEach begin="36" end="42" step="1" var="i">
+		
+		<c:if test="${Calendar.num == i }">
+		<c:choose>
+		<c:when test="${ToDay.today == Calendar.d_day }">
+		<td class="today"><c:out value="${Calendar.d_day}"></c:out></td>
+		</c:when>
+		<c:otherwise><td><c:out value="${Calendar.d_day }"></c:out></td></c:otherwise>
+		</c:choose>
+		</c:if>
+		
+		</c:forEach>
+	</c:if>
+	</c:forEach>
+</c:forEach>
+	
+</tr>
+
 </table>

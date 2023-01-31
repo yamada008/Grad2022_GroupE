@@ -58,23 +58,38 @@ public class CalendarLogic {
 			//最後の日後の空白の数
 			int after=7-cal.get(Calendar.DAY_OF_WEEK);
 			//すべての要素数
-//			int total=before+daysCount+after;
+			int total=before+daysCount+after;
 //			for(int d = 1;d <= total;d++) {
+				int num = 1; 
 				
 					for(int bef = 1; bef <= before;bef++) {
 						String str = "";
-						CalendarBean calendar = new CalendarBean(year,i, str);
+						CalendarBean calendar = new CalendarBean(num,year,i, str);
 						caldd.create(calendar);
+						if(num <= total) {
+							num++;
+						
+						}
+						
 					}
 					for(int count = 1;count <= daysCount;count++) {
 						String str = String.valueOf(count);
-						CalendarBean calendar = new CalendarBean(year,i, str);
+						CalendarBean calendar = new CalendarBean(num,year,i, str);
 						caldd.create(calendar);
+						if(num <= total) {
+							num++;
+						
+						}
+						
 					}
 					for(int af = 1;af <= after;af++) {
 						String str = "";
-						CalendarBean calendar = new CalendarBean(year,i, str);
+						CalendarBean calendar = new CalendarBean(num,year,i, str);
 						caldd.create(calendar);
+						if(num <= total) {
+							num++;
+						
+						}
 						
 				}
 //			}

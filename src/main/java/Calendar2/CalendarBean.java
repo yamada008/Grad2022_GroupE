@@ -3,6 +3,10 @@
 import java.io.Serializable;
 
 public class CalendarBean implements Serializable {
+	private int num = 0;
+	
+		
+	
 	private int d_year = 0;
 	private int d_month = 0;
 	private String d_day = null; //日
@@ -13,7 +17,10 @@ public class CalendarBean implements Serializable {
 	private int today = 0;
 	
 	public CalendarBean() {}
-	public CalendarBean(int d_year, int d_month, String d_day ) {
+	public CalendarBean(int num,int d_year, int d_month, String d_day ) {
+		this.setnum(num);
+		
+		
 		this.setd_year(d_year);
 		this.setd_month(d_month);
 		this.setd_day(d_day);//CalendarLis
@@ -25,6 +32,10 @@ public class CalendarBean implements Serializable {
 		this.settomonth(tomonth);
 		this.settoday(today);
 	}
+	
+	public void setnum(int num) { this.num = num; }
+	public int getnum() { return this.num; }
+	
 	
 	
 	public void setd_year(int d_year) { this.d_year = d_year; }

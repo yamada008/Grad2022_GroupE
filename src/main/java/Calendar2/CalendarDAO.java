@@ -28,10 +28,12 @@ public class CalendarDAO extends SimpleDAO {
 			ResultSet rs = pStmt.executeQuery(); 
 		
 			while(rs.next()) {
+				int num = rs.getInt("num");
+			
 				int d_year = rs.getInt("d_year");
 				int d_month = rs.getInt("d_month");
 				String d_day = rs.getString("d_day");
-				CalendarBean mc = new CalendarBean(d_year,d_month,d_day);
+				CalendarBean mc = new CalendarBean(num,d_year,d_month,d_day);
 				CalendarList.add(mc);
 			}
 			
@@ -44,12 +46,14 @@ public class CalendarDAO extends SimpleDAO {
 	
 	public boolean create(CalendarBean calendar) {
 		try( Connection conn = this.createConnection()){
-			String sql = "INSERT INTO Calendar2(d_year, d_month, d_day) VALUES(?,?,?)" ;
+			String sql = "INSERT INTO Calendar2(num,d_year, d_month, d_day) VALUES(?,?,?,?)" ;
 				//pStmt = db.prepareStatement("INSERT INTO user(realName, userID, passwd) VALUES(?, ?, ?)");
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-				pStmt.setInt(1, calendar.getd_year());
-				pStmt.setInt(2, calendar.getd_month());
-				pStmt.setString(3, calendar.getd_day());
+				pStmt.setInt(1, calendar.getnum());
+				
+				pStmt.setInt(2, calendar.getd_year());
+				pStmt.setInt(3, calendar.getd_month());
+				pStmt.setString(4, calendar.getd_day());
 				
 				int result = pStmt.executeUpdate();
 				if(result != 1) {

@@ -36,10 +36,10 @@ public class CalendarTest2 implements ServletContextListener {
 		dao.execSQL("DROP TABLE Calendar2");
 		if (System.getenv("DATABASE_URL") != null) {
 			dao.execSQL("CREATE TABLE IF NOT EXISTS Calendar2"
-					+ " (id INT NOT NULL AUTO_INCREMENT, d_year int, d_month int, d_day VARCHAR(64),  PRIMARY KEY(id))");
+					+ " (id INT NOT NULL AUTO_INCREMENT,num int, d_year int, d_month int, d_day VARCHAR(64),  PRIMARY KEY(id))");
 		} else {
 			if (dao.execSQL("CREATE TABLE IF NOT EXISTS Calendar2"
-					+ " (id INT NOT NULL AUTO_INCREMENT,d_year int, d_month int, d_day VARCHAR(64),  PRIMARY KEY(id))")) {
+					+ " (id INT NOT NULL AUTO_INCREMENT,num int, d_year int, d_month int, d_day VARCHAR(64),  PRIMARY KEY(id))")) {
 				System.out.println("calendarDB is READY.");
 			} else {
 				System.out.println("calendarDB is NOT READY.");
