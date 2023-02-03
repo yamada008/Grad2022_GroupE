@@ -33,13 +33,13 @@ public class CalendarListener implements ServletContextListener {
 		dao.execSQL("DROP TABLE calendartbl");
 		if (System.getenv("DATABASE_URL") != null) {
 			dao.execSQL("CREATE TABLE IF NOT EXISTS calendartbl"
-					+ " (id INT NOT NULL AUTO_INCREMENT, startyear INT, startmonth INT, startd INT, "
-					+ "endyear INT, endmonth INT, endd INT, userID VARCHAR(64), name VARCHAR(64), "
+					+ " (id INT NOT NULL AUTO_INCREMENT, startyear INT, startmonth INT, startd VARCHAR(64), "
+					+ "endyear INT, endmonth INT, endd VARCHAR(64), userID VARCHAR(64), name VARCHAR(64), "
 					+ "title VARCHAR(64), text VARCHAR(65535), PRIMARY KEY(id))");
 		} else {
 			if (dao.execSQL("CREATE TABLE IF NOT EXISTS calendartbl"
-					+ " (id INT NOT NULL AUTO_INCREMENT, startyear INT, startmonth INT, startd INT, "
-					+ "endyear INT, endmonth INT, endd INT, userID VARCHAR(64), name VARCHAR(64), "
+					+ " (id INT NOT NULL AUTO_INCREMENT, startyear INT, startmonth INT, startd VARCHAR(64), "
+					+ "endyear INT, endmonth INT, endd VARCHAR(64), userID VARCHAR(64), name VARCHAR(64), "
 					+ "title VARCHAR(64), text VARCHAR(65535), PRIMARY KEY(id))")) {
 				System.out.println("calendarDB is READY.");
 			} else {

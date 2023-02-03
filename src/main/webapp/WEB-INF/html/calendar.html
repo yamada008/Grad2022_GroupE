@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -7,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>イチから始める農業</title>
+        <title></title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -16,38 +14,49 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles3.css" rel="stylesheet" />
+        <link rel="stylesheet"  href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+        <link rel="stylesheet"  href="css/calendar.css">
     </head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/borrow"><p><font size="20"></font></p>イチから始める農業</a>
-                <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
+                <a class="navbar-brand" href="/SotsukenE/borrow"></a>
             </div>
         </nav>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
-            <div class="container">
-                <div class="row">
-                                <div class=col>
-                                    <div class="col-auto">
-                                    <a class="btn btn-primary" href="/SotsukenE/land_search">農地を探す</a>
-                                    <a class="btn btn-primary" href="#!">作業終了</a>
-                                    </div><br>
-                                    <div class="col-auto">
-                                    <a class="btn btn-primary" href="/SotsukenE/produce_search">補助を受ける</a>
-                                    <a class="btn btn-primary" href="/SotsukenE/borrow">受けない</a>
-                                    </div>
-                                </div>
-                </div>
-            </div>
+        <div id="container">
+   
+    <p>
+		　<a href="?year=<%=mc.getYear()%>&month=<%=mc.getMonth()-10%>">前月</a>
+         
+    	<a href="?year=<%=mc.getYear()%>&month=<%=mc.getMonth()+10%>">翌月</a>
+      
+    </p>
+    <table class=" bg-light">
+      <input type="date" name="start_date"
+        min="2023-01-01" max="2023-12-31"><br>     
+        
+    <br><a class="nav-link" href="/SotsukenE/produce_search">戻る</a>
+  </div><!-- end container-->
+  <c:forEach var="search" items="${ searchList }">
+  <c:if test="${ search.id != null }">
+  <c:out value="${search.name1}"></c:out><br>
+  <c:out value="${search.name2}"></c:out><br>
+  <c:out value="${search.name3}"></c:out><br>
+  </c:if>
+  </c:forEach>
         </section>
-        <!-- Footer-->
+        <!-- Call to Action-->
+     
+      <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0"></p>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2022. All Rights Reserved.</p>
                     </div>
                 </div>
             </div>

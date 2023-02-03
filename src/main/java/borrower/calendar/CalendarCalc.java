@@ -283,7 +283,7 @@ public class CalendarCalc {
 		    		EndMonth, EndDay, "borrower", name2, "種まき","本文");
 		    postSelectLogic.execute(calendar);
 		} else {
-			CalendarBean calendar = new CalendarBean(4, 0, 0, 0, 0, 0, 0, "borrower", name2, "種まき", 
+			CalendarBean calendar = new CalendarBean(4,  0, 0, 0, 0, 0, 0, "borrower", name2, "種まき", 
 					"本文");
 			postSelectLogic.execute(calendar);
 		}
@@ -307,7 +307,7 @@ public class CalendarCalc {
 		    		EndMonth, EndDay, "borrower", name2, "植付","本文");
 		    postSelectLogic.execute(calendar);
 		} else {
-			CalendarBean calendar = new CalendarBean(5, 0, 0, 0, 0, 0, 0, "borrower", name2, "植付", 
+			CalendarBean calendar = new CalendarBean(5,  0, 0, 0, 0, 0, 0, "borrower", name2, "植付", 
 					"本文");
 			postSelectLogic.execute(calendar);
 		}
@@ -331,7 +331,7 @@ public class CalendarCalc {
 		    		EndMonth, EndDay, "borrower", name2, "収穫","本文");
 		    postSelectLogic.execute(calendar);
 		} else {
-			CalendarBean calendar = new CalendarBean(6, 0, 0, 0, 0, 0, 0, "borrower", name2, "収穫", 
+			CalendarBean calendar = new CalendarBean(6,  0, 0, 0, 0, 0, 0, "borrower", name2, "収穫", 
 					"本文");
 			postSelectLogic.execute(calendar);
 		}
@@ -354,7 +354,7 @@ public class CalendarCalc {
 		    		EndMonth, EndDay, "borrower", name3, "種まき","本文");
 		    postSelectLogic.execute(calendar);
 		} else {
-			CalendarBean calendar = new CalendarBean(7, 0, 0, 0, 0, 0, 0, "borrower", name3, "種まき", 
+			CalendarBean calendar = new CalendarBean(7,  0, 0, 0, 0, 0, 0, "borrower", name3, "種まき", 
 					"本文");
 			postSelectLogic.execute(calendar);
 		}
@@ -378,7 +378,7 @@ public class CalendarCalc {
 		    		EndMonth, EndDay, "borrower", name3, "植付","本文");
 		    postSelectLogic.execute(calendar);
 		} else {
-			CalendarBean calendar = new CalendarBean(8, 0, 0, 0, 0, 0, 0, "borrower", name3, "植付", 
+			CalendarBean calendar = new CalendarBean(8,  0, 0, 0, 0, 0, 0, "borrower", name3, "植付", 
 					"本文");
 			postSelectLogic.execute(calendar);
 		}
@@ -402,7 +402,7 @@ public class CalendarCalc {
 		    		EndMonth, EndDay, "borrower", name3, "収穫","本文");
 		    postSelectLogic.execute(calendar);
 		} else {
-			CalendarBean calendar = new CalendarBean(9, 0, 0, 0, 0, 0, 0, "borrower", name3, "収穫", 
+			CalendarBean calendar = new CalendarBean(9,  0, 0, 0, 0, 0, 0, "borrower", name3, "収穫", 
 					"本文");
 			postSelectLogic.execute(calendar);
 		}

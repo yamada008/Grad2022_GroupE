@@ -19,10 +19,10 @@ public class SelectDAO extends SimpleDAO {
 		return dao;
 	}
 	
-	public Advise select(int strId, String strDate) {
+	public Advise select(int Id, String strDate) {
 		Advise select = new Advise();
 		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE ID = '" + strId + "'";
+			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE ID = '" + Id + "'";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			

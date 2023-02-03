@@ -1,8 +1,5 @@
-<%@page import="borrower.produce.Produce"%>
-<%@page import="borrower.produce.ProduceDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -18,53 +15,36 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles2.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="/SotsukenE/borrow">イチから始める農業</a>
+                <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
             </div>
         </nav>
+        <!-- Masthead-->
+       
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
-        <form action="#!" method="get">
-                                <div class="row">
+            <div class="container">
+                <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <c:forEach var="produce" items="${produceList }">
-                                    <c:if test="${produce.id != null }">
-                                    <input type="checkbox" name="${ produce.id }" >
-                                    <c:out value="${produce.name}"></c:out><br><br>
-                                    </c:if>
-                                    </c:forEach>
-                                    <p><input type="submit" value="選択"></p>
+                                    <a class="btn btn-primary" href="/SotsukenE/land_search">農地を探す</a>
+                                    <a class="btn btn-primary" href="#!">作業終了</a>
+                                    </div><br>
+                                    <div class="col-auto">
+                                    <a class="btn btn-primary" href="/SotsukenE/calendar">予定を確認する</a>
+                                  
                                     </div>
                                 </div>
-                                </div>
-                                 <br><a class="nav-link" href="/SotsukenE/produce_search">戻る</a>
-                                <!-- Submit success message-->
-                                <!---->
-                                <!-- This is what your users will see when the form-->
-                                <!-- has successfully submitted-->
-                                <div class="d-none" id="submitSuccessMessage">
-                                    <div class="text-center mb-3">
-                                        <div class="fw-bolder">Form submission successful!</div>
-                                        <p>To activate this form, sign up at</p>
-                                        <a class="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                    </div>
-                                </div>
-                                <!-- Submit error message-->
-                                <!---->
-                                <!-- This is what your users will see when there is-->
-                                <!-- an error submitting the form-->
-                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                                </form>
+                </div>
+            </div>
         </section>
-        <!-- Call to Action-->
-     
-      <!-- Footer-->
+        <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">
                 <div class="row">

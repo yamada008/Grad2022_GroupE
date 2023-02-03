@@ -10,7 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>1から始める農業</title>
+        <title>イチから始める農業</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -24,7 +24,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/borrow">1から始める農業</a>
+                <a class="navbar-brand" href="/SotsukenE/borrow">イチから始める農業</a>
             </div>
         </nav>
         <!-- Icons Grid-->
@@ -36,7 +36,7 @@
                                     <div class="col-auto">
                                     <c:forEach var="advise" items="${ adviseList }">
                                     <c:if test="${advise.id != null }">
-                                    <label><input type="radio" name="select" value="${advise.id}" >
+                                    <label><input type="radio" name="selectId" value="${advise.id}" >
                                     <c:out value="${advise.name1}"></c:out><br>
                                     <c:out value="${advise.name2}"></c:out><br>
                                     <c:out value="${advise.name3}"></c:out></label><br><br>
@@ -72,7 +72,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2022. All Rights Reserved.</p>
+                        <p class="text-muted small mb-4 mb-lg-0"></p>
                     </div>
                 </div>
             </div>

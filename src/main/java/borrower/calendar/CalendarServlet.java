@@ -49,14 +49,26 @@ private static final long serialVersionUID = 1L;
 		//リクエストスコープに格納
 		req.setAttribute("mc", mc);
 		
-//		HttpSession session = req.getSession();
-//		Advise advise = (Advise) session.getAttribute("advise");
+		HttpSession session = req.getSession();
+		CalendarDateBean calendarDate = (CalendarDateBean) session.getAttribute("calendar");
+		req.setAttribute("calendarDate", calendarDate);
 		
-		int strId = Integer.parseInt(req.getParameter("select"));
+//		logic.createMyCalendar();
+		
+		GetCalendarDateListLogic getCalendarDateListLogic = new GetCalendarDateListLogic();
+		List<CalendarDateBean> CalendarDateList = getCalendarDateListLogic.execute();
+		req.setAttribute("CalendarDateList",CalendarDateList);
+		
+		GetToDayListLogic getToDayListLogic = new GetToDayListLogic();
+		List<CalendarDateBean> ToDayList = getToDayListLogic.execute();
+		req.setAttribute("ToDayList",ToDayList);
+		
+		String selectId = req.getParameter("selectId");
+		int Id = Integer.parseInt(selectId);
         String strDate = req.getParameter("startDate");
         
         GetSelectListLogic getSelectListLogic = new GetSelectListLogic();
-		Advise select = getSelectListLogic.execute(strId, strDate);
+		Advise select = getSelectListLogic.execute(Id, strDate);
 		req.setAttribute("select", select);
 		
 		try {
@@ -67,8 +79,10 @@ private static final long serialVersionUID = 1L;
 		}
 		
         GetCalendarListLogic getCalendarListLogic = new GetCalendarListLogic();
-        List<CalendarBean> calendarList = getCalendarListLogic.execute();
-        req.setAttribute("calendarList", calendarList);
+        List<CalendarBean> selectList = getCalendarListLogic.execute();
+        req.setAttribute("selectList", selectList);
+        req.setAttribute("startDate", strDate);
+        req.setAttribute("selectId", selectId);
 		
 		//viewにフォワード
 		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");
@@ -81,12 +95,20 @@ private static final long serialVersionUID = 1L;
 		 resp.setContentType("text/html;charset=UTF-8");
 		 
 		 HttpSession session = req.getSession();
+		 CalendarDateBean calendarDate = (CalendarDateBean) session.getAttribute("CalendarDateBean");
 		 CalendarBean calendar = (CalendarBean) session.getAttribute("calendarBean");
+		 
+		 PostCalendarDateLogic postCalendarDateLogic = new PostCalendarDateLogic();
+         postCalendarDateLogic.execute(calendarDate);
+         
+         PostToDayLogic postToDayLogic = new PostToDayLogic();
+         postToDayLogic.execute(calendarDate);
          
          PostCalendarLogic postCalendarLogic = new PostCalendarLogic();
          postCalendarLogic.execute(calendar);
          
-         int strId = Integer.parseInt(req.getParameter("select"));
+         String selectId = req.getParameter("select");
+         int Id = Integer.parseInt(selectId);
          String strDate = req.getParameter("startDate");
          
 //		 Advise advise = (Advise) session.getAttribute("advise");
@@ -95,7 +117,7 @@ private static final long serialVersionUID = 1L;
          postSelectLogic.execute(calendar);
          
          GetSelectListLogic getSelectListLogic = new GetSelectListLogic();
-         Advise select = getSelectListLogic.execute(strId, strDate);
+         Advise select = getSelectListLogic.execute(Id, strDate);
          req.setAttribute("select", select);
          
          try {
@@ -108,7 +130,8 @@ private static final long serialVersionUID = 1L;
          GetCalendarListLogic getCalendarListLogic = new GetCalendarListLogic();
          List<CalendarBean> calendarList = getCalendarListLogic.execute();
          req.setAttribute("calendarList", calendarList);
-         
+         req.setAttribute("startDate", strDate);
+         req.setAttribute("selectId", selectId);
          RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");
          rd.forward(req, resp);
 		 

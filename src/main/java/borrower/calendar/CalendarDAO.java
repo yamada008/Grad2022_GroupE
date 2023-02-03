@@ -21,7 +21,7 @@ public class CalendarDAO extends SimpleDAO {
 	}
 	
 	public List<CalendarBean> findAll() {
-		List<CalendarBean> calendarList = new ArrayList<>();
+		List<CalendarBean> selectList = new ArrayList<>();
 		
 		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			String sql = "SELECT * FROM CALENDARTBL";
@@ -42,13 +42,13 @@ public class CalendarDAO extends SimpleDAO {
 				String text = rs.getString("TEXT");
 				CalendarBean calendarBean = new CalendarBean(id, startYear, startMonth, startD, endYear, 
 						endMonth, endD, userID, name, title, text);
-				calendarList.add(calendarBean);
+				selectList.add(calendarBean);
 			}
 			} catch (SQLException e) {
 				e.printStackTrace();
 				return null;
 			}
-		return calendarList;
+		return selectList;
 	}
 	
 	public boolean create(CalendarBean calendar) {
