@@ -33,7 +33,7 @@ public class AdviseServlet extends HttpServlet {
 		req.setAttribute("startDate", strDate);
 		
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/jsp/Borrower/advise.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/jsp/Borrower/advise.jsp");
 		dispatcher.forward(req, resp);
         
 //        if(adviseList != null) {

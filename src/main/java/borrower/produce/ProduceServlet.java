@@ -29,7 +29,7 @@ public class ProduceServlet extends HttpServlet {
 		List<Produce> produceList = getProduceListLogic.execute(strDate);
 		request.setAttribute("produceList", produceList);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Borrower/produce.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Borrower/produce.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -52,7 +52,7 @@ public class ProduceServlet extends HttpServlet {
 		List<Produce> produceList = getProduceListLogic.execute(strDate);
 		request.setAttribute("produceList", produceList);
 
- 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Borrower/produce.jsp");
+ 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/Borrower/produce.jsp");
 		dispatcher.forward(request, response);
 
 

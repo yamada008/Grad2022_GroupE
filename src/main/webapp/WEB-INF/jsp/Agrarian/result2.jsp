@@ -28,7 +28,6 @@ String breadth="3平方メートル";
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="/SotsukenE/borrow">イチから始める農業</a>
-                <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
             </div>
         </nav>
         <!-- Icons Grid-->

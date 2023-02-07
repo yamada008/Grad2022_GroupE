@@ -31,7 +31,7 @@
                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <a class="btn btn-primary" href="/SotsukenE/land_search">農地を探す</a>
+                                    <a class="btn btn-primary" href="#!">農地を探す</a>
                                     <a class="btn btn-primary" href="#!">作業終了</a>
                                     </div><br>
                                     <div class="col-auto">

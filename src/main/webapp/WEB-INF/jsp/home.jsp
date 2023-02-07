@@ -21,7 +21,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/">1から始める農業</a>
+                <a class="navbar-brand" href="/SotsukenE/">イチから始める農業</a>
                 <!-- <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a> -->
             </div>
         </nav>
@@ -32,7 +32,7 @@
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">1から始める農業</h1>
+                            <h1 class="mb-5">イチから始める農業</h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->

@@ -613,7 +613,9 @@
 		</c:forEach>
 	</tr>
     </table>
-    <br><a class="nav-link" href="/SotsukenE/calendarNext">TOP</a>
+    <br><p><a class="nav-link" href="/SotsukenE/calendarNext">
+    <input type="hidden" name="startDate" value="${startDate }">
+    <input type="hidden" name="selectId" value="${selectId }">TOP</a></p>
     <!-- <br><a class="nav-link" href="/SotsukenE/produce_search">戻る</a> -->
   </div><!-- end container-->
   <!--<c:forEach var="select" items="${ selectList }">
@@ -621,9 +623,9 @@
   <c:out value="${select.name}"></c:out><br>
   </c:if>
   </c:forEach>-->
-  <p class="sow">種まき<p><br>
-  <p class="planting">植付</p><br>
-  <p class="harvest">収穫</p><br>
+  <p class="sow">種まき<p>
+  <p class="planting">植付</p>
+  <p class="harvest">収穫</p>
         </section>
         <!-- Call to Action-->
      

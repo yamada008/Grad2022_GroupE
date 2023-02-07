@@ -90,7 +90,7 @@ private static final long serialVersionUID = 1L;
         req.setAttribute("list", list);
 		
 		//viewにフォワード
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");
+		RequestDispatcher rd=req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendar.jsp");
 		rd.forward(req, resp);
 	}
 	
@@ -112,7 +112,7 @@ private static final long serialVersionUID = 1L;
          PostCalendarLogic postCalendarLogic = new PostCalendarLogic();
          postCalendarLogic.execute(calendar);
          
-         String selectId = req.getParameter("select");
+         String selectId = req.getParameter("selectId");
          int Id = Integer.parseInt(selectId);
          String strDate = req.getParameter("startDate");
          
@@ -137,7 +137,7 @@ private static final long serialVersionUID = 1L;
          req.setAttribute("calendarList", calendarList);
          req.setAttribute("startDate", strDate);
          req.setAttribute("selectId", selectId);
-         RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");
+         RequestDispatcher rd=req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendar.jsp");
          rd.forward(req, resp);
 		 
 	}
