@@ -16,7 +16,7 @@
 </head>
 <body>
 <h1>※写真はサンプルです</h1>
-<p>userID:<%=id %></p>
+
 <p>名前:<%=name %></p>
 <p>住所:<%=word %></p>
 <p>広さ:<%=breadth %></p>
