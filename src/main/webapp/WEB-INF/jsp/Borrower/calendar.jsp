@@ -56,78 +56,96 @@
       </tr>
       
      <tr>
-		<!-- <c:forEach var="ToDay" items= "${ToDayList}"> -->
+		<c:forEach var="ToDay" items= "${ToDayList}">
 		<c:forEach var="Calendar" items="${CalendarDateList}">
-		<!-- <c:if test="${ToDay.tomonth == Calendar.d_month }">-->
+		<c:if test="${ToDay.tomonth == Calendar.d_month }">
 		<c:forEach begin="1" end="7" step="1" var="i">
 		<c:if test="${Calendar.num == i }">
 		
-		<!--<c:choose>
-		<c:when test="${ToDay.today == Calendar.d_day && ToDay.tomonth == Calendar.d_month }"><td class="today">
+		<td>
 			<c:out value="${Calendar.d_day}"></c:out>
 			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
+			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth 
+				&& ToDay.toyear eq select.startYear && ToDay.toyear eq select.endYear}">
 			<c:choose>
 			<c:when test="${select.startMonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.startMonth }">
 				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:if test="${Calendar.d_day != null }">
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:otherwise>
 			</c:choose>
 			</c:if>
 			</c:forEach>
-		</td></c:when>
-		<c:otherwise>--><td>
-			<c:out value="${Calendar.d_day}"></c:out>
-			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
-			<c:choose>
-			<c:when test="${select.startMonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.startMonth }">
-				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:otherwise>
-			</c:choose>
-			</c:if>
-			</c:forEach>
-		</td><!--</c:otherwise>
-		</c:choose>-->
+		</td>
 		
 		</c:if>
 		</c:forEach>
-		<!-- </c:if> -->
+		</c:if>
 		</c:forEach>
-		<!-- </c:forEach> -->
+		</c:forEach>
 	</tr>
 
 	<tr>
@@ -137,66 +155,84 @@
 		<c:forEach begin="8" end="14" step="1" var="i">
 		<c:if test="${Calendar.num == i }">
 		
-		<c:choose>
-		<c:when test="${ToDay.today == Calendar.d_day && ToDay.tomonth == Calendar.d_month }"><td class="today">
+		<td>
 			<c:out value="${Calendar.d_day}"></c:out>
 			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
+			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth 
+				&& ToDay.toyear eq select.startYear && ToDay.toyear eq select.endYear}">
 			<c:choose>
 			<c:when test="${select.startMonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.startMonth }">
 				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:if test="${Calendar.d_day != null }">
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:otherwise>
 			</c:choose>
 			</c:if>
 			</c:forEach>
-		</td></c:when>
-		<c:otherwise><td>
-			<c:out value="${Calendar.d_day}"></c:out>
-			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
-			<c:choose>
-			<c:when test="${select.startMonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.startMonth }">
-				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:otherwise>
-			</c:choose>
-			</c:if>
-			</c:forEach>
-		</td></c:otherwise>
-		</c:choose>
+		</td>
 		
 		</c:if>
 		</c:forEach>
@@ -212,66 +248,84 @@
 		<c:forEach begin="15" end="21" step="1" var="i">
 		<c:if test="${Calendar.num == i }">
 		
-		<c:choose>
-		<c:when test="${ToDay.today == Calendar.d_day && ToDay.tomonth == Calendar.d_month }"><td class="today">
+		<td>
 			<c:out value="${Calendar.d_day}"></c:out>
 			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
+			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth 
+				&& ToDay.toyear eq select.startYear && ToDay.toyear eq select.endYear}">
 			<c:choose>
 			<c:when test="${select.startMonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.startMonth }">
 				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:if test="${Calendar.d_day != null }">
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:otherwise>
 			</c:choose>
 			</c:if>
 			</c:forEach>
-		</td></c:when>
-		<c:otherwise><td>
-			<c:out value="${Calendar.d_day}"></c:out>
-			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
-			<c:choose>
-			<c:when test="${select.startMonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.startMonth }">
-				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:otherwise>
-			</c:choose>
-			</c:if>
-			</c:forEach>
-		</td></c:otherwise>
-		</c:choose>
+		</td>
 		
 		</c:if>
 		</c:forEach>
@@ -287,66 +341,84 @@
 		<c:forEach begin="22" end="28" step="1" var="i">
 		<c:if test="${Calendar.num == i }">
 		
-		<c:choose>
-		<c:when test="${ToDay.today == Calendar.d_day && ToDay.tomonth == Calendar.d_month }"><td class="today">
+		<td>
 			<c:out value="${Calendar.d_day}"></c:out>
 			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
+			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth 
+				&& ToDay.toyear eq select.startYear && ToDay.toyear eq select.endYear}">
 			<c:choose>
 			<c:when test="${select.startMonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.startMonth }">
 				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:if test="${Calendar.d_day != null }">
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:otherwise>
 			</c:choose>
 			</c:if>
 			</c:forEach>
-		</td></c:when>
-		<c:otherwise><td>
-			<c:out value="${Calendar.d_day}"></c:out>
-			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
-			<c:choose>
-			<c:when test="${select.startMonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.startMonth }">
-				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:otherwise>
-			</c:choose>
-			</c:if>
-			</c:forEach>
-		</td></c:otherwise>
-		</c:choose>
+		</td>
 		
 		</c:if>
 		</c:forEach>
@@ -362,66 +434,84 @@
 		<c:forEach begin="29" end="35" step="1" var="i">
 		<c:if test="${Calendar.num == i }">
 		
-		<c:choose>
-		<c:when test="${ToDay.today == Calendar.d_day && ToDay.tomonth == Calendar.d_month }"><td class="today">
+		<td>
 			<c:out value="${Calendar.d_day}"></c:out>
 			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
+			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth 
+				&& ToDay.toyear eq select.startYear && ToDay.toyear eq select.endYear}">
 			<c:choose>
 			<c:when test="${select.startMonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.startMonth }">
 				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:if test="${Calendar.d_day != null }">
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:otherwise>
 			</c:choose>
 			</c:if>
 			</c:forEach>
-		</td></c:when>
-		<c:otherwise><td>
-			<c:out value="${Calendar.d_day}"></c:out>
-			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
-			<c:choose>
-			<c:when test="${select.startMonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.startMonth }">
-				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:otherwise>
-			</c:choose>
-			</c:if>
-			</c:forEach>
-		</td></c:otherwise>
-		</c:choose>
+		</td>
 		
 		</c:if>
 		</c:forEach>
@@ -437,66 +527,84 @@
 		<c:forEach begin="36" end="42" step="1" var="i">
 		<c:if test="${Calendar.num == i }">
 		
-		<c:choose>
-		<c:when test="${ToDay.today == Calendar.d_day && ToDay.tomonth == Calendar.d_month }"><td class="today">
+		<td>
 			<c:out value="${Calendar.d_day}"></c:out>
 			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
+			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth 
+				&& ToDay.toyear eq select.startYear && ToDay.toyear eq select.endYear}">
 			<c:choose>
 			<c:when test="${select.startMonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.startMonth }">
 				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:when test="${ToDay.tomonth eq select.endMonth }">
 				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:when>
 			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
+				<c:if test="${Calendar.d_day != null }">
+				<c:forEach var="list" items="${list }">
+				<c:choose>
+				<c:when test="${select.title == list.sow }">
+				<a href="#!" class="button-sow"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.planting }">
+				<a href="#!" class="button-planting"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				<c:when test="${select.title == list.harvest }">
+				<a href="#!" class="button-harvest"><c:out value="${select.name }"></c:out></a>
+				</c:when>
+				</c:choose>
+				</c:forEach>
 				</c:if>
 			</c:otherwise>
 			</c:choose>
 			</c:if>
 			</c:forEach>
-		</td></c:when>
-		<c:otherwise><td>
-			<c:out value="${Calendar.d_day}"></c:out>
-			<c:forEach var="select" items="${selectList }">
-			<c:if test="${ToDay.tomonth ge select.startMonth && ToDay.tomonth le select.endMonth }">
-			<c:choose>
-			<c:when test="${select.startMonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day >= select.startD && Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.startMonth }">
-				<c:if test="${Calendar.d_day >= select.startD}">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:when test="${ToDay.tomonth eq select.endMonth }">
-				<c:if test="${Calendar.d_day <= select.endD }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:when>
-			<c:otherwise>
-				<c:if test="${Calendar.d_day >= 1 && Calendar.d_day <= 31 }">
-				<a href="#!"><button><c:out value="${select.name }"></c:out></button></a>
-				</c:if>
-			</c:otherwise>
-			</c:choose>
-			</c:if>
-			</c:forEach>
-		</td></c:otherwise>
-		</c:choose>
+		</td>
 		
 		</c:if>
 		</c:forEach>
@@ -513,6 +621,9 @@
   <c:out value="${select.name}"></c:out><br>
   </c:if>
   </c:forEach>-->
+  <p class="sow">種まき<p><br>
+  <p class="planting">植付</p><br>
+  <p class="harvest">収穫</p><br>
         </section>
         <!-- Call to Action-->
      

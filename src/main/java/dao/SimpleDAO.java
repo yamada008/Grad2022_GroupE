@@ -55,7 +55,7 @@ public class SimpleDAO {
 		Connection db = this.createConnection();
     	//PreparedStatement ps = null;
     	boolean result = false;
-    	if( !sql.startsWith("CREATE") && !sql.startsWith("DROP") && !sql.startsWith("INSERT") && !sql.startsWith("UPDATE")) { return result; }
+    	if( !sql.startsWith("CREATE") && !sql.startsWith("DROP") && !sql.startsWith("INSERT") && !sql.startsWith("UPDATE") && !sql.startsWith("DELETE")) { return result; }
     	try (PreparedStatement ps = db.prepareStatement(sql)) {
 			//ps = db.prepareStatement(sql);
 			ps.executeUpdate();

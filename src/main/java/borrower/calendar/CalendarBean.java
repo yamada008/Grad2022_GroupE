@@ -15,6 +15,10 @@ public class CalendarBean implements Serializable {
 	private String title = null;
 	private String text = null;
 	
+	private String sow = null;
+	private String planting = null;
+	private String harvest = null;
+	
 	
 	public CalendarBean() {}
 	public CalendarBean(int id, int startYear, int startMonth, int startD, int endYear, int endMonth, 
@@ -30,6 +34,11 @@ public class CalendarBean implements Serializable {
 		this.name = name;
 		this.title = title;
 		this.text = text;
+	}
+	public CalendarBean(String sow, String planting, String harvest) {
+		this.sow = sow;
+		this.planting = planting;
+		this.harvest = harvest;
 	}
 	
 	public void setId(int id) { this.id = id; }
@@ -54,6 +63,12 @@ public class CalendarBean implements Serializable {
 	public String getTitle() { return this.title; }
 	public void setText(String text) {this.text = text; }
 	public String getText() {return this.text;}
+	public void setSow(String sow) {this.sow = sow; }
+	public String getSow() {return this.sow;}
+	public void setPlanting(String planting) {this.planting = planting; }
+	public String getPlanting() {return this.planting;}
+	public void setHarvest(String harvest) {this.harvest = harvest; }
+	public String getHarvest() {return this.harvest;}
 	
 	
 //	public boolean createEntry() {

@@ -21,7 +21,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/borrow"><p><font size="20"></font></p>イチから始める農業</a>
+                <a class="navbar-brand" href="/SotsukenE/borrow">イチから始める農業</a>
                 <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
             </div>
         </nav>

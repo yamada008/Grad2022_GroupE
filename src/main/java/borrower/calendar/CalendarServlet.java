@@ -2,6 +2,7 @@ package borrower.calendar;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -83,6 +84,10 @@ private static final long serialVersionUID = 1L;
         req.setAttribute("selectList", selectList);
         req.setAttribute("startDate", strDate);
         req.setAttribute("selectId", selectId);
+        
+        List<CalendarBean> list = new ArrayList<CalendarBean>();
+        list.add(new CalendarBean("種まき", "植付", "収穫"));
+        req.setAttribute("list", list);
 		
 		//viewにフォワード
 		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/Borrower/calendar.jsp");

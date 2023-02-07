@@ -67,3 +67,63 @@ tr *:last-child{
 td.today{
 	background:#ffff80;
 }
+p {
+  text-align: right;
+}
+p.sow{
+	color: rgb(26, 26, 255);
+}
+p.planting{
+	color: rgba(0, 179, 0, 0.99);
+}
+p.harvest{
+	color: rgba(255, 155, 55, 0.99);
+}
+a.button-sow {
+  display       : inline-block;
+  font-size     : 8pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 4px 3px;   /* 余白       */
+  background    : #ffffff;     /* 背景色     */
+  color         : #1a1aff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #ffffff;    /* 枠の指定 */
+}
+a.button-sow:hover {
+  color         : #ffffff;     /* 背景色     */
+  background    : #1a1aff;     /* 文字色     */
+}
+a.button-planting {
+  display       : inline-block;
+  font-size     : 8pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 4px 3px;   /* 余白       */
+  background    : #ffffff;     /* 背景色     */
+  color         : rgba(0, 179, 0, 0.99);     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #ffffff;    /* 枠の指定 */
+}
+a.button-planting:hover {
+  color         : #ffffff;     /* 背景色     */
+  background    : rgba(0, 179, 0, 0.99);     /* 文字色     */
+}
+a.button-harvest {
+  display       : inline-block;
+  font-size     : 8pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 4px 3px;   /* 余白       */
+  background    : #ffffff;     /* 背景色     */
+  color         : rgba(255, 155, 55, 0.99);     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #ffffff;    /* 枠の指定 */
+}
+a.button-harvest:hover {
+  color         : #ffffff;     /* 背景色     */
+  background    : rgba(255, 155, 55, 0.99);     /* 文字色     */
+}

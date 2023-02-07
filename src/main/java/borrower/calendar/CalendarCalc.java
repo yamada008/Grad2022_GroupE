@@ -22,6 +22,8 @@ public class CalendarCalc {
 	public static void date(String strDate, Advise advise) 
 	    throws ParseException {
 		 PostSelectLogic postSelectLogic = new PostSelectLogic();
+		 SelectDAO dao = new SelectDAO();
+		 dao.execSQL("DELETE FROM CALENDARTBL");
 		
 		// String型をDate型に変換する
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
