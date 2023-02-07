@@ -37,7 +37,6 @@
                          住所:<input type="text" name="word"><br>
                          広さ:<input type="text" name="breadth"><br>
                          <button type="submit">投稿する</button>
-                         <p><input type="submit" value="投稿する"></p>
                          </form>
                          </div>
                     </div>
