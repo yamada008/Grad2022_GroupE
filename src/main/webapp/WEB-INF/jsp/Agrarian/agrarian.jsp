@@ -22,7 +22,7 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="/SotsukenE/agrarian">イチから始める農業</a>
-                <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
+                <a class="nav-link" href="/SotsukenE/agrarian?logout=true">Log Out</a>
             </div>
         </nav>
         <!-- Icons Grid-->
@@ -31,7 +31,7 @@
                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <a class="btn btn-primary" href="/SotsukenE/main">農地を掲載</a>
+                                    <a class="btn btn-primary" href="/SotsukenE/Main">農地を掲載</a>
                                     <a class="btn btn-primary" href="#!">受信BOX</a><br><br>
                                    	<a class="btn btn-primary" href="/SotsukenE/list">掲載されている農地</a>
                                     </div>

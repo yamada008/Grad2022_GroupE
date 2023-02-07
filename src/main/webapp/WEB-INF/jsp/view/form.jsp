@@ -25,20 +25,21 @@
             </div>
         </nav>
         <!-- Icons Grid-->
-        <section class="bg-light text-center">
+        <section class="features-icons bg-light text-center">
             <div class="container">
                 <div class="row">
-                    <div class=col>
-                         <div class="col-auto">
-                         <form action="/SotsukenE/Main1" method="get">
-                         userID:<input type="text" name="userID"><br>
-                         名前:<input type="text" name="name"><br>
-                         住所:<input type="text" name="word"><br>
-                         広さ:<input type="text" name="breadth"><br>
-                         <button type="submit">投稿する</button>
-                         </form>
-                         </div>
-                    </div>
+                                <div class=col>
+                                    <div class="col-auto">
+                                    <form action="/SotsukenE/Main" method="post" enctype="multipart/form-data">
+                                    userID:<input type="text" name="id"><br>
+                                    名前:<input type="text" name="name"><br>
+                                    住所:<input type="text" name="word"><br>
+                                    広さ:<input type="text" name="breadth"><br>
+                                    畑の写真:<input type="file" name="pict"><br>
+                                    <button type="submit">投稿する</button>
+                                    </form>
+                                    </div>
+                                </div>
                 </div>
             </div>
         </section>

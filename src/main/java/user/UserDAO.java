@@ -14,8 +14,8 @@ public class UserDAO extends SimpleDAO {
 	// 用途：一つのインスタンスを共有する、複数のインスタンス生成を認めない
 	private static UserDAO dao = new UserDAO(); // 唯一のインスタンス
 	
-	private UserDAO() {} // privateにすることで、外部からアクセスできなくなる
-	
+	UserDAO() {} // privateにすることで、外部からアクセスできなくなる
+	 UserBean returnAb = new UserBean();
 	public static UserDAO getInstance() { // staticメソッドでインスタンス（へのポインタ）を得る
 		return dao;
 	}

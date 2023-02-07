@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+	String id=(String)request.getAttribute("id");
+	String name=(String)request.getAttribute("name");
+	String word=(String)request.getAttribute("word");
+	String breadth=(String)request.getAttribute("breadth");
+	String filename=(String)request.getAttribute("filename");
+%>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -25,20 +32,19 @@
             </div>
         </nav>
         <!-- Icons Grid-->
-        <section class="bg-light text-center">
+        <section class="features-icons bg-light text-center">
             <div class="container">
                 <div class="row">
-                    <div class=col>
-                         <div class="col-auto">
-                         <form action="/SotsukenE/Main1" method="get">
-                         userID:<input type="text" name="userID"><br>
-                         名前:<input type="text" name="name"><br>
-                         住所:<input type="text" name="word"><br>
-                         広さ:<input type="text" name="breadth"><br>
-                         <button type="submit">投稿する</button>
-                         </form>
-                         </div>
-                    </div>
+                                <div class=col>
+                                    <div class="col-auto">
+                                    <h1>※写真はサンプルです</h1>
+                                    <p>名前:<%=name %></p>
+                                    <p>住所:<%=word %></p>
+                                    <p>広さ:<%=breadth %></p>
+                                    <p>畑の写真:<br><img src="/SotsukenE/upload/<%=filename %>" class="example"></p>
+                                    <a href="/SotsukenE/agrarian">確認</a>
+                                    </div>
+                                </div>
                 </div>
             </div>
         </section>

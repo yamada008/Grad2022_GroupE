@@ -31,7 +31,7 @@
             </div>
         </nav>
         <!-- Icons Grid-->
-        <section class="features-icons bg-light text-center">
+        <section class="bg-light text-center">
             <div class="container">
                 <div class="row">
                     <div class=col>
@@ -40,7 +40,7 @@
                          <p>名前:<%=name %></p>
                          <p>住所:<%=word %></p>
                          <p>広さ：<%=breadth %></p>
-                         <a href="/SotsukenE/agrarian">確認</a>
+                         <!-- <a href="/SotsukenE/agrarian">確認</a>-->
                          </div>
                     </div>
                 </div>

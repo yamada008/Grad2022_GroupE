@@ -31,7 +31,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/borrow">イチから始める農業</a>
+                <a class="navbar-brand" href="/SotsukenE/calendarNext">イチから始める農業</a>
             </div>
         </nav>
         <!-- Icons Grid-->
@@ -613,9 +613,11 @@
 		</c:forEach>
 	</tr>
     </table>
-    <br><p><a class="nav-link" href="/SotsukenE/calendarNext">
+    <br>
+    <form action="/SotsukenE/calendarNext" method="get">
     <input type="hidden" name="startDate" value="${startDate }">
-    <input type="hidden" name="selectId" value="${selectId }">TOP</a></p>
+    <input type="hidden" name="selectId" value="${selectId }">
+    <p><input type="submit" value="TOP"></p></form>
     <!-- <br><a class="nav-link" href="/SotsukenE/produce_search">戻る</a> -->
   </div><!-- end container-->
   <!--<c:forEach var="select" items="${ selectList }">

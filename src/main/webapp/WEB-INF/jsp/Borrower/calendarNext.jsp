@@ -21,8 +21,8 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/borrow">イチから始める農業</a>
-                <a class="nav-link" href="/SotsukenE/user?logout=true">Log Out</a>
+                <a class="navbar-brand" href="/SotsukenE/calendarNext">イチから始める農業</a>
+                <a class="nav-link" href="/SotsukenE/calendarNext?logout=true">Log Out</a>
             </div>
         </nav>
         <!-- Masthead-->
@@ -37,10 +37,10 @@
                                     <a class="btn btn-primary" href="#!">作業終了</a>
                                     </div><br>
                                     <div class="col-auto">
-                                    <p><a class="btn btn-primary" href="/SotsukenE/calendar">
+                                    <form action="/SotsukenE/calendar" method="get">
                                     <input type="hidden" name="startDate" value="${startDate }">
-                                 	 <input type="hidden" name="selectId" value="${selectId }">
-                                 	 予定を確認する</a></p>
+                                    <input type="hidden" name="selectId" value="${selectId }">
+                                    <p><input type="submit" value="予定を確認する"></p></form>
                                     </div>
                                 </div>
                 </div>

@@ -23,8 +23,11 @@ public class Main extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		String id=request.getParameter("id");
 		String name=request.getParameter("name");
 		String word=request.getParameter("word");
+		String breadth=request.getParameter("breadth");
+		
 		//name属性がpictのファイルをPartオブジェクトとして取得
 		Part part=request.getPart("pict");
 		//ファイル名を取得
@@ -36,8 +39,10 @@ public class Main extends HttpServlet {
 		System.out.println(path);
 		//書き込み
 		part.write(path+File.separator+filename);
+		request.setAttribute("id",id);
 		request.setAttribute("name",name);
 		request.setAttribute("word", word);
+		request.setAttribute("breadth", breadth);
 		request.setAttribute("filename", filename);
 		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/view/result.jsp");
 		rd.forward(request, response);

@@ -67,9 +67,7 @@ tr *:last-child{
 td.today{
 	background:#ffff80;
 }
-p {
-  text-align: right;
-}
+
 p.sow{
 	color: rgb(26, 26, 255);
 }

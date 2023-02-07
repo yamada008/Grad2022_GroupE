@@ -31,7 +31,7 @@ String breadth="3平方メートル";
             </div>
         </nav>
         <!-- Icons Grid-->
-        <section class="features-icons bg-light text-center">
+        <section class="bg-light text-center">
             <div class="container">
                 <div class="row">
                     <div class=col>
