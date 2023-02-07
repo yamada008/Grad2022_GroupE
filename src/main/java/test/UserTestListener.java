@@ -4,7 +4,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import user.UserBean;
 import user.UserDAO;
 
 /**
@@ -45,10 +44,10 @@ public class UserTestListener implements ServletContextListener {
 				System.out.println("TestUserDB is NOT READY.");
 			}
 		}
-		UserBean bean = new UserBean("地主", "agrarian", "adminpass");
-		bean.setOwner(true);
-		dao.create(bean);
-		dao.create(new UserBean("借り手", "borrower", "adminpass"));
+//		UserBean bean = new UserBean("地主", "agrarian", "adminpass");
+//		bean.setOwner(true);
+//		dao.create(bean);
+//		dao.create(new UserBean("借り手", "borrower", "adminpass"));
 
 		System.out.println("SystemStart..");
 	}

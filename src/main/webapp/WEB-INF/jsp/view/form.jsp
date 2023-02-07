@@ -4,13 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>農地掲載</title>
+<title>農地</title>
 </head>
 <body>
 <form action="/SotsukenE/Main" method="post" enctype="multipart/form-data">
+userID:<input type="text" name="id"><br>
 名前:<input type="text" name="name"><br>
 住所:<input type="text" name="word"><br>
-農地写真:<input type="file" name="pict"><br>
+広さ:<input type="text" name="breadth"><br>
+
+好きな写真:<input type="file" name="pict"><br>
 <button type="submit">送信</button>
 </form>
 </body>

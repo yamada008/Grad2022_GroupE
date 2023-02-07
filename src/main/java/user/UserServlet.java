@@ -68,6 +68,13 @@ public class UserServlet extends HttpServlet {
 			req.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(req, resp);
 			resp.sendRedirect(req.getHeader("Referer"));
 		} else if (req.getParameter("register") != null) { // 新規登録画面からの遷移
+//					UserBean db = new UserBean();
+//					db.setRealName("name");
+//					db.setUserId("id");
+//					db.setPass("pass");
+//					HttpSession session1 = req.getSession();
+//			        session1.setAttribute("user", db);
+//					
 			req.getRequestDispatcher("WEB-INF/jsp/User/register.jsp").forward(req, resp);
 		} else if (req.getParameter("confirm") != null) { // 確認画面から遷移
 			req.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(req, resp);
