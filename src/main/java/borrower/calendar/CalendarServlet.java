@@ -72,12 +72,15 @@ private static final long serialVersionUID = 1L;
 		Advise select = getSelectListLogic.execute(Id, strDate);
 		req.setAttribute("select", select);
 		
+		List<CalendarDateBean> dateList = new ArrayList<CalendarDateBean>();
+		
 		try {
-			CalendarCalc.date(strDate, select);
+			dateList = CalendarCalc.date(strDate, select);
 		} catch (ParseException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
+		req.setAttribute("dateList", dateList);
 		
         GetCalendarListLogic getCalendarListLogic = new GetCalendarListLogic();
         List<CalendarBean> selectList = getCalendarListLogic.execute();

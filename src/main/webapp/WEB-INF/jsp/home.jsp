@@ -78,7 +78,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2022. All Rights Reserved.</p>
+                        <p class="text-muted small mb-4 mb-lg-0"></p>
                     </div>
                 </div>
             </div>

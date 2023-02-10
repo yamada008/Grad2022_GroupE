@@ -19,7 +19,7 @@ public class CalendarCalc {
 	 * @return    2つの日付の差
 	 * @throws ParseException 日付フォーマットが不正な場合
 	 */
-	public static void date(String strDate, Advise advise) 
+	public static List<CalendarDateBean> date(String strDate, Advise advise) 
 	    throws ParseException {
 		 PostSelectLogic postSelectLogic = new PostSelectLogic();
 		 SelectDAO dao = new SelectDAO();
@@ -408,6 +408,15 @@ public class CalendarCalc {
 					"本文");
 			postSelectLogic.execute(calendar);
 		}
+		
+		List<CalendarDateBean> dateList = new ArrayList<CalendarDateBean>();
+		cal.setTime(date);
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH) + 1;
+	    int day = cal.get(Calendar.DATE);
+	    CalendarDateBean bean = new CalendarDateBean(year, month, day);
+	    dateList.add(bean);
+	    return dateList;
 	}
 	/**
 	 * 2つの日付の差を求めます。

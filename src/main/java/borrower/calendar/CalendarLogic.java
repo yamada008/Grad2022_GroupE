@@ -40,14 +40,8 @@ public class CalendarLogic {
 		//マイカレンダーに月の設定
 		mc.setMonth(cal.get(Calendar.MONTH) +1);
 		int month = mc.getMonth();
+		calDate.settomonth(cal.get(Calendar.MONTH)+1);
 		calDate.settoday(cal.get(Calendar.DATE));
-		if(month == 2) {
-			mc.setMonth(cal.get(Calendar.MONTH) +3);
-			month = mc.getMonth();
-			calDate.settomonth(cal.get(Calendar.MONTH)+3);
-		} else {
-			calDate.settomonth(cal.get(Calendar.MONTH)+1);
-		}
 		int toyear = calDate.gettoyear();
 		int tomonth = calDate.gettomonth();
 		int today = calDate.gettoday();

@@ -30,7 +30,7 @@ public class CalendarListener implements ServletContextListener {
 	 * @see ServletContextListener#contextInitialized(ServletContextEvent)
 	 */
 	public void contextInitialized(ServletContextEvent arg0) {
-		dao.execSQL("DROP TABLE calendartbl");
+//		dao.execSQL("DROP TABLE calendartbl");
 		if (System.getenv("DATABASE_URL") != null) {
 			dao.execSQL("CREATE TABLE IF NOT EXISTS calendartbl"
 					+ " (id INT NOT NULL AUTO_INCREMENT, startyear INT, startmonth INT, startd VARCHAR(64), "
