@@ -37,7 +37,6 @@
                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <h1>※写真はサンプルです</h1>
                                     <p>名前:<%=name %></p>
                                     <p>住所:<%=word %></p>
                                     <p>広さ:<%=breadth %></p>
