@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dao.SimpleDAO;
 
@@ -19,7 +21,29 @@ public class UserDAO extends SimpleDAO {
 	public static UserDAO getInstance() { // staticメソッドでインスタンス（へのポインタ）を得る
 		return dao;
 	}
-	
+	public List<UserBean> findAll() {
+		List<UserBean> UserList = new ArrayList<>();
+		
+		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "SELECT * FROM usertbl";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			ResultSet rs = pStmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				String name = rs.getString("REALNAME");
+				String id = rs.getString("USERID");
+				String pass = rs.getString("PASSWD");
+				
+				UserBean user = new UserBean(name, id, pass );
+				UserList.add(user);
+			}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+		return UserList;
+	} 
 	public boolean create(UserBean user) {
 		Connection db = this.createConnection();
 		//PreparedStatement ps = null;

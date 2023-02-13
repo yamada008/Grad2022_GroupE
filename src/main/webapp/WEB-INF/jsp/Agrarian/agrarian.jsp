@@ -75,7 +75,7 @@
                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <a class="btn btn-primary" href="#!">農地を掲載</a>
+                                    <a class="btn btn-primary" href="/SotsukenE/Mainss/">農地を掲載</a>
                                     <a class="btn btn-primary" href="#!">受信BOX</a>
                                     </div>
                                 </div>
