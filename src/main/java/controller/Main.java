@@ -16,20 +16,26 @@ import javax.servlet.http.Part;
 @WebServlet("/Main")
 @MultipartConfig
 public class Main extends HttpServlet {
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/view/form.jsp");
-		rd.forward(request, response);
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html;charset=UTF-8");
+		
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/view/form.jsp");
+		rd.forward(req, resp);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String id=request.getParameter("id");
-		String name=request.getParameter("name");
-		String word=request.getParameter("word");
-		String breadth=request.getParameter("breadth");
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		ControllerDAO con = new ControllerDAO(); 
+		
+		
+		String id=req.getParameter("id");
+		String name=req.getParameter("name");
+		String word=req.getParameter("word");
+		String breadth=req.getParameter("breadth");
 		
 		//name属性がpictのファイルをPartオブジェクトとして取得
-		Part part=request.getPart("pict");
+		Part part=req.getPart("pict");
 		//ファイル名を取得
 		//String filename=part.getSubmittedFileName();//ie対応が不要な場合
 		String filename=Paths.get(part.getSubmittedFileName()).getFileName().toString();
@@ -39,12 +45,14 @@ public class Main extends HttpServlet {
 		System.out.println(path);
 		//書き込み
 		part.write(path+File.separator+filename);
-		request.setAttribute("id",id);
-		request.setAttribute("name",name);
-		request.setAttribute("word", word);
-		request.setAttribute("breadth", breadth);
-		request.setAttribute("filename", filename);
-		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/view/result.jsp");
-		rd.forward(request, response);
+		req.setAttribute("id",id);
+		req.setAttribute("name",name);
+		req.setAttribute("word", word);
+		req.setAttribute("breadth", breadth);
+		req.setAttribute("filename", filename);
+		ControllerBean controller = new ControllerBean(id, name, word,breadth,filename,0 );
+		con.create(controller);
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/jsp/view/result.jsp");
+		rd.forward(req, resp);
 	}
 }
