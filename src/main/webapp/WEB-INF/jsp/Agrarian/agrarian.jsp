@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -22,6 +23,13 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="/SotsukenE/agrarian">イチから始める農業</a>
+                <c:forEach var="User" items="${UserList }">
+                <c:forEach var="Bean" items="${BeanList }">
+                <c:if test="${User.userId == Bean.userId}">
+                ようこそ<c:out value="${User.userId }" />さん
+                </c:if>
+                </c:forEach>
+                </c:forEach>
                 <a class="nav-link" href="/SotsukenE/agrarian?logout=true">Log Out</a>
             </div>
         </nav>
@@ -32,7 +40,6 @@
                                 <div class=col>
                                     <div class="col-auto">
                                     <a class="btn btn-primary" href="/SotsukenE/Main">農地を掲載</a>
-                                    <a class="btn btn-primary" href="#!">受信BOX</a><br><br>
                                    	<a class="btn btn-primary" href="/SotsukenE/list">掲載されている農地</a>
                                     </div>
                                 </div>

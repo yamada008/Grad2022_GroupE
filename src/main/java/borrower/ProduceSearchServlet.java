@@ -35,6 +35,9 @@ public class ProduceSearchServlet extends HttpServlet {
 //		List<Advise> adviseList = getAdviseListLogic.execute();
 //		req.setAttribute("adviseList", adviseList);
 		
+		String id = req.getParameter("id");
+		req.setAttribute("id", id);
+		
 		req.getRequestDispatcher("WEB-INF/jsp/Borrower/produceSearch.jsp").forward(req, resp);
 	}
 

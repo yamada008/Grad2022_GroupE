@@ -26,12 +26,16 @@ public class AdviseServlet extends HttpServlet {
     	
     	String strDate = req.getParameter("start_date");
     	String Type = req.getParameter("type");
+    	int i = 1;
 
     	GetAdviseListLogic getAdviseListLogic = new GetAdviseListLogic();
 		List<Advise> adviseList = getAdviseListLogic.execute(strDate, Type);
 		req.setAttribute("adviseList", adviseList);
 		req.setAttribute("startDate", strDate);
+		req.setAttribute("i", i);
 		
+		String id = req.getParameter("id");
+		req.setAttribute("id", id);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/jsp/Borrower/advise.jsp");
 		dispatcher.forward(req, resp);

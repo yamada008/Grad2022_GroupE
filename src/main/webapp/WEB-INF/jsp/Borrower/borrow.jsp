@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -22,6 +23,13 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="/SotsukenE/borrow">イチから始める農業</a>
+                <c:forEach var="User" items="${UserList }">
+                <c:forEach var="Bean" items="${BeanList }">
+                <c:if test="${User.userId == Bean.userId}">
+                ようこそ<c:out value="${User.userId }" />さん
+                </c:if>
+                </c:forEach>
+                </c:forEach>
                 <a class="nav-link" href="/SotsukenE/borrow?logout=true">Log Out</a>
             </div>
         </nav>
@@ -31,12 +39,12 @@
                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <a class="btn btn-primary" href="#!">農地を探す</a>
-                                    <a class="btn btn-primary" href="#!">作業終了</a>
+                                    <a class="btn btn-primary" href="/SotsukenE/land_search">農地を探す</a>
                                     </div><br>
                                     <div class="col-auto">
-                                    <a class="btn btn-primary" href="/SotsukenE/produce_search">補助を受ける</a>
-                                    <a class="btn btn-primary" href="/SotsukenE/borrow">受けない</a>
+                                    <form action="/SotsukenE/Calendar" method="get">
+                                    <input type="hidden" name="num" value="${num }">
+                                    <p><input type="submit" value="カレンダーを見る"></p></form>
                                     </div>
                                 </div>
                 </div>

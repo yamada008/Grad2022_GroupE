@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%
-	String id=(String)request.getAttribute("id");
-	String name=(String)request.getAttribute("name");
-	String word=(String)request.getAttribute("word");
-	String breadth=(String)request.getAttribute("breadth");
-	String filename=(String)request.getAttribute("filename");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -32,20 +26,19 @@
             </div>
         </nav>
         <!-- Icons Grid-->
-        <section class="features-icons bg-light text-center">
+        <section class="bg-light text-center">
+        <form action="/SotsukenE/editNext" method="get">
             <div class="container">
                 <div class="row">
-                                <div class=col>
-                                    <div class="col-auto">
-                                    <p>名前:<%=name %></p>
-                                    <p>住所:<%=word %></p>
-                                    <p>広さ:<%=breadth %></p>
-                                    <p>畑の写真:<br><img src="/SotsukenE/upload/<%=filename %>" class="example"></p>
-                                    <a href="/SotsukenE/agrarian">確認</a>
-                                    </div>
-                                </div>
+                    <div class=col>
+                         <div class="col-auto">
+                         <h1>農地を削除しました</h1>
+                         <a href="/SotsukenE/list">確認</a>
+                         </div>
+                    </div>
                 </div>
             </div>
+            </form>
         </section>
         <!-- Footer-->
         <footer class="footer bg-light">

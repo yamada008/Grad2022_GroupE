@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="borrower.calendar.CalendarDAO" %>
-<% CalendarDAO dao = new CalendarDAO(); %>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -35,13 +33,15 @@
                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
-                                    <a class="btn btn-primary" href="#!">農地を探す</a>
-                                    <a class="btn btn-primary" href="/SotsukenE/borrow"><%dao.execSQL("DELETE FROM calendartbl"); %>作業終了</a>
-                                    </div><br>
-                                    <div class="col-auto">
-                                    <form action="/SotsukenE/calendar" method="get">
+                                    <form action="/SotsukenE/endConf" method="get">
+                                    <input type="hidden" name="id" value="${id }">
+                                    <input type="hidden" name="num" value="${num }">
+                                    <p><input type="submit" value="作業終了"></p></form>
+                                    <br><form action="/SotsukenE/calendar" method="get">
                                     <input type="hidden" name="startDate" value="${startDate }">
                                     <input type="hidden" name="selectId" value="${selectId }">
+                                    <input type="hidden" name="id" value="${id }">
+                                    <input type="hidden" name="i" value="${i }">
                                     <p><input type="submit" value="予定を確認する"></p></form>
                                     </div>
                                 </div>

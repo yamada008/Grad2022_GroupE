@@ -27,6 +27,7 @@
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
         <form action="/SotsukenE/advise" method="get" class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
+        <input type="hidden" name="id" value="${id }">
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
@@ -50,7 +51,7 @@
                                     </div>
                                 </div>
                                 </div>
-                                <br><a class="nav-link" href="/SotsukenE/borrow">戻る</a>
+                                <!-- <br><a class="nav-link" href="/SotsukenE/borrow">戻る</a>-->
                                 <!-- Submit success message-->
                                 <!---->
                                 <!-- This is what your users will see when the form-->

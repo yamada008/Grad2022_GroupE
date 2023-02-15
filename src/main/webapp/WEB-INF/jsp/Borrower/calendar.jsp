@@ -41,8 +41,13 @@
     <p>
     <input type="hidden" name="startDate" value="${startDate }">
     <input type="hidden" name="selectId" value="${selectId }">
-		　<a href="?startDate=${startDate }&selectId=${selectId }&year=<%=mc.getYear()%>&month=<%=mc.getMonth()-1%>">前月</a>
-    	<a href="?startDate=${startDate }&selectId=${selectId }&year=<%=mc.getYear()%>&month=<%=mc.getMonth()+1%>">翌月</a>
+    <input type="hidden" name="id" value="${id }">
+    <input type="hidden" name="i" value="${i }">
+		　<a href="?startDate=${startDate }&selectId=${selectId }&id=${id }&i=${i }&year=<%=mc.getYear()%>&month=<%=mc.getMonth()-1%>">前月</a>
+		<c:forEach var="day" items="${dayList }">
+		<a href="?startDate=${startDate }&selectId=${selectId }&id=${id }&i=${i }&year=${day.toyear }&month=${day.tomonth }">当月</a>
+		</c:forEach>
+    	<a href="?startDate=${startDate }&selectId=${selectId }&id=${id }&i=${i }&year=<%=mc.getYear()%>&month=<%=mc.getMonth()+1%>">翌月</a>
     </p>
     <table class=" bg-light">
       <tr>
@@ -1139,7 +1144,11 @@
     <form action="/SotsukenE/calendarNext" method="get">
     <input type="hidden" name="startDate" value="${startDate }">
     <input type="hidden" name="selectId" value="${selectId }">
-    <p><input type="submit" value="TOP"></p></form>
+    <input type="hidden" name="id" value="${id }">
+    <p><input type="submit" value="TOP"></p></form><br>
+    <c:if test="${i == 1 }">
+    <a class="nav-link" href="/SotsukenE/produce_search?id=${id }">やり直し</a>
+    </c:if>
     <!-- <br><a class="nav-link" href="/SotsukenE/produce_search">戻る</a> -->
   </div><!-- end container-->
   <!--<c:forEach var="select" items="${ selectList }">

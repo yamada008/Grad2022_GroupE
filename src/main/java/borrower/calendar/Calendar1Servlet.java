@@ -1,7 +1,6 @@
 package borrower.calendar;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -14,12 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import borrower.advise.Advise;
-
-@WebServlet("/calendar")
-public class CalendarServlet extends HttpServlet {
+@WebServlet("/Calendar")
+public class Calendar1Servlet extends HttpServlet {
 private static final long serialVersionUID = 1L;
-	public CalendarServlet() {
+	public Calendar1Servlet() {
         super();
     }
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
@@ -65,39 +62,9 @@ private static final long serialVersionUID = 1L;
 		List<CalendarDateBean> ToDayList = getToDayListLogic.execute();
 		req.setAttribute("ToDayList",ToDayList);
 		
-		String selectId = req.getParameter("selectId");
-		int Id = Integer.parseInt(selectId);
-        String strDate = req.getParameter("startDate");
-        String i = req.getParameter("i");
+		String num = req.getParameter("num");
+        req.setAttribute("num", num);
         
-        GetSelectListLogic getSelectListLogic = new GetSelectListLogic();
-		Advise select = getSelectListLogic.execute(Id, strDate);
-		req.setAttribute("select", select);
-		
-		List<CalendarDateBean> dateList = new ArrayList<CalendarDateBean>();
-		
-		try {
-			dateList = CalendarCalc.date(strDate, select);
-		} catch (ParseException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-		req.setAttribute("dateList", dateList);
-		
-        GetCalendarListLogic getCalendarListLogic = new GetCalendarListLogic();
-        List<CalendarBean> selectList = getCalendarListLogic.execute();
-        req.setAttribute("selectList", selectList);
-        req.setAttribute("startDate", strDate);
-        req.setAttribute("selectId", selectId);
-        req.setAttribute("i", i);
-        
-        String id = req.getParameter("id");
-		req.setAttribute("id", id);
-        
-        List<CalendarBean> list = new ArrayList<CalendarBean>();
-        list.add(new CalendarBean("種まき", "植付", "収穫"));
-        req.setAttribute("list", list);
-		
         Calendar cal=Calendar.getInstance();
         List<CalendarDateBean> dayList = new ArrayList<CalendarDateBean>();
         int year = cal.get(Calendar.YEAR);
@@ -105,10 +72,9 @@ private static final long serialVersionUID = 1L;
         int day = cal.get(Calendar.DATE);
         dayList.add(new CalendarDateBean(year, month, day));
         req.setAttribute("dayList", dayList);
-        
-        
+		
 		//viewにフォワード
-		RequestDispatcher rd=req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendar.jsp");
+		RequestDispatcher rd=req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendar1.jsp");
 		rd.forward(req, resp);
 	}
 	
@@ -130,38 +96,14 @@ private static final long serialVersionUID = 1L;
          PostCalendarLogic postCalendarLogic = new PostCalendarLogic();
          postCalendarLogic.execute(calendar);
          
-         String selectId = req.getParameter("selectId");
-         int Id = Integer.parseInt(selectId);
-         String strDate = req.getParameter("startDate");
-         String i = req.getParameter("i");
-         
-//		 Advise advise = (Advise) session.getAttribute("advise");
-         
-         PostSelectLogic postSelectLogic = new PostSelectLogic();
-         postSelectLogic.execute(calendar);
-         
-         GetSelectListLogic getSelectListLogic = new GetSelectListLogic();
-         Advise select = getSelectListLogic.execute(Id, strDate);
-         req.setAttribute("select", select);
-         
-         try {
-			CalendarCalc.date(strDate, select);
-		} catch (ParseException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-         
          GetCalendarListLogic getCalendarListLogic = new GetCalendarListLogic();
          List<CalendarBean> calendarList = getCalendarListLogic.execute();
          req.setAttribute("calendarList", calendarList);
-         req.setAttribute("startDate", strDate);
-         req.setAttribute("selectId", selectId);
-         req.setAttribute("i", i);
          
-         String id = req.getParameter("id");
-         req.setAttribute("id", id);
+         String num = req.getParameter("num");
+         req.setAttribute("num", num);
          
-         RequestDispatcher rd=req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendar.jsp");
+         RequestDispatcher rd=req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendar1.jsp");
          rd.forward(req, resp);
 		 
 	}

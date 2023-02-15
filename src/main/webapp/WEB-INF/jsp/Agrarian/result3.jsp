@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%
-	String id=(String)request.getAttribute("id");
-	String name=(String)request.getAttribute("name");
-	String word=(String)request.getAttribute("word");
-	String breadth=(String)request.getAttribute("breadth");
-	String filename=(String)request.getAttribute("filename");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -32,20 +26,30 @@
             </div>
         </nav>
         <!-- Icons Grid-->
-        <section class="features-icons bg-light text-center">
+        <section class="bg-light text-center">
+        <form action="/SotsukenE/editNext" method="get">
             <div class="container">
                 <div class="row">
-                                <div class=col>
-                                    <div class="col-auto">
-                                    <p>名前:<%=name %></p>
-                                    <p>住所:<%=word %></p>
-                                    <p>広さ:<%=breadth %></p>
-                                    <p>畑の写真:<br><img src="/SotsukenE/upload/<%=filename %>" class="example"></p>
-                                    <a href="/SotsukenE/agrarian">確認</a>
-                                    </div>
-                                </div>
+                    <div class=col>
+                         <div class="col-auto">
+                         <table class=" bg-light">
+                         <c:forEach var="Coll" items="${ControllerList }">
+                         <c:forEach var="Bean" items="${List }">
+                         <c:if test="${Coll.userId == Bean.userId }">
+                         <tr>
+                         <th><label><input type="radio" name="id" value="${Coll.id}" ></label><br></th>
+                         <th><p>ユーザーID:<c:out value="${Coll.userId }"></c:out></p>
+                         <p>名前:<c:out value="${Coll.name }"></c:out></p>
+                         <p>住所:<c:out value="${Coll.word }"></c:out></p>
+                         <p>広さ：<c:out value="${Coll.breadth }"></c:out></p>
+                         <p>畑の写真:<br><img src="/SotsukenE/upload/${Coll.filename }" class="example"></p></th>
+                         </tr></c:if></c:forEach></c:forEach></table>
+                         <p><input type="submit" value="確認"></p>
+                         </div>
+                    </div>
                 </div>
             </div>
+            </form>
         </section>
         <!-- Footer-->
         <footer class="footer bg-light">

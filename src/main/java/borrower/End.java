@@ -7,21 +7,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import user.UserBean;
+import agrarian.controller.ControllerDAO;
+import borrower.calendar.CalendarDAO;
 
 /**
  * Servlet implementation class BorrowerSerblet
  */
-@WebServlet("/borrow")
-public class BorrowServlet extends HttpServlet {
+@WebServlet("/end")
+public class End extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BorrowServlet() {
+    public End() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,20 +33,15 @@ public class BorrowServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
-//		ControllerDAO dao = new ControllerDAO();
-		HttpSession session = req.getSession();
-		UserBean user = (UserBean) session.getAttribute("user");
+		ControllerDAO collDAO = new ControllerDAO();
+		CalendarDAO calDAO = new CalendarDAO();
 		
-		int num = 0;
-		req.setAttribute("num", num);
+		String id = req.getParameter("id");
+		req.setAttribute("id", id);
 		
-		if (req.getParameter("logout") != null) { // ログアウトの場合
-			user.logout();
-			session.removeAttribute("user");
-			req.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(req, resp);
-			resp.sendRedirect(req.getHeader("Referer"));
-		}
+		collDAO.execSQL("UPDATE Controllerdb SET JUDG = 0 WHERE ID = '" + id + "'");
+		calDAO.execSQL("DELETE FROM CALENDARTBL");
 		
-		req.getRequestDispatcher("WEB-INF/jsp/Borrower/borrow.jsp").forward(req, resp);
+		req.getRequestDispatcher("WEB-INF/jsp/Borrower/end.jsp").forward(req, resp);
 	}
 }

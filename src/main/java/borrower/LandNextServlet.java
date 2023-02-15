@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import agrarian.controller.ControllerDAO;
 import user.UserBean;
 
 /**
  * Servlet implementation class BorrowerSerblet
  */
-@WebServlet("/borrow")
-public class BorrowServlet extends HttpServlet {
+@WebServlet("/landNext")
+public class LandNextServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BorrowServlet() {
+    public LandNextServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +34,9 @@ public class BorrowServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
-//		ControllerDAO dao = new ControllerDAO();
+		ControllerDAO dao = new ControllerDAO();
 		HttpSession session = req.getSession();
 		UserBean user = (UserBean) session.getAttribute("user");
-		
-		int num = 0;
-		req.setAttribute("num", num);
 		
 		if (req.getParameter("logout") != null) { // ログアウトの場合
 			user.logout();
@@ -47,6 +45,11 @@ public class BorrowServlet extends HttpServlet {
 			resp.sendRedirect(req.getHeader("Referer"));
 		}
 		
-		req.getRequestDispatcher("WEB-INF/jsp/Borrower/borrow.jsp").forward(req, resp);
+		String id = req.getParameter("id");
+		req.setAttribute("id", id);
+		
+		dao.execSQL("UPDATE Controllerdb SET JUDG = 1 WHERE ID = '" + id + "'");
+		
+		req.getRequestDispatcher("WEB-INF/jsp/Borrower/landNext.jsp").forward(req, resp);
 	}
 }

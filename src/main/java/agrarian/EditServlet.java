@@ -17,14 +17,14 @@ import user.Bean;
 /**
  * Servlet implementation class AgrarianServlet
  */
-@WebServlet("/list")
-public class ListServlet extends HttpServlet {
+@WebServlet("/edit")
+public class EditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListServlet() {
+    public EditServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,6 +42,7 @@ public class ListServlet extends HttpServlet {
 		  List<Bean> List = new ArrayList<Bean>();
 		  List.add(new Bean("agrarian"));
 		  req.setAttribute("List", List);
-		  req.getRequestDispatcher("WEB-INF/jsp/Agrarian/result2.jsp").forward(req, resp);
+		  
+		  req.getRequestDispatcher("WEB-INF/jsp/Agrarian/result3.jsp").forward(req, resp);
 	  }
 }

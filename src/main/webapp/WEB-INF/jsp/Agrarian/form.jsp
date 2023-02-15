@@ -21,7 +21,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/borrow">イチから始める農業</a>
+                <a class="navbar-brand" href="/SotsukenE/agrarian">イチから始める農業</a>
             </div>
         </nav>
         <!-- Icons Grid-->

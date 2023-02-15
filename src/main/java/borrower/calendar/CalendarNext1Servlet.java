@@ -15,8 +15,8 @@ import user.UserBean;
  * Servlet implementation class HomeServlet
  */
 //@WebServlet(urlPatterns = {"/","/home"})
-@WebServlet("/calendarNext")
-public class CalendarNextServlet extends HttpServlet {
+@WebServlet("/CalendarNext")
+public class CalendarNext1Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -24,22 +24,14 @@ public class CalendarNextServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 		
-		String selectId = req.getParameter("selectId");
-        String strDate = req.getParameter("startDate");
-        
-        req.setAttribute("startDate", strDate);
-        req.setAttribute("selectId", selectId);
-        
-        int num = 0;
-		req.setAttribute("num", num);
-		int i = 0;
-		req.setAttribute("i", i);
-		
-		String id = req.getParameter("id");
-        req.setAttribute("id", id);
-        
         HttpSession session = req.getSession();
 		UserBean user = (UserBean) session.getAttribute("user");
+		
+		int num = 1;
+		req.setAttribute("num", num);
+		
+		String id = req.getParameter("id");
+		req.setAttribute("id", id);
 		
 		if (req.getParameter("logout") != null) { // ログアウトの場合
 			user.logout();
@@ -48,7 +40,7 @@ public class CalendarNextServlet extends HttpServlet {
 			resp.sendRedirect(req.getHeader("Referer"));
 		}
 
-		req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendarNext.jsp").forward(req, resp);
+		req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendarNext1.jsp").forward(req, resp);
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
@@ -56,13 +48,7 @@ public class CalendarNextServlet extends HttpServlet {
 		 req.setCharacterEncoding("UTF-8");
 		 resp.setContentType("text/html;charset=UTF-8");
          
-         String selectId = req.getParameter("selectId");
-         String strDate = req.getParameter("startDate");
-         
-         req.setAttribute("startDate", strDate);
-         req.setAttribute("selectId", selectId);
-         
-         req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendarNext.jsp").forward(req, resp);
+         req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendarNext1.jsp").forward(req, resp);
 		 
 	}
 }

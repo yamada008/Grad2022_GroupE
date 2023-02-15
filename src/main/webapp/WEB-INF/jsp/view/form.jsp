@@ -21,7 +21,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/borrow">イチから始める農業</a>
+                <a class="navbar-brand" href="/SotsukenE/agrarian">イチから始める農業</a>
             </div>
         </nav>
         <!-- Icons Grid-->
@@ -31,7 +31,7 @@
                                 <div class=col>
                                     <div class="col-auto">
                                     <form action="/SotsukenE/Main" method="post" enctype="multipart/form-data">
-                                    userID:<input type="text" name="id"><br>
+                                    userID:<input type="text" name="userId"><br>
                                     名前:<input type="text" name="name"><br>
                                     住所:<input type="text" name="word"><br>
                                     広さ:<input type="text" name="breadth"><br>

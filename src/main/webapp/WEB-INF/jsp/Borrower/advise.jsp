@@ -31,6 +31,8 @@
         <section class="features-icons bg-light text-center">
         <form action="/SotsukenE/calendar" method="get">
         	<input type="hidden" name="startDate" value="${startDate }">
+        	<input type="hidden" name="id" value="${id }">
+        	<input type="hidden" name="i" value="${i }">
                                 <div class="row">
                                 <div class=col>
                                     <div class="col-auto">
@@ -46,7 +48,7 @@
                                     </div>
                                 </div>
                                 </div>
-                                <br><a class="nav-link" href="/SotsukenE/produce_search">戻る</a>
+                                <br><a class="nav-link" href="/SotsukenE/produce_search?id=${id }">戻る</a>
                                 <!-- Submit success message-->
                                 <!---->
                                 <!-- This is what your users will see when the form-->

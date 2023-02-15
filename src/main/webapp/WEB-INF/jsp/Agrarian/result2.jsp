@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-String userID="agrarian";
-String name="山田";
-String word="千葉県柏市末広町10-1";
-String breadth="3平方メートル";
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -27,7 +22,7 @@ String breadth="3平方メートル";
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="/SotsukenE/borrow">イチから始める農業</a>
+                <a class="navbar-brand" href="/SotsukenE/agrarian">イチから始める農業</a>
             </div>
         </nav>
         <!-- Icons Grid-->
@@ -36,10 +31,17 @@ String breadth="3平方メートル";
                 <div class="row">
                     <div class=col>
                          <div class="col-auto">
-                         <p>ユーザーID:<%=userID %></p>
-                         <p>名前:<%=name %></p>
-                         <p>住所:<%=word %></p>
-                         <p>広さ：<%=breadth %></p>
+                         <c:forEach var="Coll" items="${ControllerList }">
+                         <c:forEach var="Bean" items="${List }">
+                         <c:if test="${Coll.userId == Bean.userId }">
+                         <p>ユーザーID:<c:out value="${Coll.userId }"></c:out></p>
+                         <p>名前:<c:out value="${Coll.name }"></c:out></p>
+                         <p>住所:<c:out value="${Coll.word }"></c:out></p>
+                         <p>広さ：<c:out value="${Coll.breadth }"></c:out></p>
+                         <p>畑の写真:<br><img src="/SotsukenE/upload/${Coll.filename }" class="example"></p>
+                         <br>
+                         </c:if></c:forEach></c:forEach>
+                         <a href="/SotsukenE/edit">編集</a>
                          <a href="/SotsukenE/agrarian">確認</a>
                          </div>
                     </div>

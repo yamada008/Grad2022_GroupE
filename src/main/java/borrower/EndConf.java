@@ -7,21 +7,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import user.UserBean;
 
 /**
  * Servlet implementation class BorrowerSerblet
  */
-@WebServlet("/borrow")
-public class BorrowServlet extends HttpServlet {
+@WebServlet("/endConf")
+public class EndConf extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BorrowServlet() {
+    public EndConf() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,20 +30,12 @@ public class BorrowServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
-//		ControllerDAO dao = new ControllerDAO();
-		HttpSession session = req.getSession();
-		UserBean user = (UserBean) session.getAttribute("user");
 		
-		int num = 0;
+		String num = req.getParameter("num");
 		req.setAttribute("num", num);
+		String id = req.getParameter("id");
+		req.setAttribute("id", id);
 		
-		if (req.getParameter("logout") != null) { // ログアウトの場合
-			user.logout();
-			session.removeAttribute("user");
-			req.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(req, resp);
-			resp.sendRedirect(req.getHeader("Referer"));
-		}
-		
-		req.getRequestDispatcher("WEB-INF/jsp/Borrower/borrow.jsp").forward(req, resp);
+		req.getRequestDispatcher("WEB-INF/jsp/Borrower/endConf.jsp").forward(req, resp);
 	}
 }

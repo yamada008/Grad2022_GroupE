@@ -1,6 +1,8 @@
 package user;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,9 +55,23 @@ public class UserServlet extends HttpServlet {
 					session.setAttribute("user", user);
 					
 					if (user.isOwner()) {
+						GetUserListLogic getUserListLogic = new GetUserListLogic();
+						List<UserBean> UserList = getUserListLogic.execute();
+						req.setAttribute("UserList", UserList);
+						
+						List<Bean> BeanList = new ArrayList<Bean>();
+						BeanList.add(new Bean("agrarian"));
+						req.setAttribute("BeanList", BeanList);
 						req.getRequestDispatcher("WEB-INF/jsp/Agrarian/agrarian.jsp").forward(req, resp);
 
 					} else {
+						GetUserListLogic getUserListLogic = new GetUserListLogic();
+						List<UserBean> UserList = getUserListLogic.execute();
+						req.setAttribute("UserList", UserList);
+						
+						List<Bean> BeanList = new ArrayList<Bean>();
+						BeanList.add(new Bean("borrower"));
+						req.setAttribute("BeanList", BeanList);
 						req.getRequestDispatcher("WEB-INF/jsp/Borrower/borrow.jsp").forward(req, resp);
 					}
 				}

@@ -11,20 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import agrarian.controller.ControllerBean;
+import agrarian.controller.ControllerDAO;
 import agrarian.controller.GetControllerListLogic;
 import user.Bean;
 
 /**
  * Servlet implementation class AgrarianServlet
  */
-@WebServlet("/list")
-public class ListServlet extends HttpServlet {
+@WebServlet("/editNext")
+public class EditNextServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListServlet() {
+    public EditNextServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,6 +36,8 @@ public class ListServlet extends HttpServlet {
 	  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		  req.setCharacterEncoding("UTF-8");
 		  resp.setContentType("text/html;charset=UTF-8");
+		  ControllerDAO dao = new ControllerDAO();
+		  
 		  GetControllerListLogic getControllerListLogic = new GetControllerListLogic();
 		  List<ControllerBean> ControllerList = getControllerListLogic.execute();
 		  req.setAttribute("ControllerList", ControllerList);
@@ -42,6 +45,12 @@ public class ListServlet extends HttpServlet {
 		  List<Bean> List = new ArrayList<Bean>();
 		  List.add(new Bean("agrarian"));
 		  req.setAttribute("List", List);
-		  req.getRequestDispatcher("WEB-INF/jsp/Agrarian/result2.jsp").forward(req, resp);
+		  
+		  String id = req.getParameter("id");
+		  req.setAttribute("id", id);
+		  
+		  dao.execSQL("DELETE FROM  CONTROLLERDB WHERE ID = '" + id + "'");
+		
+		  req.getRequestDispatcher("WEB-INF/jsp/Agrarian/edit.jsp").forward(req, resp);
 	  }
 }
