@@ -30,6 +30,7 @@ public class CalendarTestListener implements ServletContextListener {
 	 * @see ServletContextListener#contextInitialized(ServletContextEvent)
 	 */
 	public void contextInitialized(ServletContextEvent arg0) {
+		// 起動時にテーブルの削除
 		dao.execSQL("DROP TABLE Calendar2");
 		if (System.getenv("DATABASE_URL") != null) {
 			dao.execSQL("CREATE TABLE IF NOT EXISTS Calendar2"

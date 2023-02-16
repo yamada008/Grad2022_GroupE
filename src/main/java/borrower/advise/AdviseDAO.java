@@ -24,6 +24,7 @@ public class AdviseDAO extends SimpleDAO {
 		List<Advise> adviseList = new ArrayList<>();
 		
 		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			// データベースにある同タイプの開始日が種まき期間内のものを取得する
 			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE ((SOW_START1 <= '" + strDate + "' "
 					+ "AND SOW_END1 >= '" + strDate + "') OR (SOW_START2 <= '" + strDate + "' AND "
 					+ "SOW_END2 >= '" + strDate + "') OR (SOW_START3 <= '" + strDate + "' "
@@ -31,6 +32,7 @@ public class AdviseDAO extends SimpleDAO {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			
+			// データベースの値を取得し、リストに格納する
 			while (rs.next()) {
 				int id = rs.getInt("ID");
 				String type = rs.getString("TYPE");
@@ -75,6 +77,7 @@ public class AdviseDAO extends SimpleDAO {
 		try(Connection conn = this.createConnection()){ //DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)){
 
 			//	Statement stmt = conn.createStatement();
+			// データベースに値を格納する
 			String sql = "INSERT INTO RECOMMENDED_CROPS(TYPE, PRODUCE_ID1, PRODUCE_NAME1, PRODUCE_ID2, "
 					+ "PRODUCE_NAME2, PRODUCE_ID3, PRODUCE_NAME3, SOW_START1, SOW_END1, SOW_START2, "
 					+ "SOW_END2, SOW_START3, SOW_END3, PLANTING_START1, PLANTING_END1, PLANTING_START2, "

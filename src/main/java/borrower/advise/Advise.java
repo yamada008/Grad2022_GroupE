@@ -3,32 +3,32 @@ package borrower.advise;
 import java.io.Serializable;
 
 public class Advise implements Serializable {
-	private int id = 0;
-	private String type = null;
-	private int id1 = 0;
-	private String name1 = null;
-	private int id2 = 0;
-	private String name2 = null;
-	private int id3 = 0;
-	private String name3 = null;
-	private String sowStart1 = null;
-	private String sowEnd1 = null;
-	private String sowStart2 = null;
-	private String sowEnd2 = null;
-	private String sowStart3 = null;
-	private String sowEnd3 = null;
-	private String plantingStart1 = null;
-	private String plantingEnd1 = null;
-	private String plantingStart2 = null;
-	private String plantingEnd2 = null;
-	private String plantingStart3 = null;
-	private String plantingEnd3 = null;
-	private String harvestStart1 = null;
-	private String harvestEnd1 = null;
-	private String harvestStart2 = null;
-	private String harvestEnd2 = null;
-	private String harvestStart3 = null;
-	private String harvestEnd3 = null;
+	private int id = 0;						// おすすめ作物ID
+	private String type = null;				// おすすめ作物のタイプ
+	private int id1 = 0;					// 一つ目の作物ID
+	private String name1 = null;			// 一つ目の作物名
+	private int id2 = 0;					// 二つ目の作物
+	private String name2 = null;			// 二つ目の作物名
+	private int id3 = 0;					// 三つ目の作物ID
+	private String name3 = null;			// 三つ目の作物名
+	private String sowStart1 = null;		// 一つ目の作物の種まき開始日
+	private String sowEnd1 = null;			// 一つ目の作物の種まき終了日
+	private String sowStart2 = null;		// 二つ目の作物の種まき開始日
+	private String sowEnd2 = null;			// 二つ目の作物の種まき終了日
+	private String sowStart3 = null;		// 三つ目の作物の種まき開始日
+	private String sowEnd3 = null;			// 三つ目の作物の種まき終了日
+	private String plantingStart1 = null;	// 一つ目の作物の植付開始日
+	private String plantingEnd1 = null;		// 一つ目の作物の植付終了日
+	private String plantingStart2 = null;	// 二つ目の作物の植付開始日
+	private String plantingEnd2 = null;		// 二つ目の作物の植付終了日
+	private String plantingStart3 = null;	// 三つ目の作物の植付開始日
+	private String plantingEnd3 = null;		// 三つ目の作物の植付終了日
+	private String harvestStart1 = null;	// 一つ目の作物の収穫開始日
+	private String harvestEnd1 = null;		// 一つ目の作物の収穫終了日
+	private String harvestStart2 = null;	// 二つ目の作物の収穫開始日
+	private String harvestEnd2 = null;		// 二つ目の作物の収穫終了日
+	private String harvestStart3 = null;	// 三つ目の作物の収穫開始日
+	private String harvestEnd3 = null;		// 三つ目の作物の収穫終了日
 	
 	public Advise() {}
 	public Advise(int id, String type, int id1, String name1, int id2, String name2, int id3, String name3, 

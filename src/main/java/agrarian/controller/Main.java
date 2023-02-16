@@ -51,6 +51,7 @@ public class Main extends HttpServlet {
 		req.setAttribute("breadth", breadth);
 		req.setAttribute("filename", filename);
 		
+		// 取得した値をデータベースに格納する
 		ControllerBean controller = new ControllerBean(1, userId, name, word,breadth,filename,0 );
 		con.create(controller);
 		

@@ -22,10 +22,12 @@ public class SearchDAO extends SimpleDAO {
 		List<Advise> searchList = new ArrayList<>();
 		
 		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			// 選択されたおすすめ作物IDと同じものを取得する
 			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE ID = " + strId;
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			
+			// データベースの値を取得し、リストに格納する
 			while (rs.next()) {
 				int id = rs.getInt("ID");
 				String type = rs.getString("TYPE");
@@ -70,6 +72,7 @@ public class SearchDAO extends SimpleDAO {
 		try(Connection conn = this.createConnection()){ //DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)){
 
 			//	Statement stmt = conn.createStatement();
+			// データベースに値を格納する
 			String sql = "INSERT INTO RECOMMENDED_CROPS(TYPE, PRODUCE_ID1, PRODUCE_NAME1, PRODUCE_ID2, "
 					+ "PRODUCE_NAME2, PRODUCE_ID3, PRODUCE_NAME3, SOW_START1, SOW_END1, SOW_START2, "
 					+ "SOW_END2, SOW_START3, SOW_END3, PLANTING_START1, PLANTING_END1, PLANTING_START2, "

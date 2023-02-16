@@ -7,8 +7,8 @@ public class UserBean implements Serializable {
 	private String userId = null;
 	private String realName = null;
 	private String pass = null;
-	private boolean isOwner = false;
-	private boolean isAuth = false;
+	private boolean isOwner = false;	// 借り手か地主か判別
+	private boolean isAuth = false;		// ログインしているかどうか判別
 	
 	public UserBean() {}
 	public UserBean(String name, String id, String pass) {
@@ -27,6 +27,7 @@ public class UserBean implements Serializable {
 	public boolean isOwner() { return this.isOwner; }
 	public void setOwner(boolean b) { this.isOwner = b;} 
 	
+	// ログイン
 	public boolean login(String id, String pass) {
 		UserDAO dao = UserDAO.getInstance();
 		String realName = null;
@@ -40,6 +41,7 @@ public class UserBean implements Serializable {
 		return this.isAuth();
 	}
 	
+	// ログアウト
 	public void logout() {
 		this.isOwner = true;
 		this.isAuth = false;

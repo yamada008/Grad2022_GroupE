@@ -31,6 +31,7 @@ public class AdviseListener implements ServletContextListener {
 	 * @see ServletContextListener#contextInitialized(ServletContextEvent)
 	 */
 	public void contextInitialized(ServletContextEvent arg0) {
+		// 起動時にテーブルの削除
 		dao.execSQL("DROP TABLE RECOMMENDED_CROPS");
 		if (System.getenv("DATABASE_URL") != null) {
 			dao.execSQL("CREATE TABLE IF NOT EXISTS RECOMMENDED_CROPS"
@@ -60,6 +61,7 @@ public class AdviseListener implements ServletContextListener {
 				System.out.println("AdviseDB is NOT READY.");
 			}
 		}
+		// おすすめ作物をデータベースに格納
 		dao.create(new Advise(1, "ぐーたら", 9, "キュウリ", 35, "トウモロコシ", 49, "ミズナ", "2023-03-21", "2023-05-20", "2023-03-21", "2023-05-20", "2023-03-21", "2023-05-20", "2023-04-01", "2023-06-30", "2023-04-01", "2023-06-30", "2023-04-01", "2023-06-30", "2023-05-11", "2023-08-20", "2023-05-11", "2023-08-20", "2023-05-11", "2023-08-20"));
 		dao.create(new Advise(2, "ぐーたら", 17, "シソ", 24, "ズッキーニ", 35, "トウモロコシ", "2023-03-01", "2023-05-31", "2023-03-01", "2023-05-31", "2023-03-01", "2023-05-31", "2023-04-21", "2023-05-31", "2023-04-21", "2023-05-31", "2023-04-21", "2023-05-31", "2023-06-21", "2023-10-31","2023-06-21", "2023-10-31", "2023-06-21", "2023-10-31"));
 		dao.create(new Advise(3, "ぐーたら", 41, "パクチー", 48, "ホウレンソウ", 33, "チンゲンサイ", "2023-09-01", "2023-11-10", "2023-09-01", "2023-11-10", "2023-09-01", "2023-11-10", null, null, null, null, null, null, "2023-10-11", "2024-02-28", "2023-10-11", "2024-02-28", "2023-10-11", "2024-02-28"));

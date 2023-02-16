@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import borrower.advise.Advise;
 
@@ -51,53 +50,54 @@ private static final long serialVersionUID = 1L;
 		//リクエストスコープに格納
 		req.setAttribute("mc", mc);
 		
-		HttpSession session = req.getSession();
-		CalendarDateBean calendarDate = (CalendarDateBean) session.getAttribute("calendar");
-		req.setAttribute("calendarDate", calendarDate);
-		
-//		logic.createMyCalendar();
-		
+		// カレンダー一覧を取得して、リクエストスコープに保存
 		GetCalendarDateListLogic getCalendarDateListLogic = new GetCalendarDateListLogic();
 		List<CalendarDateBean> CalendarDateList = getCalendarDateListLogic.execute();
 		req.setAttribute("CalendarDateList",CalendarDateList);
 		
-		GetToDayListLogic getToDayListLogic = new GetToDayListLogic();
-		List<CalendarDateBean> ToDayList = getToDayListLogic.execute();
-		req.setAttribute("ToDayList",ToDayList);
+		// おすすめ作物一覧を取得して、リクエストスコープに保存
+		GetCalendarListLogic getCalendarListLogic = new GetCalendarListLogic();
+        List<CalendarBean> selectList = getCalendarListLogic.execute();
+        req.setAttribute("selectList", selectList);
+        
+        // 選択された農地のidを取得して、リクエストスコープに保存
+        String id = req.getParameter("id");
+		req.setAttribute("id", id);
 		
+		// 選択されたおすすめ作物のidを取得して、リクエストスコープに保存
 		String selectId = req.getParameter("selectId");
 		int Id = Integer.parseInt(selectId);
+		req.setAttribute("selectId", selectId);
+		
+		// 開始日を取得して、リクエストスコープに保存
         String strDate = req.getParameter("startDate");
-        String i = req.getParameter("i");
+        req.setAttribute("startDate", strDate);
         
+        // 戻る位置の比較値を取得して、リクエストスコープに保存
+        String i = req.getParameter("i");
+        req.setAttribute("i", i);
+        
+        // おすすめ作物を取得して、リクエストスコープに保存
         GetSelectListLogic getSelectListLogic = new GetSelectListLogic();
 		Advise select = getSelectListLogic.execute(Id, strDate);
 		req.setAttribute("select", select);
 		
 		List<CalendarDateBean> dateList = new ArrayList<CalendarDateBean>();
-		
 		try {
+			// 作業を行う日を計算し、開始日をint型にして取得する
 			dateList = CalendarCalc.date(strDate, select);
 		} catch (ParseException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 		req.setAttribute("dateList", dateList);
-		
-        GetCalendarListLogic getCalendarListLogic = new GetCalendarListLogic();
-        List<CalendarBean> selectList = getCalendarListLogic.execute();
-        req.setAttribute("selectList", selectList);
-        req.setAttribute("startDate", strDate);
-        req.setAttribute("selectId", selectId);
-        req.setAttribute("i", i);
         
-        String id = req.getParameter("id");
-		req.setAttribute("id", id);
-        
+		// 作業の名称をリストに入れる
         List<CalendarBean> list = new ArrayList<CalendarBean>();
         list.add(new CalendarBean("種まき", "植付", "収穫"));
         req.setAttribute("list", list);
 		
+        // 今日の日付を取得して、リストに入れる
         Calendar cal=Calendar.getInstance();
         List<CalendarDateBean> dayList = new ArrayList<CalendarDateBean>();
         int year = cal.get(Calendar.YEAR);
@@ -106,63 +106,8 @@ private static final long serialVersionUID = 1L;
         dayList.add(new CalendarDateBean(year, month, day));
         req.setAttribute("dayList", dayList);
         
-        
 		//viewにフォワード
 		RequestDispatcher rd=req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendar.jsp");
 		rd.forward(req, resp);
-	}
-	
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
-		 req.setCharacterEncoding("UTF-8");
-		 resp.setContentType("text/html;charset=UTF-8");
-		 
-		 HttpSession session = req.getSession();
-		 CalendarDateBean calendarDate = (CalendarDateBean) session.getAttribute("CalendarDateBean");
-		 CalendarBean calendar = (CalendarBean) session.getAttribute("calendarBean");
-		 
-		 PostCalendarDateLogic postCalendarDateLogic = new PostCalendarDateLogic();
-         postCalendarDateLogic.execute(calendarDate);
-         
-         PostToDayLogic postToDayLogic = new PostToDayLogic();
-         postToDayLogic.execute(calendarDate);
-         
-         PostCalendarLogic postCalendarLogic = new PostCalendarLogic();
-         postCalendarLogic.execute(calendar);
-         
-         String selectId = req.getParameter("selectId");
-         int Id = Integer.parseInt(selectId);
-         String strDate = req.getParameter("startDate");
-         String i = req.getParameter("i");
-         
-//		 Advise advise = (Advise) session.getAttribute("advise");
-         
-         PostSelectLogic postSelectLogic = new PostSelectLogic();
-         postSelectLogic.execute(calendar);
-         
-         GetSelectListLogic getSelectListLogic = new GetSelectListLogic();
-         Advise select = getSelectListLogic.execute(Id, strDate);
-         req.setAttribute("select", select);
-         
-         try {
-			CalendarCalc.date(strDate, select);
-		} catch (ParseException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-         
-         GetCalendarListLogic getCalendarListLogic = new GetCalendarListLogic();
-         List<CalendarBean> calendarList = getCalendarListLogic.execute();
-         req.setAttribute("calendarList", calendarList);
-         req.setAttribute("startDate", strDate);
-         req.setAttribute("selectId", selectId);
-         req.setAttribute("i", i);
-         
-         String id = req.getParameter("id");
-         req.setAttribute("id", id);
-         
-         RequestDispatcher rd=req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendar.jsp");
-         rd.forward(req, resp);
-		 
 	}
 }

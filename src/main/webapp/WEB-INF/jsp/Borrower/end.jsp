@@ -29,25 +29,16 @@
         <section class="features-icons bg-light text-center">
             <div class="container">
                 <div class="row">
-                                <div class=col>
-                                    <div class="col-auto">
-                                    <h1>終了しました</h1>
-                                    <a class="btn btn-primary" href="/SotsukenE/borrow">TOP</a>
-                                    </div>
-                                </div>
+                	<div class=col>
+                		<div class="col-auto">
+                			<h1>終了しました</h1>
+                			<%-- BorrowServlet.javaへ移動する --%>
+                			<a class="btn btn-primary" href="/SotsukenE/borrow">TOP</a>
+                		</div>
+                	</div>
                 </div>
             </div>
         </section>
-        <!-- Footer-->
-        <footer class="footer bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0"></p>
-                    </div>
-                </div>
-            </div>
-        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

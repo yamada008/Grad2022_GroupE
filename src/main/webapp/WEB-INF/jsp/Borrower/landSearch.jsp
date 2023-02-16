@@ -28,37 +28,29 @@
         </nav>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
-        <form action="/SotsukenE/landNext" method="get">
-        <div class="row">
-                                <div class=col>
-                                    <div class="col-auto">
-                                    <table class=" bg-light">
-                                    <c:forEach var="Coll" items="${ControllerList }">
-                                    <c:if test="${Coll.	judg == 0}">
-                                    <tr>
-                                    <th><label><input type="radio" name="id" value="${Coll.id}" ></label><br></th>
-                         <th><p>ユーザーID:<c:out value="${Coll.userId }"></c:out></p>
-                         <p>住所:<c:out value="${Coll.word }"></c:out></p>
-                         <p>広さ：<c:out value="${Coll.breadth }"></c:out></p>
-                         <p>畑の写真:<br><img src="/SotsukenE/upload/${Coll.filename }" class="example"></p></th></tr>
+        	<%-- LandNextServlet.javaへ値を送る --%>
+        	<form action="/SotsukenE/landNext" method="get">
+        	<div class="row">
+        		<div class=col>
+        			<div class="col-auto">
+        				<table class=" bg-light">
+        				<%-- 農地一覧を表示する --%>
+        				<c:forEach var="Coll" items="${ControllerList }">
+        				<%-- 貸し出されていない農地の実を表示する --%>
+        				<c:if test="${Coll.	judg == 0}"><tr>
+        				<th><label><input type="radio" name="id" value="${Coll.id}" ></label><br></th>
+        				<th><p>ユーザーID:<c:out value="${Coll.userId }"></c:out></p>
+                         	<p>住所:<c:out value="${Coll.word }"></c:out></p>
+                         	<p>広さ：<c:out value="${Coll.breadth }"></c:out></p>
+                         	<p>畑の写真:<br><img src="/SotsukenE/upload/${Coll.filename }" class="example"></p></th></tr>
                          </c:if></c:forEach></table><br>
                          <p><input type="submit" value="選択"></p>
-                                    </div>
-                                </div>
-                                </div>
-                                 <br><a class="nav-link" href="/SotsukenE/borrow">戻る</a>
-             </form>
-        </section>
-        <!-- Footer-->
-        <footer class="footer bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0"></p>
-                    </div>
-                </div>
+                	</div>
+            	</div>
             </div>
-        </footer>
+            <br><a class="nav-link" href="/SotsukenE/borrow">戻る</a>
+        	</form>
+        </section>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

@@ -45,9 +45,11 @@ public class LandNextServlet extends HttpServlet {
 			resp.sendRedirect(req.getHeader("Referer"));
 		}
 		
+		// 選択された農地のidを取得して、リクエストスコープに保存
 		String id = req.getParameter("id");
 		req.setAttribute("id", id);
 		
+		// 選択された農地を貸出し中に設定する
 		dao.execSQL("UPDATE Controllerdb SET JUDG = 1 WHERE ID = '" + id + "'");
 		
 		req.getRequestDispatcher("WEB-INF/jsp/Borrower/landNext.jsp").forward(req, resp);

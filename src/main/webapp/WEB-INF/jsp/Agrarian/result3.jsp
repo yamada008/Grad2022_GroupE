@@ -27,40 +27,36 @@
         </nav>
         <!-- Icons Grid-->
         <section class="bg-light text-center">
+        <%-- EditNextServlet.javaへ値を送る --%>
         <form action="/SotsukenE/editNext" method="get">
             <div class="container">
                 <div class="row">
                     <div class=col>
                          <div class="col-auto">
-                         <table class=" bg-light">
-                         <c:forEach var="Coll" items="${ControllerList }">
-                         <c:forEach var="Bean" items="${List }">
-                         <c:if test="${Coll.userId == Bean.userId }">
-                         <tr>
-                         <th><label><input type="radio" name="id" value="${Coll.id}" ></label><br></th>
-                         <th><p>ユーザーID:<c:out value="${Coll.userId }"></c:out></p>
-                         <p>名前:<c:out value="${Coll.name }"></c:out></p>
-                         <p>住所:<c:out value="${Coll.word }"></c:out></p>
-                         <p>広さ：<c:out value="${Coll.breadth }"></c:out></p>
-                         <p>畑の写真:<br><img src="/SotsukenE/upload/${Coll.filename }" class="example"></p></th>
-                         </tr></c:if></c:forEach></c:forEach></table>
-                         <p><input type="submit" value="確認"></p>
+                         	<table class=" bg-light">
+                         		<%-- 自分が投稿した農地一覧を表示する --%>
+                         		<c:forEach var="Coll" items="${ControllerList }">
+                         			<c:if test="${Coll.userId == name }">
+                         				<tr>
+                         					<th><input type="radio" name="id" value="${Coll.id}" ><br></th>
+                         					<th>
+                         						<p>ユーザーID:<c:out value="${Coll.userId }"></c:out></p>
+                         						<p>名前:<c:out value="${Coll.name }"></c:out></p>
+                         						<p>住所:<c:out value="${Coll.word }"></c:out></p>
+                         						<p>広さ：<c:out value="${Coll.breadth }"></c:out></p>
+                         						<p>畑の写真:<br><img src="/SotsukenE/upload/${Coll.filename }" class="example"></p>
+                         					</th>
+                         				</tr>
+                         			</c:if>
+                         		</c:forEach>
+                         	</table>
+                         	<p><input type="submit" value="確認"></p>
                          </div>
                     </div>
                 </div>
             </div>
             </form>
         </section>
-        <!-- Footer-->
-        <footer class="footer bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0"></p>
-                    </div>
-                </div>
-            </div>
-        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

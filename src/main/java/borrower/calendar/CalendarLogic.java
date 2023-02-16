@@ -11,7 +11,6 @@ public class CalendarLogic {
 		//現在日時でカレンダーインスタンス生成
 		Calendar cal=Calendar.getInstance();
 		
-		ToDayDAO ToDD = new ToDayDAO();
 		CalendarDateDAO caldd = new CalendarDateDAO();
 		//2つの引数が来ていたら
 		if(args.length==2) {
@@ -23,7 +22,6 @@ public class CalendarLogic {
 		//マイカレンダーに年を設定
 		calDate.setd_year(cal.get(Calendar.YEAR));
 		int year = calDate.getd_year();
-		calDate.settoyear(cal.get(Calendar.YEAR));
 		mc.setYear(cal.get(Calendar.YEAR));
 		//マイカレンダーの元号の設定
 //		if(mc.getYear() > 2018) {
@@ -40,14 +38,6 @@ public class CalendarLogic {
 		//マイカレンダーに月の設定
 		mc.setMonth(cal.get(Calendar.MONTH) +1);
 		int month = mc.getMonth();
-		calDate.settomonth(cal.get(Calendar.MONTH)+1);
-		calDate.settoday(cal.get(Calendar.DATE));
-		int toyear = calDate.gettoyear();
-		int tomonth = calDate.gettomonth();
-		int today = calDate.gettoday();
-		CalendarDateBean ToDay = new CalendarDateBean(toyear,tomonth, today);
-		ToDD.execSQL("DELETE FROM ToDay");
-		ToDD.create(ToDay);
 		for(int i = 1;i <= 12;i++) {
 			if(i == month) {
 				cal.set(Calendar.MONTH, i-1);
@@ -118,8 +108,6 @@ public class CalendarLogic {
 			}
 			
 		}
-		
-		
 		
 		return mc;
 	}

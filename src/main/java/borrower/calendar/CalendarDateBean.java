@@ -3,16 +3,15 @@ package borrower.calendar;
 import java.io.Serializable;
 
 public class CalendarDateBean implements Serializable {
-	private int num = 0;
+	private int num = 0;			// ひと月の総数 
 	
-	private int d_year = 0;
-	private int d_month = 0;
-	private String d_day = null; //日
+	private int d_year = 0;			// 年
+	private int d_month = 0;		// 月
+	private String d_day = null; 	// 日
 	
-	
-	private int toyear = 0;
-	private int tomonth = 0;
-	private int today = 0;
+	private int toyear = 0;		// 今年
+	private int tomonth = 0;	// 今月
+	private int today = 0;		// 今日
 	
 	public CalendarDateBean() {}
 	public CalendarDateBean(int num,int d_year, int d_month, String d_day ) {
@@ -26,7 +25,7 @@ public class CalendarDateBean implements Serializable {
 		
 	}
 	public CalendarDateBean(int toyear, int tomonth,int today ) {
-		//ToDayList
+		//dayList
 		
 		this.settoyear(toyear);
 		this.settomonth(tomonth);

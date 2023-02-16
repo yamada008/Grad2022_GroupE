@@ -29,56 +29,28 @@
         </nav>
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
-        <form action="/SotsukenE/calendar" method="get">
-        	<input type="hidden" name="startDate" value="${startDate }">
-        	<input type="hidden" name="id" value="${id }">
-        	<input type="hidden" name="i" value="${i }">
-                                <div class="row">
-                                <div class=col>
-                                    <div class="col-auto">
-                                    <c:forEach var="advise" items="${ adviseList }">
-                                    <c:if test="${advise.id != null }">
-                                    <label><input type="radio" name="selectId" value="${advise.id}" >
-                                    <c:out value="${advise.name1}"></c:out><br>
-                                    <c:out value="${advise.name2}"></c:out><br>
-                                    <c:out value="${advise.name3}"></c:out></label><br><br>
-                                    </c:if>
-                                    </c:forEach>
-                                    <p><input type="submit" value="選択"></p>
-                                    </div>
-                                </div>
-                                </div>
-                                <br><a class="nav-link" href="/SotsukenE/produce_search?id=${id }">戻る</a>
-                                <!-- Submit success message-->
-                                <!---->
-                                <!-- This is what your users will see when the form-->
-                                <!-- has successfully submitted-->
-                                <div class="d-none" id="submitSuccessMessage">
-                                    <div class="text-center mb-3">
-                                        <div class="fw-bolder">Form submission successful!</div>
-                                        <p>To activate this form, sign up at</p>
-                                        <a class="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                    </div>
-                                </div>
-                                <!-- Submit error message-->
-                                <!---->
-                                <!-- This is what your users will see when there is-->
-                                <!-- an error submitting the form-->
-                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                                </form>
+        	<%-- CalendarServlet.javaへ値を送る --%>
+        	<form action="/SotsukenE/calendar" method="get">
+        		<input type="hidden" name="startDate" value="${startDate }">
+        		<input type="hidden" name="id" value="${id }">
+        		<input type="hidden" name="i" value="${i }">
+        		<div class="row">
+        			<div class=col>
+        				<div class="col-auto">
+        					<%-- 条件に合ったおすすめ作物一覧を表示する --%>
+        					<c:forEach var="advise" items="${ adviseList }">
+        						<label><input type="radio" name="selectId" value="${advise.id}" >
+        						<c:out value="${advise.name1}"></c:out><br>
+        						<c:out value="${advise.name2}"></c:out><br>
+        						<c:out value="${advise.name3}"></c:out></label><br><br>
+        					</c:forEach>
+        				<p><input type="submit" value="選択"></p>
+        				</div>
+        			</div>
+        		</div>
+        	<br><a class="nav-link" href="/SotsukenE/produce_search?id=${id }">戻る</a>
+        	</form>
         </section>
-        <!-- Call to Action-->
-     
-      <!-- Footer-->
-        <footer class="footer bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0"></p>
-                    </div>
-                </div>
-            </div>
-        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

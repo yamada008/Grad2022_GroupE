@@ -22,10 +22,12 @@ public class SelectDAO extends SimpleDAO {
 	public Advise select(int Id, String strDate) {
 		Advise select = new Advise();
 		try (Connection conn = this.createConnection()){//DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			// 選択されたおすすめ作物IDと同じものを取得する
 			String sql = "SELECT * FROM RECOMMENDED_CROPS WHERE ID = '" + Id + "'";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			
+			// データベースの値を取得する
 			while (rs.next()) {
 				int id = rs.getInt("ID");
 				String type = rs.getString("TYPE");
@@ -68,6 +70,7 @@ public class SelectDAO extends SimpleDAO {
 	public boolean create(CalendarBean calendar) {
 		try(Connection conn = this.createConnection()){
 		//PreparedStatement ps = null;
+		// データベースに値を格納する
 		String sql ="INSERT INTO CALENDARTBL(STARTYEAR, STARTMONTH, STARTD, ENDYEAR, ENDMONTH, ENDD, USERID, "
 				+ "NAME, TITLE, TEXT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			//ps = db.prepareStatement("INSERT INTO user(realName, userID, passwd) VALUES(?, ?, ?)");

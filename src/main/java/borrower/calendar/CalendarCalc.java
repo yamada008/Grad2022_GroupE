@@ -21,11 +21,11 @@ public class CalendarCalc {
 	 */
 	public static List<CalendarDateBean> date(String strDate, Advise advise) 
 	    throws ParseException {
-		 PostSelectLogic postSelectLogic = new PostSelectLogic();
 		 SelectDAO dao = new SelectDAO();
 		 dao.execSQL("DELETE FROM CALENDARTBL");
 		
 		// String型をDate型に変換する
+		// 初期値を設定する
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	    Date date = format.parse(strDate);
 	    String name1 = advise.getName1();
@@ -51,7 +51,9 @@ public class CalendarCalc {
 	    Date harvestEnd3 = null;
 	    
 	    List<Long> list = new ArrayList<Long>();
+	    // 開始日の時間
 	    long datetime = date.getTime();
+	    // 作業期間内の時間
 	    long sowDif1 = -1;
 	    long sowDif2 = -1;
 	    long sowDif3 = -1;
@@ -61,6 +63,7 @@ public class CalendarCalc {
 	    long harvestDif1 = -1;
 	    long harvestDif2 = -1;
 	    long harvestDif3 = -1;
+	    // 作業開始日から選択した開始日の時間
 	    long sow1 = -1;
     	long sow2 = -1;
     	long sow3 = -1; 
@@ -70,17 +73,23 @@ public class CalendarCalc {
     	long harvest1 = -1;
     	long harvest2 = -1;
     	long harvest3 = -1;
+    	// 1日の時間
 	    long one_date_time = 1000 * 60 * 60 * 24;
+	    // long型の最小値を設定
 	    long max = Long.MIN_VALUE;
 	    
+	    // 種まきを行う場合
 		if(advise.getSowStart1() != null) {
 			sowStart1 = format.parse(advise.getSowStart1());
 			sowEnd1 = format.parse(advise.getSowEnd1());
 			
 			long StartTime = sowStart1.getTime();
 		    long EndTime = sowEnd1.getTime();
+		    // 作業期間を求める
 		    sowDif1 = (EndTime - StartTime) / one_date_time;
+		    // 作業の開始日と選択した開始日の差を求める
 		    sow1 = (datetime - StartTime) / one_date_time;
+		    // 選択した開始日が作業期間内だった場合、差をリストに入れる
 	    	if(sow1 >= 0 && sow1 <= sowDif1) {
 	    		list.add(sow1);
 		    } else {
@@ -115,6 +124,7 @@ public class CalendarCalc {
 		    	sow3 = -1;
 		    }
 		}
+		// 植付を行う場合
 		if(advise.getPlantingStart1() != null) {
 			plantingStart1 = format.parse(advise.getPlantingStart1());
 		    plantingEnd1 = format.parse(advise.getPlantingEnd1());
@@ -151,6 +161,7 @@ public class CalendarCalc {
 		    	planting3 = -1;
 		    }
 	    }
+	    // 収穫を行う場合
 	    if(advise.getHarvestStart1() != null) {
 	    	harvestStart1 = format.parse(advise.getHarvestStart1());
 		    harvestEnd1 = format.parse(advise.getHarvestEnd1());
@@ -188,6 +199,7 @@ public class CalendarCalc {
 		    }
 	    }
 	    
+	    // 作業期間と開始日の差が一番大きい値を出す
 	    for(long i : list) {
 	    	if(i >= max) {
 				max = i;
@@ -199,10 +211,13 @@ public class CalendarCalc {
 		if(sowStart1 != null) {
 			cal.setTime(sowStart1);
 		    if(sow1 != -1) {
+		    	// 開始日が作業期間内だった場合
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) sow1);
 		    } else if(sowDif1 >= max) {
+		    	// 開始日が作業期間外で差が期間内だった場合
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) max);
 		    }
+		    // int型の変換する
 		    int StartYear = cal.get(Calendar.YEAR);
 		    int StartMonth = cal.get(Calendar.MONTH) + 1;
 		    int StartDay = cal.get(Calendar.DATE);
@@ -210,20 +225,25 @@ public class CalendarCalc {
 		    int EndYear = cal.get(Calendar.YEAR);
 		    int EndMonth = cal.get(Calendar.MONTH) + 1;
 		    int EndDay = cal.get(Calendar.DATE);
+		    // 取得した値を選択した作物一覧に格納する
 		    CalendarBean calendar = new CalendarBean(1, StartYear, StartMonth, StartDay, EndYear, 
 		    		EndMonth, EndDay, "borrower", name1, "種まき","本文");
-		    postSelectLogic.execute(calendar);
+		    dao.create(calendar);
 		} else {
+			// データがない場合の値を選択した作物一覧に格納する
 			CalendarBean calendar = new CalendarBean(1, 0, 0, 0, 0, 0, 0, "borrower", name1, "種まき", 
 					"本文");
-			postSelectLogic.execute(calendar);
+			dao.create(calendar);
 		}
 		if(plantingStart1 != null) {
 			cal.setTime(plantingStart1);
+			// 開始日が種まき期間内で差が期間内だった場合
 		    if(sow1 != -1 && plantingDif1 >= sow1) {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) sow1);
+		    // 差が期間内だった場合
 		    } else if(plantingDif1 >= max) {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) max);
+		    // 開始日が植付期間内だった場合
 		    } else if(planting1 != -1) {
 		    	cal.add(Calendar.DAY_OF_MONTH, (int) planting1);
 		    }
@@ -236,11 +256,11 @@ public class CalendarCalc {
 		    int EndDay = cal.get(Calendar.DATE);
 		    CalendarBean calendar = new CalendarBean(2, StartYear, StartMonth, StartDay, EndYear, 
 		    		EndMonth, EndDay, "borrower", name1, "植付","本文");
-		    postSelectLogic.execute(calendar);
+		    dao.create(calendar);
 		} else {
 			CalendarBean calendar = new CalendarBean(2, 0, 0, 0, 0, 0, 0, "borrower", name1, "植付", 
 					"本文");
-			postSelectLogic.execute(calendar);
+			dao.create(calendar);
 		}
 		if(harvestStart1 != null) {
 			cal.setTime(harvestStart1);
@@ -260,11 +280,11 @@ public class CalendarCalc {
 		    int EndDay = cal.get(Calendar.DATE);
 		    CalendarBean calendar = new CalendarBean(3, StartYear, StartMonth, StartDay, EndYear, 
 		    		EndMonth, EndDay, "borrower", name1, "収穫","本文");
-		    postSelectLogic.execute(calendar);
+		    dao.create(calendar);
 		} else {
 			CalendarBean calendar = new CalendarBean(3, 0, 0, 0, 0, 0, 0, "borrower", name1, "収穫", 
 					"本文");
-			postSelectLogic.execute(calendar);
+			dao.create(calendar);
 		}
 	    
 		if(sowStart2 != null) {
@@ -283,11 +303,11 @@ public class CalendarCalc {
 		    int EndDay = cal.get(Calendar.DATE);
 		    CalendarBean calendar = new CalendarBean(4, StartYear, StartMonth, StartDay, EndYear, 
 		    		EndMonth, EndDay, "borrower", name2, "種まき","本文");
-		    postSelectLogic.execute(calendar);
+		    dao.create(calendar);
 		} else {
 			CalendarBean calendar = new CalendarBean(4,  0, 0, 0, 0, 0, 0, "borrower", name2, "種まき", 
 					"本文");
-			postSelectLogic.execute(calendar);
+			dao.create(calendar);
 		}
 		if(plantingStart2 != null) {
 			cal.setTime(plantingStart2);
@@ -307,11 +327,11 @@ public class CalendarCalc {
 		    int EndDay = cal.get(Calendar.DATE);
 		    CalendarBean calendar = new CalendarBean(5, StartYear, StartMonth, StartDay, EndYear, 
 		    		EndMonth, EndDay, "borrower", name2, "植付","本文");
-		    postSelectLogic.execute(calendar);
+		    dao.create(calendar);
 		} else {
 			CalendarBean calendar = new CalendarBean(5,  0, 0, 0, 0, 0, 0, "borrower", name2, "植付", 
 					"本文");
-			postSelectLogic.execute(calendar);
+			dao.create(calendar);
 		}
 		if(harvestStart2 != null) {
 			cal.setTime(harvestStart2);
@@ -331,11 +351,11 @@ public class CalendarCalc {
 		    int EndDay = cal.get(Calendar.DATE);
 		    CalendarBean calendar = new CalendarBean(6, StartYear, StartMonth, StartDay, EndYear, 
 		    		EndMonth, EndDay, "borrower", name2, "収穫","本文");
-		    postSelectLogic.execute(calendar);
+		    dao.create(calendar);
 		} else {
 			CalendarBean calendar = new CalendarBean(6,  0, 0, 0, 0, 0, 0, "borrower", name2, "収穫", 
 					"本文");
-			postSelectLogic.execute(calendar);
+			dao.create(calendar);
 		}
 		
 		if(sowStart3 != null) {
@@ -354,11 +374,11 @@ public class CalendarCalc {
 		    int EndDay = cal.get(Calendar.DATE);
 		    CalendarBean calendar = new CalendarBean(7, StartYear, StartMonth, StartDay, EndYear, 
 		    		EndMonth, EndDay, "borrower", name3, "種まき","本文");
-		    postSelectLogic.execute(calendar);
+		    dao.create(calendar);
 		} else {
 			CalendarBean calendar = new CalendarBean(7,  0, 0, 0, 0, 0, 0, "borrower", name3, "種まき", 
 					"本文");
-			postSelectLogic.execute(calendar);
+			dao.create(calendar);
 		}
 		if(plantingStart3 != null) {
 			cal.setTime(plantingStart3);
@@ -378,11 +398,11 @@ public class CalendarCalc {
 		    int EndDay = cal.get(Calendar.DATE);
 		    CalendarBean calendar = new CalendarBean(8, StartYear, StartMonth, StartDay, EndYear, 
 		    		EndMonth, EndDay, "borrower", name3, "植付","本文");
-		    postSelectLogic.execute(calendar);
+		    dao.create(calendar);
 		} else {
 			CalendarBean calendar = new CalendarBean(8,  0, 0, 0, 0, 0, 0, "borrower", name3, "植付", 
 					"本文");
-			postSelectLogic.execute(calendar);
+			dao.create(calendar);
 		}
 		if(harvestStart3 != null) {
 			cal.setTime(harvestStart3);
@@ -402,13 +422,14 @@ public class CalendarCalc {
 		    int EndDay = cal.get(Calendar.DATE);
 		    CalendarBean calendar = new CalendarBean(9, StartYear, StartMonth, StartDay, EndYear, 
 		    		EndMonth, EndDay, "borrower", name3, "収穫","本文");
-		    postSelectLogic.execute(calendar);
+		    dao.create(calendar);
 		} else {
 			CalendarBean calendar = new CalendarBean(9,  0, 0, 0, 0, 0, 0, "borrower", name3, "収穫", 
 					"本文");
-			postSelectLogic.execute(calendar);
+			dao.create(calendar);
 		}
 		
+		// 開始日の日付を取得して、リストに入れる
 		List<CalendarDateBean> dateList = new ArrayList<CalendarDateBean>();
 		cal.setTime(date);
 		int year = cal.get(Calendar.YEAR);
@@ -416,6 +437,7 @@ public class CalendarCalc {
 	    int day = cal.get(Calendar.DATE);
 	    CalendarDateBean bean = new CalendarDateBean(year, month, day);
 	    dateList.add(bean);
+	    
 	    return dateList;
 	}
 	/**

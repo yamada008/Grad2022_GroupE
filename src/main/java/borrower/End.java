@@ -36,10 +36,14 @@ public class End extends HttpServlet {
 		ControllerDAO collDAO = new ControllerDAO();
 		CalendarDAO calDAO = new CalendarDAO();
 		
+		// 選択された農地のidを取得して、リクエストスコープに保存
 		String id = req.getParameter("id");
 		req.setAttribute("id", id);
 		
+		// 選択された農地を貸出し可能に設定する
 		collDAO.execSQL("UPDATE Controllerdb SET JUDG = 0 WHERE ID = '" + id + "'");
+		
+		// 選択したおすすめ作物一覧を削除する
 		calDAO.execSQL("DELETE FROM CALENDARTBL");
 		
 		req.getRequestDispatcher("WEB-INF/jsp/Borrower/end.jsp").forward(req, resp);

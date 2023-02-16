@@ -37,15 +37,16 @@ public class BorrowServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		UserBean user = (UserBean) session.getAttribute("user");
 		
-		int num = 0;
-		req.setAttribute("num", num);
-		
 		if (req.getParameter("logout") != null) { // ログアウトの場合
 			user.logout();
 			session.removeAttribute("user");
 			req.getRequestDispatcher("WEB-INF/jsp/home.jsp").forward(req, resp);
 			resp.sendRedirect(req.getHeader("Referer"));
 		}
+		
+		// 戻る位置の比較値を設定する
+		int num = 0;
+		req.setAttribute("num", num);
 		
 		req.getRequestDispatcher("WEB-INF/jsp/Borrower/borrow.jsp").forward(req, resp);
 	}

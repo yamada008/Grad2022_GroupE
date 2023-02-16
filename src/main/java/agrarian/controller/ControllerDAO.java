@@ -29,6 +29,7 @@ public class ControllerDAO extends SimpleDAO {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			
+			// データベースの値を取得し、リストに格納する
 			while (rs.next()) {
 				int id = rs.getInt("ID");
 				String userId = rs.getString("USERID");
@@ -50,6 +51,7 @@ public class ControllerDAO extends SimpleDAO {
 		Connection db = this.createConnection();
 		//PreparedStatement ps = null;
 		boolean result = false;
+		// データベースに値を格納する
 		try (PreparedStatement ps = db.prepareStatement("INSERT INTO Controllerdb(USERID, NAME, WORD, BREADTH, FILENAME, JUDG) VALUES(?, ?, ?, ?, ?, ?)")) {
 			//ps = db.prepareStatement("INSERT INTO user(realName, userID, passwd) VALUES(?, ?, ?)");
 			ps.setString(1, controller.getUserId());

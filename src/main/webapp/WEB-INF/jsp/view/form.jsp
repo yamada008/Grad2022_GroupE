@@ -28,31 +28,22 @@
         <section class="features-icons bg-light text-center">
             <div class="container">
                 <div class="row">
-                                <div class=col>
-                                    <div class="col-auto">
-                                    <form action="/SotsukenE/Main" method="post" enctype="multipart/form-data">
-                                    userID:<input type="text" name="userId"><br>
-                                    名前:<input type="text" name="name"><br>
-                                    住所:<input type="text" name="word"><br>
-                                    広さ:<input type="text" name="breadth"><br>
-                                    畑の写真:<input type="file" name="pict"><br>
-                                    <button type="submit">投稿する</button>
-                                    </form>
-                                    </div>
-                                </div>
+                	<div class=col>
+                		<div class="col-auto">
+                			<%-- Main.javaへ値を送る --%>
+                			<form action="/SotsukenE/Main" method="post" enctype="multipart/form-data">
+                				userID:<input type="text" name="userId"><br>
+                				名前:<input type="text" name="name"><br>
+                				住所:<input type="text" name="word"><br>
+                				広さ:<input type="text" name="breadth"><br>
+                				畑の写真:<input type="file" name="pict"><br>
+                				<button type="submit">投稿する</button>
+                			</form>
+                		</div>
+                	</div>
                 </div>
             </div>
         </section>
-        <!-- Footer-->
-        <footer class="footer bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0"></p>
-                    </div>
-                </div>
-            </div>
-        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

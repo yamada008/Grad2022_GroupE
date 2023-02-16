@@ -3,12 +3,12 @@ import java.io.Serializable;
 
 public class ControllerBean implements Serializable {
 	private int id = 0;
-	private String userId = null;
-	private String name = null;
-	private String word  = null;
-	private String breadth = null;
-	private String filename = null;
-	private int judg = 0;
+	private String userId = null;		// ユーザーID
+	private String name = null;			// 名前
+	private String word  = null;		// 住所
+	private String breadth = null;		// 広さ
+	private String filename = null;		// 画像
+	private int judg = 0;				// 貸し出しているか
 	
 	public ControllerBean() {}
 	public ControllerBean(int id, String userId, String name, String word, String breadth, String filename, int judg ) {

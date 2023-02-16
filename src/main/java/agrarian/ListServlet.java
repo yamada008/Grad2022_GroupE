@@ -1,7 +1,6 @@
 package agrarian;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import agrarian.controller.ControllerBean;
 import agrarian.controller.GetControllerListLogic;
-import user.Bean;
 
 /**
  * Servlet implementation class AgrarianServlet
@@ -35,13 +33,16 @@ public class ListServlet extends HttpServlet {
 	  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		  req.setCharacterEncoding("UTF-8");
 		  resp.setContentType("text/html;charset=UTF-8");
+		  
+		  // 農地一覧を取得して、リクエストスコープに保存
 		  GetControllerListLogic getControllerListLogic = new GetControllerListLogic();
 		  List<ControllerBean> ControllerList = getControllerListLogic.execute();
 		  req.setAttribute("ControllerList", ControllerList);
 		
-		  List<Bean> List = new ArrayList<Bean>();
-		  List.add(new Bean("agrarian"));
-		  req.setAttribute("List", List);
+		  // ログインしているユーザーIDの設定
+		  String name = "agrarian";
+		  req.setAttribute("name", name);
+		
 		  req.getRequestDispatcher("WEB-INF/jsp/Agrarian/result2.jsp").forward(req, resp);
 	  }
 }

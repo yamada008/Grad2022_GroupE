@@ -1,7 +1,6 @@
 package agrarian;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import agrarian.controller.ControllerBean;
 import agrarian.controller.ControllerDAO;
 import agrarian.controller.GetControllerListLogic;
-import user.Bean;
 
 /**
  * Servlet implementation class AgrarianServlet
@@ -38,18 +36,21 @@ public class EditNextServlet extends HttpServlet {
 		  resp.setContentType("text/html;charset=UTF-8");
 		  ControllerDAO dao = new ControllerDAO();
 		  
+		  // 農地一覧を取得して、リクエストスコープに保存
 		  GetControllerListLogic getControllerListLogic = new GetControllerListLogic();
 		  List<ControllerBean> ControllerList = getControllerListLogic.execute();
 		  req.setAttribute("ControllerList", ControllerList);
 		
-		  List<Bean> List = new ArrayList<Bean>();
-		  List.add(new Bean("agrarian"));
-		  req.setAttribute("List", List);
+		  // ログインしているユーザーIDの設定
+		  String name = "agrarian";
+		  req.setAttribute("name", name);
 		  
+		  // 選択された農地のidを取得して、リクエストスコープに保存
 		  String id = req.getParameter("id");
 		  req.setAttribute("id", id);
 		  
-		  dao.execSQL("DELETE FROM  CONTROLLERDB WHERE ID = '" + id + "'");
+		  // 選択された農地を削除する
+		  dao.execSQL("DELETE FROM CONTROLLERDB WHERE ID = '" + id + "'");
 		
 		  req.getRequestDispatcher("WEB-INF/jsp/Agrarian/edit.jsp").forward(req, resp);
 	  }

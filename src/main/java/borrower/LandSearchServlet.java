@@ -35,19 +35,11 @@ public class LandSearchServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 		
+		// 農地一覧を取得して、リクエストスコープに保存
 		GetControllerListLogic getControllerListLogic = new GetControllerListLogic();
 		List<ControllerBean> ControllerList = getControllerListLogic.execute();
 		req.setAttribute("ControllerList", ControllerList);
 		
 		req.getRequestDispatcher("WEB-INF/jsp/Borrower/landSearch.jsp").forward(req, resp);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

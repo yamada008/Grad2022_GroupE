@@ -31,33 +31,27 @@
         <section class="features-icons bg-light text-center">
             <div class="container">
                 <div class="row">
-                                <div class=col>
-                                    <div class="col-auto">
-                                    <form action="/SotsukenE/endConf" method="get">
-                                    <input type="hidden" name="id" value="${id }">
-                                    <input type="hidden" name="num" value="${num }">
-                                    <p><input type="submit" value="作業終了"></p></form>
-                                    <br><form action="/SotsukenE/calendar" method="get">
-                                    <input type="hidden" name="startDate" value="${startDate }">
-                                    <input type="hidden" name="selectId" value="${selectId }">
-                                    <input type="hidden" name="id" value="${id }">
-                                    <input type="hidden" name="i" value="${i }">
-                                    <p><input type="submit" value="予定を確認する"></p></form>
-                                    </div>
-                                </div>
+                	<div class=col>
+                		<div class="col-auto">
+                			<%-- EndConf.javaへ値を送る --%>
+                			<form action="/SotsukenE/endConf" method="get">
+                				<input type="hidden" name="id" value="${id }">
+                				<input type="hidden" name="num" value="${num }">
+                				<p><input type="submit" value="作業終了"></p>
+                			</form><br>
+                			<%-- Calendar.javaへ値を送る --%>
+                			<form action="/SotsukenE/calendar" method="get">
+                				<input type="hidden" name="startDate" value="${startDate }">
+                				<input type="hidden" name="selectId" value="${selectId }">
+                				<input type="hidden" name="id" value="${id }">
+                				<input type="hidden" name="i" value="${i }">
+                				<p><input type="submit" value="予定を確認する"></p>
+                			</form>
+                		</div>
+                	</div>
                 </div>
             </div>
         </section>
-        <!-- Footer-->
-        <footer class="footer bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0"></p>
-                    </div>
-                </div>
-            </div>
-        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

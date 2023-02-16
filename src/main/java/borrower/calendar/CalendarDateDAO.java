@@ -27,9 +27,9 @@ public class CalendarDateDAO extends SimpleDAO {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery(); 
 		
+			// データベースの値を取得し、リストに格納する
 			while(rs.next()) {
 				int num = rs.getInt("num");
-			
 				int d_year = rs.getInt("d_year");
 				int d_month = rs.getInt("d_month");
 				String d_day = rs.getString("d_day");
@@ -45,6 +45,7 @@ public class CalendarDateDAO extends SimpleDAO {
 	}
 	
 	public boolean create(CalendarDateBean calendar) {
+		// データベースに値を格納する
 		try( Connection conn = this.createConnection()){
 			String sql = "INSERT INTO Calendar2(num,d_year, d_month, d_day) VALUES(?,?,?,?)" ;
 				//pStmt = db.prepareStatement("INSERT INTO user(realName, userID, passwd) VALUES(?, ?, ?)");

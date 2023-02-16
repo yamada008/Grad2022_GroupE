@@ -27,29 +27,18 @@
         </nav>
         <!-- Icons Grid-->
         <section class="bg-light text-center">
-        <form action="/SotsukenE/editNext" method="get">
             <div class="container">
                 <div class="row">
                     <div class=col>
                          <div class="col-auto">
                          <h1>農地を削除しました</h1>
+                         <%-- ListServlet.javaへ移動する --%>
                          <a href="/SotsukenE/list">確認</a>
                          </div>
                     </div>
                 </div>
             </div>
-            </form>
         </section>
-        <!-- Footer-->
-        <footer class="footer bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <p class="text-muted small mb-4 mb-lg-0"></p>
-                    </div>
-                </div>
-            </div>
-        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

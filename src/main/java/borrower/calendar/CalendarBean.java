@@ -4,20 +4,20 @@ import java.io.Serializable;
 
 public class CalendarBean implements Serializable {
 	private int id = 0;
-	private int startYear = 0;
-	private int startMonth = 0;
-	private int startD = 0;
-	private int endYear = 0;
-	private int endMonth = 0;
-	private int endD = 0;
-	private String userID = null;
-	private String name = null;
-	private String title = null;
-	private String text = null;
+	private int startYear = 0;		// 作業の開始年
+	private int startMonth = 0;		// 作業の開始月
+	private int startD = 0;			// 作業の開始日
+	private int endYear = 0;		// 作業の終了年
+	private int endMonth = 0;		// 作業の終了月
+	private int endD = 0;			// 作業の終了日
+	private String userID = null;	// 作業を行うユーザーのID
+	private String name = null;		// 作物名
+	private String title = null;	// 作業内容
+	private String text = null;		// 作業の説明
 	
-	private String sow = null;
-	private String planting = null;
-	private String harvest = null;
+	private String sow = null;		// 種まき
+	private String planting = null;	// 植付
+	private String harvest = null;	// 収穫
 	
 	
 	public CalendarBean() {}

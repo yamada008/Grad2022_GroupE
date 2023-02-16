@@ -24,17 +24,23 @@ public class CalendarNextServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 		
+		// 選択されたおすすめ作物のidを取得して、リクエストスコープに保存
 		String selectId = req.getParameter("selectId");
+		req.setAttribute("selectId", selectId);
+		
+		// 開始日を取得して、リクエストスコープに保存
         String strDate = req.getParameter("startDate");
-        
         req.setAttribute("startDate", strDate);
-        req.setAttribute("selectId", selectId);
         
+        // 戻る位置の比較値を設定
         int num = 0;
 		req.setAttribute("num", num);
+		
+		// 戻る位置の比較値を設定
 		int i = 0;
 		req.setAttribute("i", i);
 		
+		// 選択された農地のidを取得して、リクエストスコープに保存
 		String id = req.getParameter("id");
         req.setAttribute("id", id);
         
@@ -51,18 +57,4 @@ public class CalendarNextServlet extends HttpServlet {
 		req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendarNext.jsp").forward(req, resp);
 	}
 	
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
-		 req.setCharacterEncoding("UTF-8");
-		 resp.setContentType("text/html;charset=UTF-8");
-         
-         String selectId = req.getParameter("selectId");
-         String strDate = req.getParameter("startDate");
-         
-         req.setAttribute("startDate", strDate);
-         req.setAttribute("selectId", selectId);
-         
-         req.getRequestDispatcher("WEB-INF/jsp/Borrower/calendarNext.jsp").forward(req, resp);
-		 
-	}
 }

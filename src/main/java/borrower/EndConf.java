@@ -31,8 +31,11 @@ public class EndConf extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 		
+		// 戻る位置の比較値を取得して、リクエストスコープに保存
 		String num = req.getParameter("num");
 		req.setAttribute("num", num);
+		
+		// 選択された農地のidを取得して、リクエストスコープに保存
 		String id = req.getParameter("id");
 		req.setAttribute("id", id);
 		
